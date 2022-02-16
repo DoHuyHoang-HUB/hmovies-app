@@ -9,4 +9,8 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
     </style>
+
+    <style name="Theme.HMovies.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 </resources>
