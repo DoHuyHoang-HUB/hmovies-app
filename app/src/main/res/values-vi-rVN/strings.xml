@@ -8,4 +8,6 @@
     <string name="series_movie">Phim bộ</string>
     <string name="movies_for_rent">Phim thuê</string>
     <string name="my_ds">DS của tôi</string>
+    <string name="watch_movie">Xem phim</string>
+    <string name="detail">Chi tiết</string>
 </resources>

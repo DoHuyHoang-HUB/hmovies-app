@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/drawable/background_click.xml" value="0.2245" />
+        <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/drawable/background_gradient.xml" value="0.3105" />
         <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/drawable/background_toolbar.xml" value="0.3105" />
         <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/drawable/bottom_navigation_selector.xml" value="0.196" />
         <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/layout-v28/activity_main.xml" value="0.358695652173913" />
@@ -13,7 +15,7 @@
         <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/layout/movie_item_container.xml" value="0.358695652173913" />
         <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/layout/profile_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/layout/search_fragment.xml" value="0.36666666666666664" />
-        <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/layout/slide_item_container.xml" value="0.36666666666666664" />
+        <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/layout/slide_item_container.xml" value="0.33" />
         <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.36666666666666664" />
       </map>
     </option>

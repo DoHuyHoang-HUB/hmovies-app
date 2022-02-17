@@ -8,4 +8,6 @@
     <string name="series_movie">Series movie</string>
     <string name="movies_for_rent">Rent</string>
     <string name="my_ds">My DS</string>
+    <string name="watch_movie">Watch movie</string>
+    <string name="detail">Detail</string>
 </resources>
