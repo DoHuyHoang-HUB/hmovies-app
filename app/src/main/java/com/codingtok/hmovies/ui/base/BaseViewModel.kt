@@ -1,9 +1,10 @@
 package com.codingtok.hmovies.ui.base
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.codingtok.hmovies.data.network.toBaseException
-import com.codingtok.hmovies.utils.SingleLiveData
+import com.codingtok.hmovies.utils.SingleMutableLiveData
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
@@ -12,13 +13,16 @@ import java.net.HttpURLConnection
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
-class BaseViewModel : ViewModel() {
-    val isLoading by lazy { SingleLiveData<Boolean>().apply { value = false } }
+open class BaseViewModel : ViewModel() {
+    val isLoading by lazy { SingleMutableLiveData<Boolean>().apply { value = false } }
 
-    val noInternetConnectionEvent by lazy { SingleLiveData<Unit>() }
-    val connectTimeOutEvent by lazy { SingleLiveData<Unit>() }
-    val errorMessage by lazy { SingleLiveData<String>() }
-    val unknownErrorEvent by lazy { SingleLiveData<Unit>() }
+    val noInternetConnectionEvent by lazy { SingleMutableLiveData<Unit>() }
+    val connectTimeOutEvent by lazy { SingleMutableLiveData<Unit>() }
+    val errorMessage by lazy { SingleMutableLiveData<String>() }
+    val unknownErrorEvent by lazy { SingleMutableLiveData<Unit>() }
+    val connectTimeoutEvent by lazy { SingleMutableLiveData<Unit>() }
+    val forceUpdateAppEvent by lazy { SingleMutableLiveData<Unit>() }
+    val serverMaintainEvent by lazy { SingleMutableLiveData<Unit>() }
 
     // exception handler for coroutine
     private val exceptionHandler by lazy {
@@ -67,10 +71,10 @@ class BaseViewModel : ViewModel() {
     }
 
     fun showLoading() {
-        isLoading.value = true
+        _isLoading.value = true
     }
 
     fun hideLoading() {
-        isLoading.value = false
+        _isLoading.value = false
     }
 }
