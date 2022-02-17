@@ -71,10 +71,10 @@ open class BaseViewModel : ViewModel() {
     }
 
     fun showLoading() {
-        _isLoading.value = true
+        isLoading.value = true
     }
 
     fun hideLoading() {
-        _isLoading.value = false
+        isLoading.value = false
     }
 }
