@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home">Trang chủ</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="download">Tài xuống</string>
+    <string name="profile">Tài khoản</string>
+    <string name="movie">Phim điện ảnh</string>
+    <string name="series_movie">Phim bộ</string>
+    <string name="movies_for_rent">Phim thuê</string>
+    <string name="my_ds">DS của tôi</string>
+</resources>

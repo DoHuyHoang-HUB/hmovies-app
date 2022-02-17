@@ -1,7 +1,11 @@
 <resources>
-    <string name="app_name">HMovies</string>
+    <string name="app_name" translatable="false">HMovies</string>
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="download">Download</string>
     <string name="profile">Profile</string>
+    <string name="movie">Movie</string>
+    <string name="series_movie">Series movie</string>
+    <string name="movies_for_rent">Rent</string>
+    <string name="my_ds">My DS</string>
 </resources>
