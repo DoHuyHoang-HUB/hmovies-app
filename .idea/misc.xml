@@ -7,6 +7,12 @@
         <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/drawable/background_gradient.xml" value="0.3105" />
         <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/drawable/background_toolbar.xml" value="0.3105" />
         <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/drawable/bottom_navigation_selector.xml" value="0.196" />
+        <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/drawable/indicator_active.xml" value="0.2245" />
+        <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/drawable/indicator_animation.xml" value="0.2245" />
+        <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/drawable/indicator_oval.xml" value="0.2245" />
+        <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/drawable/indicator_square_radius.xml" value="0.196" />
+        <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/drawable/indicator_square_radius2.xml" value="0.2245" />
+        <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/drawable/indicator_square_radius_animation.xml" value="0.2245" />
         <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/layout-v28/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
         <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/layout/app_bar_main.xml" value="0.358695652173913" />

@@ -7,4 +7,6 @@
     <color name="colorIconSecondary">#8A8A8A</color>
     <color name="colorBackgroundNav">#2E2E2E</color>
     <color name="colorButtonBackground">#0B75FF</color>
+    <color name="red_checked_color">#FF4C39</color>
+    <color name="red_normal_color">#935656</color>
 </resources>

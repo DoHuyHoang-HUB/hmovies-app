@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.codingtok.hmovies.data.constants.Constants
 import com.codingtok.hmovies.ui.base.BaseViewModel
 
-abstract class BaseLoadMoreRefeshViewModel<T>() : BaseViewModel() {
+abstract class BaseLoadMoreRefreshViewModel<T>() : BaseViewModel() {
 
     // refresh flag
     private val _isRefreshing = MutableLiveData<Boolean>().apply { value = false }

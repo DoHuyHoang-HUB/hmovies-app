@@ -22,7 +22,7 @@ class HomeViewModel : ViewModel() {
     private fun getPopularMovie() {
         viewModelScope.launch {
             try {
-                _popularMovie.value = Api.movieService.getPopular(languageTag = Locale.getDefault().toLanguageTag()).invoke()!!.results
+                _popularMovie.value = Api.movieService.getPopular(languageTag = Locale.getDefault().toLanguageTag()).invoke()!!.results.subList(0, 4)
             } catch (e: Exception) {
                 _popularMovie.value = listOf()
             }
