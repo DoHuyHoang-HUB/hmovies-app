@@ -10,4 +10,8 @@
     <string name="my_ds">DS của tôi</string>
     <string name="watch_movie">Xem phim</string>
     <string name="detail">Chi tiết</string>
+    <string name="no_data">Không có dữ liệu</string>
+    <string name="error_data">Lỗi dữ liệu</string>
+    <string name="loading">Đang tải&#8230;</string>
+    <string name="no_internet">Không thể kết nối với máy chủ.\nVui lòng kiểm tra lại đường truyền</string>
 </resources>

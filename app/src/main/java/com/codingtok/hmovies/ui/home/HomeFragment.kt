@@ -26,19 +26,19 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = MoviesSlideListAdapter()
+        val adapter = HomeAdapter();
 
-        homeViewModel.popularMovie.observe(viewLifecycleOwner) { movies ->
-            movies?.let {
-                adapter.submitList(it)
-            }
-        }
-        binding.apply {
-            lifecycleOwner = viewLifecycleOwner
-            viewModel = homeViewModel
-            topMovie.adapter = adapter
-            circleIndicator.setViewPager(topMovie)
-            adapter.registerAdapterDataObserver(circleIndicator.adapterDataObserver)
-        }
+//        homeViewModel.popularMovie.observe(viewLifecycleOwner) { movies ->
+//            movies?.let {
+//                adapter.submitList(it)
+//            }
+//        }
+//        binding.apply {
+//            lifecycleOwner = viewLifecycleOwner
+//            viewModel = homeViewModel
+//            topMovie.adapter = adapter
+//            circleIndicator.setViewPager(topMovie)
+//            adapter.registerAdapterDataObserver(circleIndicator.adapterDataObserver)
+//        }
     }
 }

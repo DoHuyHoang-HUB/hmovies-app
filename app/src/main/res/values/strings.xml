@@ -10,4 +10,8 @@
     <string name="my_ds">My DS</string>
     <string name="watch_movie">Watch movie</string>
     <string name="detail">Detail</string>
+    <string name="no_data">No data</string>
+    <string name="error_data">Error data</string>
+    <string name="loading">Loading&#8230;</string>
+    <string name="no_internet">Can not connect to server.\nPlease check the transmission again</string>
 </resources>

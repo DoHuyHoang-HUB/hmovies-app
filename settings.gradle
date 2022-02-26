@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "HMovies"
 include ':app'
+include ':multiple-status-view'

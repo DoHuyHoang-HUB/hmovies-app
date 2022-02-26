@@ -7,7 +7,7 @@ import androidx.viewpager2.widget.ViewPager2
 import coil.load
 import com.codingtok.hmovies.R
 import com.codingtok.hmovies.data.model.Movie
-import com.codingtok.hmovies.ui.home.MoviesSlideListAdapter
+import com.codingtok.hmovies.ui.home.HomeAdapter
 
 @BindingAdapter("loadUrl")
 fun ImageView.bindImage(imgUrl: String?) {
@@ -21,6 +21,6 @@ fun ImageView.bindImage(imgUrl: String?) {
 
 @BindingAdapter( "listData")
 fun ViewPager2.bindViewPager(data: List<Movie.Slim>) {
-    val adapter = this.adapter as MoviesSlideListAdapter
+    val adapter = this.adapter as HomeAdapter
     adapter.submitList(data)
 }

@@ -101,6 +101,16 @@ dependencies {
     // CircleIndicator
     implementation 'me.relex:circleindicator:2.1.6'
 
+    // Scalable size unit
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
+
+    // Loop view pager
+    implementation 'com.asksira.android:loopingviewpager:1.4.1'
+
+    // Multiple status view
+    implementation project(':multiple-status-view')
+
     // test
     testImplementation 'junit:junit:4.13.2'
     testImplementation "org.junit.jupiter:junit-jupiter:$jupiter_version"

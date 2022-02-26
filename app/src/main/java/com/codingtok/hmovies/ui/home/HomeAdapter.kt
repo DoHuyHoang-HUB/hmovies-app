@@ -6,7 +6,7 @@ import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.databinding.SlideItemContainerBinding
 import com.codingtok.hmovies.ui.base.BaseListAdapter
 
-class MoviesSlideListAdapter: BaseListAdapter<Movie.Slim, SlideItemContainerBinding>(callBack) {
+class HomeAdapter: BaseListAdapter<Movie.Slim, SlideItemContainerBinding>(callBack) {
 
     companion object callBack: DiffUtil.ItemCallback<Movie.Slim>() {
         override fun areItemsTheSame(oldItem: Movie.Slim, newItem: Movie.Slim): Boolean {
