@@ -7,7 +7,6 @@ import androidx.viewpager2.widget.ViewPager2
 import coil.load
 import com.codingtok.hmovies.R
 import com.codingtok.hmovies.data.model.Movie
-import com.codingtok.hmovies.ui.home.HomeAdapter
 
 @BindingAdapter("loadUrl")
 fun ImageView.bindImage(imgUrl: String?) {
