@@ -1,6 +1,5 @@
 package com.codingtok.hmovies.ui.base
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.codingtok.hmovies.data.network.toBaseException

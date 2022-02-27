@@ -5,8 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.codingtok.hmovies.data.model.Movie
-import com.codingtok.hmovies.data.model.Page
-import com.codingtok.hmovies.data.network.api.Api
+import com.codingtok.hmovies.data.network.Api
 import com.haroldadmin.cnradapter.invoke
 import kotlinx.coroutines.launch
 import java.util.*
@@ -21,11 +20,7 @@ class HomeViewModel : ViewModel() {
 
     private fun getPopularMovie() {
         viewModelScope.launch {
-            try {
-                _popularMovie.value = Api.movieService.getPopular(languageTag = Locale.getDefault().toLanguageTag()).invoke()!!.results.subList(0, 4)
-            } catch (e: Exception) {
-                _popularMovie.value = listOf()
-            }
+
         }
     }
 }

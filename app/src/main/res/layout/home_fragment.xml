@@ -136,13 +136,53 @@
                 app:loadingView="@layout/layout_loading_view"
                 app:noNetworkView="@layout/layout_network_view">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/home_recyclerview"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:listitem="@layout/item_home_banner"
-                    android:clipToPadding="false"
-                    android:paddingBottom="@dimen/_51sdp" />
+                    android:orientation="vertical">
+
+                    <include layout="@layout/item_home_banner" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/_10sdp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/colorTextPrimary"
+                                android:textSize="@dimen/_12ssp"
+                                android:textStyle="bold"
+                                android:text="@string/new_movie_trending_on_hmovie" />
+
+                            <ImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:contentDescription="@string/app_name"
+                                android:src="@drawable/ic_next"
+                                app:tint="@color/colorTextPrimary" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clipToPadding="false"
+                            android:orientation="horizontal"
+                            android:scrollbars="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/item_movie" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </com.codingtok.common.MultipleStatusView>
 

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HMovies">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:theme="@style/Theme.HMovies.NoActionBar"
             android:exported="true">
             <intent-filter>

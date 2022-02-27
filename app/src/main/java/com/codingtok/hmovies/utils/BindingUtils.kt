@@ -17,9 +17,3 @@ fun ImageView.bindImage(imgUrl: String?) {
         }
     }
 }
-
-@BindingAdapter( "listData")
-fun ViewPager2.bindViewPager(data: List<Movie.Slim>) {
-    val adapter = this.adapter as HomeAdapter
-    adapter.submitList(data)
-}

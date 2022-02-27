@@ -1,11 +1,10 @@
-package com.codingtok.hmovies
+package com.codingtok.hmovies.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.codingtok.hmovies.R
 import com.codingtok.hmovies.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 def moshi_version = "1.12.0"
@@ -37,6 +38,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -47,6 +51,10 @@ android {
     sourceSets {
         test.resources.srcDirs += 'src/test/res'
     }
+}
+
+kapt {
+    correctErrorTypes true
 }
 
 dependencies {
@@ -63,10 +71,14 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
     implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
+    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
 
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // Activity
+    implementation "androidx.activity:activity-ktx:1.4.0"
 
     // Lifecycle
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle"
@@ -74,6 +86,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle"
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle"
+
+    // Hilt
+    implementation "com.google.dagger:hilt-android:2.39"
+    kapt "com.google.dagger:hilt-android-compiler:2.38.1"
 
     // RecyclerView
     implementation "androidx.recyclerview:recyclerview:$rv_version"
@@ -85,6 +101,7 @@ dependencies {
     implementation "com.beust:klaxon:$klaxon_version"
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // timber
@@ -110,6 +127,7 @@ dependencies {
 
     // Multiple status view
     implementation project(':multiple-status-view')
+
 
     // test
     testImplementation 'junit:junit:4.13.2'
