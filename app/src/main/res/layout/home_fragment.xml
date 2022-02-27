@@ -5,9 +5,7 @@
 
     <data>
 
-        <variable
-            name="viewModel"
-            type="com.codingtok.hmovies.ui.home.HomeViewModel" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -141,7 +139,12 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <include layout="@layout/item_home_banner" />
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:clipChildren="false"
+                        android:minHeight="@dimen/_400sdp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"

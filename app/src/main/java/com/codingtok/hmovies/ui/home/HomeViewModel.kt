@@ -1,18 +1,25 @@
 package com.codingtok.hmovies.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.codingtok.hmovies.data.model.Error
 import com.codingtok.hmovies.data.model.Movie
+import com.codingtok.hmovies.data.model.Page
 import com.codingtok.hmovies.data.network.Api
+import com.codingtok.hmovies.data.network.service.discover.Discover
+import com.codingtok.hmovies.data.repository.DiscoverRepository
+import com.codingtok.hmovies.utils.Resource
+import com.haroldadmin.cnradapter.NetworkResponse
 import com.haroldadmin.cnradapter.invoke
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
-    private val _popularMovie = MutableLiveData<List<Movie.Slim>>()
-    val popularMovie: LiveData<List<Movie.Slim>> = _popularMovie
+@HiltViewModel
+class HomeViewModel @Inject constructor(private val discoverRepository: DiscoverRepository) : ViewModel() {
+    private val _popularMovie = MutableLiveData<Resource<Page<Movie.Slim>>>()
+    val popularMovie: LiveData<Resource<Page<Movie.Slim>>> get() = _popularMovie
 
     init {
         getPopularMovie()
@@ -20,7 +27,15 @@ class HomeViewModel : ViewModel() {
 
     private fun getPopularMovie() {
         viewModelScope.launch {
-
+            _popularMovie.value = Resource.loading()
+            val discoverBuilder = Discover.MovieBuilder()
+                .sortBy(Discover.SortBy.POPULARITY_DESC)
+                .includeAdult(false)
+                .includeVideo(false)
+                .withWatchMonetizationTypes(Discover.WatchMonetizationTypes.FLATRATE)
+            discoverRepository.getMoviesDiscover(discoverBuilder, Locale.getDefault().toLanguageTag()).collect {
+                _popularMovie.value = it
+            }
         }
     }
 }

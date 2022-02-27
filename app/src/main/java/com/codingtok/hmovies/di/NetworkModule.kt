@@ -13,6 +13,7 @@ import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.data.model.TVShow
 import com.codingtok.hmovies.data.network.factory.MyStandardJsonAdapters
 import com.codingtok.hmovies.data.network.service.discover.DiscoverService
+import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.EnumJsonAdapter
 import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory
@@ -93,7 +94,6 @@ class NetworkModule {
             .add(Date.ADAPTER)
             .add(ImageAdapter.INSTANCE)
             .add(RatedJsonAdapter())
-            .add(MyStandardJsonAdapters.FACTORY)
             .add(KotlinJsonAdapterFactory())
             .build()
 
@@ -104,6 +104,7 @@ class NetworkModule {
     ): Retrofit =
         Retrofit.Builder()
             .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .addCallAdapterFactory(NetworkResponseAdapterFactory())
             .baseUrl(BASE_URL)
             .client(okHttpClient)
             .build()
