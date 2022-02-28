@@ -11,7 +11,8 @@ import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.Fragment
 
 abstract class BaseFragment<ViewBinding: ViewDataBinding, ViewModel: BaseViewModel>: Fragment() {
-    protected lateinit var viewBinding: ViewBinding
+    private var _viewBinding: ViewBinding? = null
+    protected val viewBinding: ViewBinding get() = _viewBinding!!
     protected abstract val viewModel: ViewModel
 
     @get:LayoutRes
@@ -22,7 +23,7 @@ abstract class BaseFragment<ViewBinding: ViewDataBinding, ViewModel: BaseViewMod
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
+        _viewBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         viewBinding.apply {
             setVariable(BR.viewModel, viewModel)
             lifecycleOwner = viewLifecycleOwner
@@ -34,25 +35,5 @@ abstract class BaseFragment<ViewBinding: ViewDataBinding, ViewModel: BaseViewMod
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observerEvents()
-    }
-
-    private fun observerEvents() {
-        viewModel.apply {
-            isLoading.observe(viewLifecycleOwner, {
-            })
-            errorMessage.observe(viewLifecycleOwner, {
-            })
-            noInternetConnectionEvent.observe(viewLifecycleOwner, {
-            })
-            connectTimeoutEvent.observe(viewLifecycleOwner, {
-            })
-            forceUpdateAppEvent.observe(viewLifecycleOwner, {
-            })
-            serverMaintainEvent.observe(viewLifecycleOwner, {
-            })
-            unknownErrorEvent.observe(viewLifecycleOwner, {
-            })
-        }
     }
 }

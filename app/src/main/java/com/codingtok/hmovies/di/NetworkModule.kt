@@ -35,10 +35,10 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 @Module
 class NetworkModule {
-    private val TIME_OUT_READ = 30 // In second
+    private val TIME_OUT_READ = 10 // In second
     private val CONTENT_TYPE = "Content-Type"
     private val CONTENT_TYPE_VALUE = "application/json"
-    private val TIME_OUT_CONNECT = 30 // In second
+    private val TIME_OUT_CONNECT = 10 // In second
 
     @Singleton
     @Provides

@@ -17,18 +17,18 @@ constructor(private val discoverService: DiscoverService): DiscoverHelper {
         languageTag: String?,
         page: Int
     ): Resource<Page<Movie.Slim>> {
-        when(val discoverResponse = discoverService.getMoviesDiscover(options, languageTag, page)) {
+        return when(val discoverResponse = discoverService.getMoviesDiscover(options, languageTag, page)) {
             is NetworkResponse.Success -> {
-                return Resource.success(discoverResponse.body)
+                Resource.success(discoverResponse.body)
             }
             is NetworkResponse.NetworkError -> {
-                return Resource.error(discoverResponse.error.message)
+                Resource.error(discoverResponse.error.message)
             }
             is NetworkResponse.ServerError -> {
-                return Resource.error(discoverResponse.error.message, discoverResponse.body)
+                Resource.error(discoverResponse.error.message, discoverResponse.body)
             }
             is NetworkResponse.UnknownError -> {
-                return Resource.error(discoverResponse.error.message)
+                Resource.error(discoverResponse.error.message)
             }
         }
     }
