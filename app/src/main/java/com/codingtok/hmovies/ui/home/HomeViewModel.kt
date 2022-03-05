@@ -7,6 +7,7 @@ import com.codingtok.hmovies.data.model.Page
 import com.codingtok.hmovies.data.network.Api
 import com.codingtok.hmovies.data.network.service.discover.Discover
 import com.codingtok.hmovies.data.repository.DiscoverRepository
+import com.codingtok.hmovies.data.repository.MovieRepository
 import com.codingtok.hmovies.ui.base.BaseViewModel
 import com.codingtok.hmovies.utils.Resource
 import com.codingtok.hmovies.utils.Status
@@ -19,7 +20,7 @@ import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val discoverRepository: DiscoverRepository) :
+class HomeViewModel @Inject constructor(private val movieRepository: MovieRepository) :
     BaseViewModel() {
     private val _popularMovie = MutableLiveData<Resource<Page<Movie.Slim>>>()
     val popularMovie: LiveData<Resource<Page<Movie.Slim>>> get() = _popularMovie
@@ -31,13 +32,7 @@ class HomeViewModel @Inject constructor(private val discoverRepository: Discover
     private fun getPopularMovie() {
         viewModelScope.launch {
             _popularMovie.value = Resource.loading()
-            val discoverBuilder = Discover.MovieBuilder()
-                .sortBy(Discover.SortBy.POPULARITY_DESC)
-                .includeAdult(false)
-                .includeVideo(false)
-                .withWatchMonetizationTypes(Discover.WatchMonetizationTypes.FLATRATE)
-            discoverRepository.getMoviesDiscover(
-                discoverBuilder,
+            movieRepository.getNowPlaying(
                 Locale.getDefault().toLanguageTag()
             ).collect {
                 _popularMovie.value = it

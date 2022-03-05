@@ -1,7 +1,9 @@
 package com.codingtok.hmovies.di
 
 import com.codingtok.hmovies.data.repository.DiscoverRepository
+import com.codingtok.hmovies.data.repository.MovieRepository
 import com.codingtok.hmovies.data.repository.impl.DiscoverRepositoryImpl
+import com.codingtok.hmovies.data.repository.impl.MovieRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,5 +15,9 @@ import javax.inject.Singleton
 class RepositoryModule {
     @Singleton
     @Provides
-    fun provideUserRepository(discoverRepositoryImpl: DiscoverRepositoryImpl): DiscoverRepository = discoverRepositoryImpl
+    fun provideDiscoverRepository(discoverRepositoryImpl: DiscoverRepositoryImpl): DiscoverRepository = discoverRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideMovieRepository(movieRepositoryImpl: MovieRepositoryImpl): MovieRepository = movieRepositoryImpl
 }
