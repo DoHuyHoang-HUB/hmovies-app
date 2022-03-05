@@ -30,15 +30,23 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
 
     private lateinit var trendingAdapter: MoviesListAdapter
 
+    private lateinit var topRatedAdapter: MoviesListAdapter
+
+    private lateinit var popularAdapter: MoviesListAdapter
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         bannerAdapter = BannerAdapter()
-        trendingAdapter = MoviesListAdapter();
+        trendingAdapter = MoviesListAdapter()
+        topRatedAdapter = MoviesListAdapter()
+        popularAdapter = MoviesListAdapter()
 
         viewBinding.apply {
             bannerNowPlaying.setSliderAdapter(bannerAdapter)
             trendingRecyclerview.adapter = trendingAdapter
+            topRatedRecyclerview.adapter = topRatedAdapter
+            popularRecyclerview.adapter = popularAdapter
             circleIndicator.createIndicators(0, 0)
             bannerNowPlaying.setCurrentPageListener {
                 circleIndicator.animatePageSelected(it)
@@ -46,8 +54,10 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
             bannerAdapter.registerDataSetObserver(circleIndicator.dataSetObserver)
         }
 
-        observe(viewModel.popularMovie, ::handleMoviesNowPlaying)
-        observe(viewModel.trendingMovel, ::handleTrending)
+        observe(viewModel.nowPlayingMovie, ::handleMoviesNowPlaying)
+        observe(viewModel.trendingMovie, ::handleTrending)
+        observe(viewModel.topRatedMovie, ::handleTopRated)
+        observe(viewModel.popularMovie, ::handlePopularMovie)
     }
 
     private fun handleMoviesNowPlaying(status: Resource<Page<Movie.Slim>>) {
@@ -77,6 +87,32 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
             }
             Status.SUCCESS -> {
                 trendingAdapter.submitList(status.data?.results)
+            }
+            Status.ERROR -> {
+            }
+        }
+    }
+
+    private fun handleTopRated(status: Resource<Page<Movie.Slim>>) {
+        when (status.status) {
+            Status.LOADING -> {
+
+            }
+            Status.SUCCESS -> {
+                topRatedAdapter.submitList(status.data?.results)
+            }
+            Status.ERROR -> {
+            }
+        }
+    }
+
+    private fun handlePopularMovie(status: Resource<Page<Movie.Slim>>) {
+        when (status.status) {
+            Status.LOADING -> {
+
+            }
+            Status.SUCCESS -> {
+                popularAdapter.submitList(status.data?.results)
             }
             Status.ERROR -> {
             }

@@ -52,4 +52,25 @@ constructor(private val movieService: MovieService): MovieHelper {
             }
         }
     }
+
+    override suspend fun getTopRated(
+        languageTag: String?,
+        page: Int,
+        languageCode: String?
+    ): Resource<Page<Movie.Slim>> {
+        return when (val movieResponse = movieService.getTopRated(languageTag, page, languageCode)) {
+            is NetworkResponse.Success -> {
+                Resource.success(movieResponse.body)
+            }
+            is NetworkResponse.NetworkError -> {
+                Resource.error(movieResponse.error.message)
+            }
+            is NetworkResponse.ServerError -> {
+                Resource.error(movieResponse.error.message, movieResponse.body)
+            }
+            is NetworkResponse.UnknownError -> {
+                Resource.error(movieResponse.error.message)
+            }
+        }
+    }
 }

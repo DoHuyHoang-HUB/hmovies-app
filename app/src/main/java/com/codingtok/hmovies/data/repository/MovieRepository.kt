@@ -17,4 +17,10 @@ interface MovieRepository {
         page: Int = 1,
         languageCode: String? = null
     ): Flow<Resource<Page<Movie.Slim>>>
+
+    suspend fun getTopRated(
+        languageTag: String? = null,
+        page: Int = 1,
+        languageCode: String? = null
+    ): Flow<Resource<Page<Movie.Slim>>>
 }

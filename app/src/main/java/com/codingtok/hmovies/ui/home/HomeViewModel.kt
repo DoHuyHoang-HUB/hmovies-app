@@ -28,24 +28,32 @@ constructor(
     private val movieRepository: MovieRepository,
     private val trendingRepository: TrendingRepository
 ) :BaseViewModel() {
+    private val _nowPlayingMovie = MutableLiveData<Resource<Page<Movie.Slim>>>()
+    val nowPlayingMovie: LiveData<Resource<Page<Movie.Slim>>> get() = _nowPlayingMovie
+
+    private val _trendingMovie = MutableLiveData<Resource<Page<MediaTypeItem>>>()
+    val trendingMovie: LiveData<Resource<Page<MediaTypeItem>>> get() = _trendingMovie
+
+    private val _topRatedMovie = MutableLiveData<Resource<Page<Movie.Slim>>>()
+    val topRatedMovie: LiveData<Resource<Page<Movie.Slim>>> get() = _topRatedMovie
+
     private val _popularMovie = MutableLiveData<Resource<Page<Movie.Slim>>>()
     val popularMovie: LiveData<Resource<Page<Movie.Slim>>> get() = _popularMovie
 
-    private val _trendingMovie =MutableLiveData<Resource<Page<MediaTypeItem>>>()
-    val trendingMovel: LiveData<Resource<Page<MediaTypeItem>>> get() = _trendingMovie
-
     init {
-        getPopularMovie()
+        getNowPlayingMovie()
         getTrendingMovie()
+        getTopRatedMovie()
+        getPopularMovie()
     }
 
-    private fun getPopularMovie() {
+    private fun getNowPlayingMovie() {
         viewModelScope.launch {
-            _popularMovie.value = Resource.loading()
+            _nowPlayingMovie.value = Resource.loading()
             movieRepository.getNowPlaying(
                 Locale.getDefault().toLanguageTag()
             ).collect {
-                _popularMovie.value = it
+                _nowPlayingMovie.value = it
             }
         }
     }
@@ -61,5 +69,28 @@ constructor(
             }
         }
     }
+
+    private fun getTopRatedMovie() {
+        viewModelScope.launch {
+            _topRatedMovie.value = Resource.loading()
+            movieRepository.getTopRated(
+                Locale.getDefault().toLanguageTag()
+            ).collect {
+                _topRatedMovie.value = it
+            }
+        }
+    }
+
+    private fun getPopularMovie() {
+        viewModelScope.launch {
+            _popularMovie.value = Resource.loading()
+            movieRepository.getPopular(
+                Locale.getDefault().toLanguageTag()
+            ).collect {
+                _popularMovie.value = it
+            }
+        }
+    }
+
 }
 

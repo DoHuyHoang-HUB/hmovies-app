@@ -35,4 +35,14 @@ constructor(
             emit(movieHelper.getNowPlaying(languageTag, page, languageCode))
         }.flowOn(ioDispatcher)
     }
+
+    override suspend fun getTopRated(
+        languageTag: String?,
+        page: Int,
+        languageCode: String?
+    ): Flow<Resource<Page<Movie.Slim>>> {
+        return flow {
+            emit(movieHelper.getTopRated(languageTag, page, languageCode))
+        }.flowOn(ioDispatcher)
+    }
 }

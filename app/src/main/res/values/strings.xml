@@ -16,4 +16,5 @@
     <string name="no_internet">Can not connect to server.\nPlease check the transmission again</string>
     <string name="new_movie_trending_on_hmovie">New movie trending on Hmovie</string>
     <string name="top_5_movie_today">Top 5 movie today</string>
+    <string name="popular_movie">Popular movie</string>
 </resources>

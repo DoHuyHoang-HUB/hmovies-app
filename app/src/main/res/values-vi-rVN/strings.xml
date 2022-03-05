@@ -16,4 +16,5 @@
     <string name="no_internet">Không thể kết nối với máy chủ.\nVui lòng kiểm tra lại đường truyền</string>
     <string name="new_movie_trending_on_hmovie">Phim Mới Thịnh Hành Trên HMovie</string>
     <string name="top_5_movie_today">Top 5 phim hôm nay</string>
+    <string name="popular_movie">Phim phổ biến</string>
 </resources>

@@ -52,8 +52,8 @@
                         app:ci_drawable="@drawable/indicator_square_radius"
                         app:ci_drawable_unselected="@drawable/indicator_oval"
                         app:ci_width="@dimen/_12sdp"
-                        app:ci_height="@dimen/_6sdp"
-                        app:ci_margin="1dp"
+                        app:ci_height="@dimen/_4sdp"
+                        app:ci_margin="0dp"
                         app:ci_animator="@animator/indicator_scale"
                         app:ci_animator_reverse="@animator/indicator_scale_reverse"/>
 
@@ -70,6 +70,52 @@
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/trending_recyclerview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clipToPadding="false"
+                            android:orientation="horizontal"
+                            android:scrollbars="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/item_movie" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/_10sdp">
+
+                        <com.codingtok.hmovies.ui.widget.CollectionActionButton
+                            android:id="@+id/btn_top_rated"
+                            style="@style/Navigation.CollectionActionButtonStyle"
+                            app:cb_title="@string/top_5_movie_today" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/top_rated_recyclerview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clipToPadding="false"
+                            android:orientation="horizontal"
+                            android:scrollbars="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/item_movie" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/_10sdp">
+
+                        <com.codingtok.hmovies.ui.widget.CollectionActionButton
+                            android:id="@+id/btn_popular"
+                            style="@style/Navigation.CollectionActionButtonStyle"
+                            app:cb_title="@string/popular_movie" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/popular_recyclerview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:clipToPadding="false"
