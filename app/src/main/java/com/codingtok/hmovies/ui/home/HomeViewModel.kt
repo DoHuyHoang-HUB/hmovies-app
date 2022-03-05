@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val discoverRepository: DiscoverRepository) :
-    ViewModel() {
+    BaseViewModel() {
     private val _popularMovie = MutableLiveData<Resource<Page<Movie.Slim>>>()
     val popularMovie: LiveData<Resource<Page<Movie.Slim>>> get() = _popularMovie
 

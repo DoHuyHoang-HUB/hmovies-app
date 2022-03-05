@@ -1,26 +1,38 @@
 package com.codingtok.hmovies.ui.home
 
-import androidx.recyclerview.widget.DiffUtil
-import com.codingtok.hmovies.R
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.databinding.ItemHomeBannerBinding
-import com.codingtok.hmovies.ui.base.BaseListAdapter
+import com.smarteist.autoimageslider.SliderViewAdapter
 
-class BannerAdapter: BaseListAdapter<Movie, ItemHomeBannerBinding>(DiffCallback) {
+class BannerAdapter: SliderViewAdapter<BannerAdapter.BannerHolder>(
+){
+    private var sliderItems: List<Movie.Slim> = listOf()
 
-    companion object DiffCallback: DiffUtil.ItemCallback<Movie>() {
-        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-            return oldItem.id == newItem.id;
-        }
-
-        override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-            return oldItem == newItem;
-        }
-
+    fun renewItems(sliderItems: List<Movie.Slim>?) {
+        this.sliderItems = sliderItems ?: listOf()
+        notifyDataSetChanged()
     }
 
-    override fun getLayoutRes(viewType: Int): Int {
-        return R.layout.item_home_banner;
+    override fun getCount(): Int {
+        return sliderItems.size;
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup?): BannerHolder {
+        return BannerHolder(ItemHomeBannerBinding.inflate(LayoutInflater.from(parent?.context)))
+    }
+
+    override fun onBindViewHolder(viewHolder: BannerHolder?, position: Int) {
+        val item = sliderItems.get(position)
+        viewHolder?.bind(item)
+    }
+
+    class BannerHolder(private val binding: ItemHomeBannerBinding): SliderViewAdapter.ViewHolder(binding.root) {
+        fun bind(movie: Movie.Slim) {
+            binding.apply {
+                item = movie
+            }
+        }
+    }
 }

@@ -11,7 +11,14 @@ interface MovieService {
     @GET("movie/popular")
     suspend fun getPopular(
         @Query("language") languageTag: String? = null,
-        @Query("page") page: Int? = null,
+        @Query("page") page: Int = 1,
+        @Query("region") languageCode: String? = null
+    ): NetworkResponse<Page<Movie.Slim>, Error.DefaultError>
+
+    @GET("movie/now_playing")
+    suspend fun getNowPlaying(
+        @Query("language") languageTag: String? = null,
+        @Query("page") page: Int = 1,
         @Query("region") languageCode: String? = null
     ): NetworkResponse<Page<Movie.Slim>, Error.DefaultError>
 }

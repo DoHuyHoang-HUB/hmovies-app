@@ -12,6 +12,7 @@ import com.codingtok.hmovies.data.model.MediaTypeItem
 import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.data.model.TVShow
 import com.codingtok.hmovies.data.network.factory.MyStandardJsonAdapters
+import com.codingtok.hmovies.data.network.service.MovieService
 import com.codingtok.hmovies.data.network.service.discover.DiscoverService
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import com.squareup.moshi.Moshi
@@ -113,5 +114,10 @@ class NetworkModule {
     @Provides
     fun provideDiscoverService(retrofit: Retrofit): DiscoverService =
         retrofit.create(DiscoverService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideMovieService(retrofit: Retrofit): MovieService =
+        retrofit.create(MovieService::class.java)
 
 }

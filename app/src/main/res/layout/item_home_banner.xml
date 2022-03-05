@@ -10,41 +10,36 @@
             type="com.codingtok.hmovies.data.model.Movie.Slim" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         tools:background="@color/colorPrimary">
 
         <ImageView
             android:id="@+id/image_movie"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_400sdp"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:contentDescription="@string/app_name"
             app:loadUrl="@{item.poster.get(Quality.POSTER_W_500)}"
-            app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/breaking_bad" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintTop_toTopOf="@id/image_movie"
-            app:layout_constraintBottom_toBottomOf="@id/image_movie"
-            app:layout_constraintStart_toStartOf="@id/image_movie"
-            app:layout_constraintEnd_toEndOf="@id/image_movie"
+            android:layout_height="match_parent"
             android:background="@drawable/background_gradient" />
 
         <LinearLayout
             android:id="@+id/layout_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_marginStart="@dimen/_30sdp"
             android:layout_marginEnd="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingHorizontal="10dp"
-            app:layout_constraintTop_toBottomOf="@id/image_movie">
+            android:paddingHorizontal="10dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -53,8 +48,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/ic_add"
                     app:tint="@color/colorIconPrimary" />
@@ -77,15 +72,15 @@
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_45sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:backgroundTint="@color/colorButtonBackground"
                 android:text="@string/watch_movie"
                 android:textAllCaps="false"
-                android:textSize="@dimen/_13ssp"
+                android:textSize="@dimen/_11ssp"
                 android:theme="@style/Widget.Material3.Button.ElevatedButton"
                 app:icon="@drawable/ic_play"
                 app:iconPadding="@dimen/_1sdp"
-                app:iconSize="@dimen/_20sdp" />
+                app:iconSize="@dimen/_18sdp" />
 
             <View
                 android:layout_width="0dp"
@@ -99,8 +94,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/ic_info"
                     app:tint="@color/colorIconPrimary" />
@@ -118,16 +113,6 @@
 
         </LinearLayout>
 
-        <me.relex.circleindicator.CircleIndicator3
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
-            app:layout_constraintTop_toBottomOf="@id/layout_button"
-            app:ci_drawable="@drawable/indicator_square_radius"
-            app:ci_drawable_unselected="@drawable/indicator_oval"
-            app:ci_width="@dimen/_12sdp"
-            app:ci_height="@dimen/_6sdp"
-            app:ci_margin="3dp"
-            app:ci_animator_reverse="@animator/indicator_scale_reverse"
-            app:ci_animator="@animator/indicator_scale" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </RelativeLayout>
 </layout>

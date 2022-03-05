@@ -1,42 +1,47 @@
 package com.codingtok.hmovies.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
+import android.os.Handler
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.viewpager2.widget.ViewPager2
+import com.codingtok.hmovies.R
 import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.data.model.Page
 import com.codingtok.hmovies.databinding.HomeFragmentBinding
+import com.codingtok.hmovies.ui.base.BaseFragment
 import com.codingtok.hmovies.utils.Resource
 import com.codingtok.hmovies.utils.Status
 import com.codingtok.hmovies.utils.observe
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
+import com.smarteist.autoimageslider.SliderAnimations
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
 
-    private lateinit var homeViewModel: HomeViewModel
-    private var _binding: HomeFragmentBinding? = null
-    private val binding get() = _binding!!
+    override val viewModel: HomeViewModel by viewModels()
+
+    override val layoutId: Int = R.layout.home_fragment
 
     private lateinit var bannerAdapter: BannerAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = HomeFragmentBinding.inflate(inflater, container, false)
-        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        observe(homeViewModel.popularMovie, ::handleMoviesDiscover)
+        bannerAdapter = BannerAdapter()
+
+        viewBinding.apply {
+            bannerNowPlaying.setSliderAdapter(bannerAdapter)
+            circleIndicator.createIndicators(0, 0)
+            bannerNowPlaying.setCurrentPageListener {
+                circleIndicator.animatePageSelected(it)
+            }
+            bannerAdapter.registerDataSetObserver(circleIndicator.dataSetObserver)
+        }
+
+        observe(viewModel.popularMovie, ::handleMoviesDiscover)
     }
 
     private fun handleMoviesDiscover(status: Resource<Page<Movie.Slim>>) {
@@ -45,7 +50,9 @@ class HomeFragment : Fragment() {
                 Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
             }
             Status.SUCCESS -> {
-                Toast.makeText(requireContext(), "Movie size: ${status.data?.results?.size}", Toast.LENGTH_SHORT).show()
+                val data = status.data?.results?.subList(0, 5)
+                bannerAdapter.renewItems(data)
+                viewBinding.circleIndicator.createIndicators(5, 0)
             }
             Status.ERROR -> {
                 var error = ""

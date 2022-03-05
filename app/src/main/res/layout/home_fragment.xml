@@ -5,130 +5,29 @@
 
     <data>
 
-
+        <variable
+            name="viewModel"
+            type="com.codingtok.hmovies.ui.home.HomeViewModel" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         tools:background="@color/colorPrimary"
         tools:context=".ui.home.HomeFragment">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:background="@drawable/background_toolbar"
-            android:orientation="vertical"
-            android:outlineSpotShadowColor="@android:color/transparent"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            tools:targetApi="p">
-
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:contentScrim="?attr/colorPrimary"
-                app:layout_scrollFlags="scroll|enterAlways">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-                    <ImageView
-                        android:id="@+id/logo"
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="top"
-                        android:contentDescription="@string/app_name"
-                        android:src="@drawable/logo"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingHorizontal="5dp"
-                        android:paddingVertical="10dp"
-                        app:layout_constraintTop_toBottomOf="@id/logo">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:foreground="?android:attr/selectableItemBackground"
-                            android:text="@string/movie"
-                            android:textColor="@color/colorTextPrimary"
-                            android:textSize="@dimen/_12ssp" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="1dp"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:foreground="?android:attr/selectableItemBackground"
-                            android:text="@string/series_movie"
-                            android:textColor="@color/colorTextPrimary"
-                            android:textSize="@dimen/_12ssp" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="1dp"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:foreground="?android:attr/selectableItemBackground"
-                            android:text="@string/movies_for_rent"
-                            android:textColor="@color/colorTextPrimary"
-                            android:textSize="@dimen/_12ssp" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="1dp"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:foreground="?android:attr/selectableItemBackground"
-                            android:text="@string/my_ds"
-                            android:textColor="@color/colorTextPrimary"
-                            android:textSize="@dimen/_12ssp" />
-
-                    </LinearLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <FrameLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="-70dp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="@drawable/background_toolbar"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <com.codingtok.common.MultipleStatusView
                 android:id="@+id/layout_status_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 app:emptyView="@layout/layout_empty_view"
                 app:errorView="@layout/layout_error_view"
                 app:loadingView="@layout/layout_loading_view"
@@ -139,12 +38,24 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <androidx.viewpager2.widget.ViewPager2
+                    <com.smarteist.autoimageslider.SliderView
+                        android:id="@+id/banner_now_playing"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipToPadding="false"
-                        android:clipChildren="false"
-                        android:minHeight="@dimen/_400sdp" />
+                        android:layout_height="@dimen/_450sdp"
+                        app:sliderAutoCycleEnabled="false"
+                        app:sliderIndicatorEnabled="false"/>
+
+                    <me.relex.circleindicator.CircleIndicator
+                        android:id="@+id/circle_indicator"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        app:ci_drawable="@drawable/indicator_square_radius"
+                        app:ci_drawable_unselected="@drawable/indicator_oval"
+                        app:ci_width="@dimen/_12sdp"
+                        app:ci_height="@dimen/_6sdp"
+                        app:ci_margin="1dp"
+                        app:ci_animator="@animator/indicator_scale"
+                        app:ci_animator_reverse="@animator/indicator_scale_reverse"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -160,10 +71,10 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:text="@string/new_movie_trending_on_hmovie"
                                 android:textColor="@color/colorTextPrimary"
                                 android:textSize="@dimen/_12ssp"
-                                android:textStyle="bold"
-                                android:text="@string/new_movie_trending_on_hmovie" />
+                                android:textStyle="bold" />
 
                             <ImageView
                                 android:layout_width="@dimen/_20sdp"
@@ -185,11 +96,108 @@
 
                     </LinearLayout>
 
+                    <TextView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="wrap_content"
+                        android:text="ádhfkdjshfjkdshfjksdahfkjhsdafhasdjfhjksdfjkdsbfjkdsbfdsjkfjsdfjksdahfjkdshfhdsakjfhdjksfhjkdsfhjkdshfjkdshfjkdhskfhdskjfhdjksfhjkdshfjkdshfkjadshfjkdshfjkdshfjhadskjfhdskjfhdsjkafhdsjkfhjkdsafhdksjhfjkdshfjdfhaskjfhdjksfhdjksfhdjksfhksadjfhdjs"/>
+
                 </LinearLayout>
 
             </com.codingtok.common.MultipleStatusView>
 
-        </FrameLayout>
+        </ScrollView>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_toolbar"
+            app:contentInsetStart="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="top"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/logo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/_5sdp"
+                    android:paddingVertical="@dimen/_3sdp"
+                    app:layout_constraintTop_toBottomOf="@id/logo">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:text="@string/movie"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:text="@string/series_movie"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:text="@string/movies_for_rent"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:text="@string/my_ds"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </RelativeLayout>
 </layout>

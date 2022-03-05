@@ -122,13 +122,16 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
 
-    // Loop view pager
-    implementation 'com.asksira.android:loopingviewpager:1.4.1'
-
     // Multiple status view
     implementation project(':multiple-status-view')
 
+    // Auto image slider
+    // https://github.com/smarteist/Android-Image-Slider
+    implementation 'com.github.smarteist:autoimageslider:1.4.0'
 
+    // Smart Refresh Layout
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0'
     // test
     testImplementation 'junit:junit:4.13.2'
     testImplementation "org.junit.jupiter:junit-jupiter:$jupiter_version"
