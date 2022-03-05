@@ -34,6 +34,8 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
 
     private lateinit var popularAdapter: MoviesListAdapter
 
+    private lateinit var latestAdapter: MoviesListAdapter
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -41,12 +43,14 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
         trendingAdapter = MoviesListAdapter()
         topRatedAdapter = MoviesListAdapter()
         popularAdapter = MoviesListAdapter()
+        latestAdapter = MoviesListAdapter()
 
         viewBinding.apply {
             bannerNowPlaying.setSliderAdapter(bannerAdapter)
             trendingRecyclerview.adapter = trendingAdapter
             topRatedRecyclerview.adapter = topRatedAdapter
             popularRecyclerview.adapter = popularAdapter
+            latestRecyclerview.adapter = latestAdapter
             circleIndicator.createIndicators(0, 0)
             bannerNowPlaying.setCurrentPageListener {
                 circleIndicator.animatePageSelected(it)
@@ -58,6 +62,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
         observe(viewModel.trendingMovie, ::handleTrending)
         observe(viewModel.topRatedMovie, ::handleTopRated)
         observe(viewModel.popularMovie, ::handlePopularMovie)
+        observe(viewModel.latestMovie, ::handleLatestMovie)
     }
 
     private fun handleMoviesNowPlaying(status: Resource<Page<Movie.Slim>>) {
@@ -119,4 +124,16 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
         }
     }
 
+    private fun handleLatestMovie(status: Resource<Page<Movie.Slim>>) {
+        when (status.status) {
+            Status.LOADING -> {
+
+            }
+            Status.SUCCESS -> {
+                latestAdapter.submitList(status.data?.results)
+            }
+            Status.ERROR -> {
+            }
+        }
+    }
 }

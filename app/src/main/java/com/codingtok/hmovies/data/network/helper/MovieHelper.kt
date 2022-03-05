@@ -23,4 +23,8 @@ interface MovieHelper {
         page: Int = 1,
         languageCode: String? = null
     ): Resource<Page<Movie.Slim>>
+
+    suspend fun getLatest(
+        languageTag: String? = null
+    ): Resource<Page<Movie.Slim>>
 }

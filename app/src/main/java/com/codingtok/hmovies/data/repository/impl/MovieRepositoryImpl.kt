@@ -45,4 +45,10 @@ constructor(
             emit(movieHelper.getTopRated(languageTag, page, languageCode))
         }.flowOn(ioDispatcher)
     }
+
+    override suspend fun getLatest(languageTag: String?): Flow<Resource<Page<Movie.Slim>>> {
+        return flow {
+            emit(movieHelper.getLatest(languageTag))
+        }.flowOn(ioDispatcher)
+    }
 }

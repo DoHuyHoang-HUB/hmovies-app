@@ -2,31 +2,25 @@ package com.codingtok.hmovies.ui.home
 
 import androidx.lifecycle.*
 import com.codingtok.hmovies.data.enums.Trending
-import com.codingtok.hmovies.data.model.Error
 import com.codingtok.hmovies.data.model.MediaTypeItem
 import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.data.model.Page
-import com.codingtok.hmovies.data.network.Api
-import com.codingtok.hmovies.data.network.service.discover.Discover
-import com.codingtok.hmovies.data.repository.DiscoverRepository
 import com.codingtok.hmovies.data.repository.MovieRepository
 import com.codingtok.hmovies.data.repository.TrendingRepository
 import com.codingtok.hmovies.ui.base.BaseViewModel
 import com.codingtok.hmovies.utils.Resource
-import com.codingtok.hmovies.utils.Status
-import com.haroldadmin.cnradapter.NetworkResponse
-import com.haroldadmin.cnradapter.invoke
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 @HiltViewModel
 class HomeViewModel @Inject
 constructor(
     private val movieRepository: MovieRepository,
-    private val trendingRepository: TrendingRepository
+    private val trendingRepository: TrendingRepository,
 ) :BaseViewModel() {
     private val _nowPlayingMovie = MutableLiveData<Resource<Page<Movie.Slim>>>()
     val nowPlayingMovie: LiveData<Resource<Page<Movie.Slim>>> get() = _nowPlayingMovie
@@ -40,6 +34,9 @@ constructor(
     private val _popularMovie = MutableLiveData<Resource<Page<Movie.Slim>>>()
     val popularMovie: LiveData<Resource<Page<Movie.Slim>>> get() = _popularMovie
 
+    private val _latestMovie = MutableLiveData<Resource<Page<Movie.Slim>>>()
+    val latestMovie: LiveData<Resource<Page<Movie.Slim>>> get() = _latestMovie
+
     init {
         getNowPlayingMovie()
         getTrendingMovie()
@@ -48,7 +45,7 @@ constructor(
     }
 
     private fun getNowPlayingMovie() {
-        viewModelScope.launch {
+        viewModelScope.launch() {
             _nowPlayingMovie.value = Resource.loading()
             movieRepository.getNowPlaying(
                 Locale.getDefault().toLanguageTag()
@@ -59,7 +56,7 @@ constructor(
     }
 
     private fun getTrendingMovie() {
-        viewModelScope.launch {
+        viewModelScope.launch() {
             _trendingMovie.value = Resource.loading()
             trendingRepository.get(
                 Trending.Type.MOVIE,
@@ -71,7 +68,7 @@ constructor(
     }
 
     private fun getTopRatedMovie() {
-        viewModelScope.launch {
+        viewModelScope.launch() {
             _topRatedMovie.value = Resource.loading()
             movieRepository.getTopRated(
                 Locale.getDefault().toLanguageTag()
@@ -82,7 +79,7 @@ constructor(
     }
 
     private fun getPopularMovie() {
-        viewModelScope.launch {
+        viewModelScope.launch() {
             _popularMovie.value = Resource.loading()
             movieRepository.getPopular(
                 Locale.getDefault().toLanguageTag()
@@ -92,5 +89,15 @@ constructor(
         }
     }
 
+    private fun getLatestMovie() {
+        viewModelScope.launch() {
+            _latestMovie.value = Resource.loading()
+            movieRepository.getLatest(
+                Locale.getDefault().toLanguageTag()
+            ).collect {
+                _latestMovie.value = it
+            }
+        }
+    }
 }
 

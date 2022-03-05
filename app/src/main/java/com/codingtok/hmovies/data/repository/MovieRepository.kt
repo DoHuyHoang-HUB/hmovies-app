@@ -23,4 +23,8 @@ interface MovieRepository {
         page: Int = 1,
         languageCode: String? = null
     ): Flow<Resource<Page<Movie.Slim>>>
+
+    suspend fun getLatest(
+        languageTag: String? = null
+    ): Flow<Resource<Page<Movie.Slim>>>
 }
