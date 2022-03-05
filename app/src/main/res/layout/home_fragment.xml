@@ -63,29 +63,13 @@
                         android:orientation="vertical"
                         android:paddingHorizontal="@dimen/_10sdp">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/new_movie_trending_on_hmovie"
-                                android:textColor="@color/colorTextPrimary"
-                                android:textSize="@dimen/_12ssp"
-                                android:textStyle="bold" />
-
-                            <ImageView
-                                android:layout_width="@dimen/_20sdp"
-                                android:layout_height="@dimen/_20sdp"
-                                android:contentDescription="@string/app_name"
-                                android:src="@drawable/ic_next"
-                                app:tint="@color/colorTextPrimary" />
-
-                        </LinearLayout>
+                        <com.codingtok.hmovies.ui.widget.CollectionActionButton
+                            android:id="@+id/btn_trending"
+                            style="@style/Navigation.CollectionActionButtonStyle"
+                            app:cb_title="@string/new_movie_trending_on_hmovie" />
 
                         <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/trending_recyclerview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:clipToPadding="false"
@@ -95,11 +79,6 @@
                             tools:listitem="@layout/item_movie" />
 
                     </LinearLayout>
-
-                    <TextView
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="wrap_content"
-                        android:text="ádhfkdjshfjkdshfjksdahfkjhsdafhasdjfhjksdfjkdsbfjkdsbfdsjkfjsdfjksdahfjkdshfhdsakjfhdjksfhjkdsfhjkdshfjkdshfjkdhskfhdskjfhdjksfhjkdshfjkdshfkjadshfjkdshfjkdshfjhadskjfhdskjfhdsjkafhdsjkfhjkdsafhdksjhfjkdshfjdfhaskjfhdjksfhdjksfhdjksfhksadjfhdjs"/>
 
                 </LinearLayout>
 

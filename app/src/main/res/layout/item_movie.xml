@@ -1,25 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:gravity="center_vertical"
-    tools:background="@color/colorPrimary"
-    android:layout_marginEnd="@dimen/_10sdp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_140sdp"
-        android:contentDescription="@string/app_name"
-        tools:src="@drawable/breaking_bad" />
+    <data>
+        <import type="com.codingtok.hmovies.data.model.Image.Quality" />
+        <variable
+            name="item"
+            type="com.codingtok.hmovies.data.model.Movie.Slim" />
+    </data>
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Breaking bad"
-        android:textColor="@color/colorTextPrimary"
-        android:textSize="@dimen/_10sdp" />
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        tools:background="@color/colorPrimary"
+        android:layout_marginEnd="@dimen/_10sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_140sdp"
+            android:contentDescription="@string/app_name"
+            loadUrl="@{item.poster.get(Quality.POSTER_W_342)}"
+            tools:src="@drawable/breaking_bad" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Breaking bad"
+            android:textColor="@color/colorTextPrimary"
+            android:text="@{item.title}"
+            android:textSize="@dimen/_10sdp" />
 
 
-</LinearLayout>
+    </LinearLayout>
+</layout>

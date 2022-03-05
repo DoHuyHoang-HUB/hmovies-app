@@ -21,7 +21,7 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:contentDescription="@string/app_name"
-            app:loadUrl="@{item.poster.get(Quality.POSTER_W_500)}"
+            app:loadUrl="@{item.poster.get(Quality.POSTER_W_780)}"
             tools:src="@drawable/breaking_bad" />
 
         <View

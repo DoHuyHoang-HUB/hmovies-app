@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.codingtok.hmovies.R
+import com.codingtok.hmovies.data.model.MediaTypeItem
 import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.data.model.Page
 import com.codingtok.hmovies.databinding.HomeFragmentBinding
@@ -27,13 +28,17 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
 
     private lateinit var bannerAdapter: BannerAdapter
 
+    private lateinit var trendingAdapter: MoviesListAdapter
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         bannerAdapter = BannerAdapter()
+        trendingAdapter = MoviesListAdapter();
 
         viewBinding.apply {
             bannerNowPlaying.setSliderAdapter(bannerAdapter)
+            trendingRecyclerview.adapter = trendingAdapter
             circleIndicator.createIndicators(0, 0)
             bannerNowPlaying.setCurrentPageListener {
                 circleIndicator.animatePageSelected(it)
@@ -41,10 +46,11 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
             bannerAdapter.registerDataSetObserver(circleIndicator.dataSetObserver)
         }
 
-        observe(viewModel.popularMovie, ::handleMoviesDiscover)
+        observe(viewModel.popularMovie, ::handleMoviesNowPlaying)
+        observe(viewModel.trendingMovel, ::handleTrending)
     }
 
-    private fun handleMoviesDiscover(status: Resource<Page<Movie.Slim>>) {
+    private fun handleMoviesNowPlaying(status: Resource<Page<Movie.Slim>>) {
         when (status.status) {
             Status.LOADING -> {
                 Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
@@ -60,6 +66,19 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
                     error = it.message
                 }
                 Toast.makeText(requireContext(), "${status.message}, $error", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun handleTrending(status: Resource<Page<MediaTypeItem>>) {
+        when (status.status) {
+            Status.LOADING -> {
+
+            }
+            Status.SUCCESS -> {
+                trendingAdapter.submitList(status.data?.results)
+            }
+            Status.ERROR -> {
             }
         }
     }

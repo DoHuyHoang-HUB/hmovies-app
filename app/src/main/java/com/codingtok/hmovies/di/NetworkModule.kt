@@ -13,6 +13,7 @@ import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.data.model.TVShow
 import com.codingtok.hmovies.data.network.factory.MyStandardJsonAdapters
 import com.codingtok.hmovies.data.network.service.MovieService
+import com.codingtok.hmovies.data.network.service.TrendingService
 import com.codingtok.hmovies.data.network.service.discover.DiscoverService
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import com.squareup.moshi.Moshi
@@ -119,5 +120,10 @@ class NetworkModule {
     @Provides
     fun provideMovieService(retrofit: Retrofit): MovieService =
         retrofit.create(MovieService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideTrendingService(retrofit: Retrofit): TrendingService =
+        retrofit.create(TrendingService::class.java)
 
 }
