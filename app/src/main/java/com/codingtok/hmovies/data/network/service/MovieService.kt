@@ -28,9 +28,4 @@ interface MovieService {
         @Query("page") page: Int = 1,
         @Query("region") languageCode: String? = null
     ): NetworkResponse<Page<Movie.Slim>, Error.DefaultError>
-
-    @GET("movie/latest")
-    suspend fun getLatest(
-        @Query("language") languageTag: String? = null
-    ): NetworkResponse<Page<Movie.Slim>, Error.DefaultError>
 }

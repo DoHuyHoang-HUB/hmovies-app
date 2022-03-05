@@ -34,9 +34,6 @@ constructor(
     private val _popularMovie = MutableLiveData<Resource<Page<Movie.Slim>>>()
     val popularMovie: LiveData<Resource<Page<Movie.Slim>>> get() = _popularMovie
 
-    private val _latestMovie = MutableLiveData<Resource<Page<Movie.Slim>>>()
-    val latestMovie: LiveData<Resource<Page<Movie.Slim>>> get() = _latestMovie
-
     init {
         getNowPlayingMovie()
         getTrendingMovie()
@@ -85,17 +82,6 @@ constructor(
                 Locale.getDefault().toLanguageTag()
             ).collect {
                 _popularMovie.value = it
-            }
-        }
-    }
-
-    private fun getLatestMovie() {
-        viewModelScope.launch() {
-            _latestMovie.value = Resource.loading()
-            movieRepository.getLatest(
-                Locale.getDefault().toLanguageTag()
-            ).collect {
-                _latestMovie.value = it
             }
         }
     }

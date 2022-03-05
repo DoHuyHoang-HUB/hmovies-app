@@ -17,4 +17,5 @@
     <string name="new_movie_trending_on_hmovie">New movie trending on Hmovie</string>
     <string name="top_5_movie_today">Top 5 movie today</string>
     <string name="popular_movie">Popular movie</string>
+    <string name="latest_movie">Latest movie</string>
 </resources>

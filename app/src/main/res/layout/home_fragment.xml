@@ -127,29 +127,6 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingHorizontal="@dimen/_10sdp">
-
-                        <com.codingtok.hmovies.ui.widget.CollectionActionButton
-                            android:id="@+id/btn_latest"
-                            style="@style/Navigation.CollectionActionButtonStyle"
-                            app:cb_title="@string/popular_movie" />
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/latest_recyclerview"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:clipToPadding="false"
-                            android:orientation="horizontal"
-                            android:scrollbars="horizontal"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                            tools:listitem="@layout/item_movie" />
-
-                    </LinearLayout>
-
                 </LinearLayout>
 
             </com.codingtok.common.MultipleStatusView>

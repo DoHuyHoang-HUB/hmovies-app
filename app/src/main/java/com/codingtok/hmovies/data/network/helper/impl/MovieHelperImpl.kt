@@ -73,21 +73,4 @@ constructor(private val movieService: MovieService): MovieHelper {
             }
         }
     }
-
-    override suspend fun getLatest(languageTag: String?): Resource<Page<Movie.Slim>> {
-        return when (val movieResponse = movieService.getLatest(languageTag)) {
-            is NetworkResponse.Success -> {
-                Resource.success(movieResponse.body)
-            }
-            is NetworkResponse.NetworkError -> {
-                Resource.error(movieResponse.error.message)
-            }
-            is NetworkResponse.ServerError -> {
-                Resource.error(movieResponse.error.message, movieResponse.body)
-            }
-            is NetworkResponse.UnknownError -> {
-                Resource.error(movieResponse.error.message)
-            }
-        }
-    }
 }
