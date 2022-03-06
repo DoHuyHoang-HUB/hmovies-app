@@ -5,6 +5,8 @@ import com.codingtok.hmovies.data.enums.Trending
 import com.codingtok.hmovies.data.model.MediaTypeItem
 import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.data.model.Page
+import com.codingtok.hmovies.data.network.service.discover.Discover
+import com.codingtok.hmovies.data.repository.DiscoverRepository
 import com.codingtok.hmovies.data.repository.MovieRepository
 import com.codingtok.hmovies.data.repository.TrendingRepository
 import com.codingtok.hmovies.ui.base.BaseViewModel
@@ -21,6 +23,7 @@ class HomeViewModel @Inject
 constructor(
     private val movieRepository: MovieRepository,
     private val trendingRepository: TrendingRepository,
+    private val discoverRepository: DiscoverRepository
 ) :BaseViewModel() {
     private val _nowPlayingMovie = MutableLiveData<Resource<Page<Movie.Slim>>>()
     val nowPlayingMovie: LiveData<Resource<Page<Movie.Slim>>> get() = _nowPlayingMovie
@@ -34,6 +37,8 @@ constructor(
     private val _popularMovie = MutableLiveData<Resource<Page<Movie.Slim>>>()
     val popularMovie: LiveData<Resource<Page<Movie.Slim>>> get() = _popularMovie
 
+    private val _discoverMovie = MutableLiveData<Resource<Page<Movie.Slim>>>()
+    val discoverMovie: LiveData<Resource<Page<Movie.Slim>>> get() = _discoverMovie
     init {
         getNowPlayingMovie()
         getTrendingMovie()
@@ -42,7 +47,7 @@ constructor(
     }
 
     private fun getNowPlayingMovie() {
-        viewModelScope.launch() {
+        viewModelScope.launch {
             _nowPlayingMovie.value = Resource.loading()
             movieRepository.getNowPlaying(
                 Locale.getDefault().toLanguageTag()
@@ -53,7 +58,7 @@ constructor(
     }
 
     private fun getTrendingMovie() {
-        viewModelScope.launch() {
+        viewModelScope.launch {
             _trendingMovie.value = Resource.loading()
             trendingRepository.get(
                 Trending.Type.MOVIE,
@@ -65,7 +70,7 @@ constructor(
     }
 
     private fun getTopRatedMovie() {
-        viewModelScope.launch() {
+        viewModelScope.launch {
             _topRatedMovie.value = Resource.loading()
             movieRepository.getTopRated(
                 Locale.getDefault().toLanguageTag()
@@ -76,13 +81,21 @@ constructor(
     }
 
     private fun getPopularMovie() {
-        viewModelScope.launch() {
+        viewModelScope.launch {
             _popularMovie.value = Resource.loading()
             movieRepository.getPopular(
                 Locale.getDefault().toLanguageTag()
             ).collect {
                 _popularMovie.value = it
             }
+        }
+    }
+
+    private fun getDiscoverMovie() {
+        viewModelScope.launch {
+            _discoverMovie.value = Resource.loading()
+            val options = Discover.MovieBuilder()
+                .sortBy(Discover.SortBy.POPULARITY_DESC)
         }
     }
 }

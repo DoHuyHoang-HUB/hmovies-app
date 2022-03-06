@@ -17,6 +17,7 @@ import com.codingtok.hmovies.utils.Status
 import com.codingtok.hmovies.utils.observe
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
+import com.takusemba.multisnaprecyclerview.MultiSnapHelper
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,6 +43,8 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
         topRatedAdapter = MoviesListAdapter()
         popularAdapter = MoviesListAdapter()
 
+        val multiSnapHelper = MultiSnapHelper()
+
         viewBinding.apply {
             bannerNowPlaying.setSliderAdapter(bannerAdapter)
             trendingRecyclerview.adapter = trendingAdapter
@@ -51,6 +54,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
             bannerNowPlaying.setCurrentPageListener {
                 circleIndicator.animatePageSelected(it)
             }
+            bannerNowPlaying.startAutoCycle()
             bannerAdapter.registerDataSetObserver(circleIndicator.dataSetObserver)
         }
 
