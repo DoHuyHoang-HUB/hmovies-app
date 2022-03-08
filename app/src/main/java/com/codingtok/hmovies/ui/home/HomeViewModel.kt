@@ -10,13 +10,13 @@ import com.codingtok.hmovies.data.repository.DiscoverRepository
 import com.codingtok.hmovies.data.repository.MovieRepository
 import com.codingtok.hmovies.data.repository.TrendingRepository
 import com.codingtok.hmovies.ui.base.BaseViewModel
-import com.codingtok.hmovies.utils.Resource
+import com.codingtok.hmovies.utils.SingleMutableLiveData
+import com.haroldadmin.cnradapter.invoke
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 @HiltViewModel
 class HomeViewModel @Inject
@@ -25,20 +25,20 @@ constructor(
     private val trendingRepository: TrendingRepository,
     private val discoverRepository: DiscoverRepository
 ) :BaseViewModel() {
-    private val _nowPlayingMovie = MutableLiveData<Resource<Page<Movie.Slim>>>()
-    val nowPlayingMovie: LiveData<Resource<Page<Movie.Slim>>> get() = _nowPlayingMovie
+    private val _nowPlayingMovie = SingleMutableLiveData<Page<Movie.Slim>>()
+    val nowPlayingMovie: LiveData<Page<Movie.Slim>> get() = _nowPlayingMovie
 
-    private val _trendingMovie = MutableLiveData<Resource<Page<MediaTypeItem>>>()
-    val trendingMovie: LiveData<Resource<Page<MediaTypeItem>>> get() = _trendingMovie
+    private val _trendingMovie = SingleMutableLiveData<Page<MediaTypeItem>>()
+    val trendingMovie: LiveData<Page<MediaTypeItem>> get() = _trendingMovie
 
-    private val _topRatedMovie = MutableLiveData<Resource<Page<Movie.Slim>>>()
-    val topRatedMovie: LiveData<Resource<Page<Movie.Slim>>> get() = _topRatedMovie
+    private val _topRatedMovie = SingleMutableLiveData<Page<Movie.Slim>>()
+    val topRatedMovie: LiveData<Page<Movie.Slim>> get() = _topRatedMovie
 
-    private val _popularMovie = MutableLiveData<Resource<Page<Movie.Slim>>>()
-    val popularMovie: LiveData<Resource<Page<Movie.Slim>>> get() = _popularMovie
+    private val _popularMovie = SingleMutableLiveData<Page<Movie.Slim>>()
+    val popularMovie: LiveData<Page<Movie.Slim>> get() = _popularMovie
 
-    private val _discoverMovie = MutableLiveData<Resource<Page<Movie.Slim>>>()
-    val discoverMovie: LiveData<Resource<Page<Movie.Slim>>> get() = _discoverMovie
+    private val _discoverMovie = SingleMutableLiveData<Page<Movie.Slim>>()
+    val discoverMovie: LiveData<Page<Movie.Slim>> get() = _discoverMovie
     init {
         getNowPlayingMovie()
         getTrendingMovie()
@@ -48,52 +48,47 @@ constructor(
 
     private fun getNowPlayingMovie() {
         viewModelScope.launch {
-            _nowPlayingMovie.value = Resource.loading()
             movieRepository.getNowPlaying(
                 Locale.getDefault().toLanguageTag()
             ).collect {
-                _nowPlayingMovie.value = it
+                _nowPlayingMovie.value = it.invoke()
             }
         }
     }
 
     private fun getTrendingMovie() {
         viewModelScope.launch {
-            _trendingMovie.value = Resource.loading()
             trendingRepository.get(
                 Trending.Type.MOVIE,
                 Trending.TimeWindow.WEEK
             ).collect {
-                _trendingMovie.value = it
+                _trendingMovie.value = it.invoke()
             }
         }
     }
 
     private fun getTopRatedMovie() {
         viewModelScope.launch {
-            _topRatedMovie.value = Resource.loading()
             movieRepository.getTopRated(
                 Locale.getDefault().toLanguageTag()
             ).collect {
-                _topRatedMovie.value = it
+                _topRatedMovie.value = it.invoke()
             }
         }
     }
 
     private fun getPopularMovie() {
         viewModelScope.launch {
-            _popularMovie.value = Resource.loading()
             movieRepository.getPopular(
                 Locale.getDefault().toLanguageTag()
             ).collect {
-                _popularMovie.value = it
+                _popularMovie.value = it.invoke()
             }
         }
     }
 
     private fun getDiscoverMovie() {
         viewModelScope.launch {
-            _discoverMovie.value = Resource.loading()
             val options = Discover.MovieBuilder()
                 .sortBy(Discover.SortBy.POPULARITY_DESC)
         }

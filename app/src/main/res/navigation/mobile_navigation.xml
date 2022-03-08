@@ -20,4 +20,14 @@
         android:name="com.codingtok.hmovies.ui.profile.ProfileFragment"
         android:label="profile_fragment"
         tools:layout="@layout/profile_fragment" />
+    <fragment
+        android:id="@+id/nav_upcoming"
+        android:name="com.codingtok.hmovies.ui.upcoming.UpcomingFragment"
+        android:label="upcoming_fragment"
+        tools:layout="@layout/fragment_upcoming" />
+    <fragment
+        android:id="@+id/nav_download"
+        android:name="com.codingtok.hmovies.ui.download.DownloadFragment"
+        android:label="download_fragment"
+        tools:layout="@layout/fragment_download" />
 </navigation>

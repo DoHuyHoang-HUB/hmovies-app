@@ -12,8 +12,6 @@ import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.data.model.Page
 import com.codingtok.hmovies.databinding.HomeFragmentBinding
 import com.codingtok.hmovies.ui.base.BaseFragment
-import com.codingtok.hmovies.utils.Resource
-import com.codingtok.hmovies.utils.Status
 import com.codingtok.hmovies.utils.observe
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
@@ -58,68 +56,68 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
             bannerAdapter.registerDataSetObserver(circleIndicator.dataSetObserver)
         }
 
-        observe(viewModel.nowPlayingMovie, ::handleMoviesNowPlaying)
-        observe(viewModel.trendingMovie, ::handleTrending)
-        observe(viewModel.topRatedMovie, ::handleTopRated)
-        observe(viewModel.popularMovie, ::handlePopularMovie)
+//        observe(viewModel.nowPlayingMovie, ::handleMoviesNowPlaying)
+//        observe(viewModel.trendingMovie, ::handleTrending)
+//        observe(viewModel.topRatedMovie, ::handleTopRated)
+//        observe(viewModel.popularMovie, ::handlePopularMovie)
     }
 
-    private fun handleMoviesNowPlaying(status: Resource<Page<Movie.Slim>>) {
-        when (status.status) {
-            Status.LOADING -> {
-                Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
-            }
-            Status.SUCCESS -> {
-                val data = status.data?.results?.subList(0, 5)
-                bannerAdapter.renewItems(data)
-                viewBinding.circleIndicator.createIndicators(5, 0)
-            }
-            Status.ERROR -> {
-                var error = ""
-                status.error?.let {
-                    error = it.message
-                }
-                Toast.makeText(requireContext(), "${status.message}, $error", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    private fun handleTrending(status: Resource<Page<MediaTypeItem>>) {
-        when (status.status) {
-            Status.LOADING -> {
-
-            }
-            Status.SUCCESS -> {
-                trendingAdapter.submitList(status.data?.results)
-            }
-            Status.ERROR -> {
-            }
-        }
-    }
-
-    private fun handleTopRated(status: Resource<Page<Movie.Slim>>) {
-        when (status.status) {
-            Status.LOADING -> {
-
-            }
-            Status.SUCCESS -> {
-                topRatedAdapter.submitList(status.data?.results)
-            }
-            Status.ERROR -> {
-            }
-        }
-    }
-
-    private fun handlePopularMovie(status: Resource<Page<Movie.Slim>>) {
-        when (status.status) {
-            Status.LOADING -> {
-
-            }
-            Status.SUCCESS -> {
-                popularAdapter.submitList(status.data?.results)
-            }
-            Status.ERROR -> {
-            }
-        }
-    }
+//    private fun handleMoviesNowPlaying(status: Resource<Page<Movie.Slim>>) {
+//        when (status.status) {
+//            Status.LOADING -> {
+//                Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+//            }
+//            Status.SUCCESS -> {
+//                val data = status.data?.results?.subList(0, 5)
+//                bannerAdapter.renewItems(data)
+//                viewBinding.circleIndicator.createIndicators(5, 0)
+//            }
+//            Status.ERROR -> {
+//                var error = ""
+//                status.error?.let {
+//                    error = it.message
+//                }
+//                Toast.makeText(requireContext(), "${status.message}, $error", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+//    }
+//
+//    private fun handleTrending(status: Resource<Page<MediaTypeItem>>) {
+//        when (status.status) {
+//            Status.LOADING -> {
+//
+//            }
+//            Status.SUCCESS -> {
+//                trendingAdapter.submitList(status.data?.results)
+//            }
+//            Status.ERROR -> {
+//            }
+//        }
+//    }
+//
+//    private fun handleTopRated(status: Resource<Page<Movie.Slim>>) {
+//        when (status.status) {
+//            Status.LOADING -> {
+//
+//            }
+//            Status.SUCCESS -> {
+//                topRatedAdapter.submitList(status.data?.results)
+//            }
+//            Status.ERROR -> {
+//            }
+//        }
+//    }
+//
+//    private fun handlePopularMovie(status: Resource<Page<Movie.Slim>>) {
+//        when (status.status) {
+//            Status.LOADING -> {
+//
+//            }
+//            Status.SUCCESS -> {
+//                popularAdapter.submitList(status.data?.results)
+//            }
+//            Status.ERROR -> {
+//            }
+//        }
+//    }
 }

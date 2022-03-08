@@ -13,5 +13,5 @@ interface DiscoverRepository {
         options: Discover.MovieBuilder,
         languageTag: String? = null,
         page: Int = 1
-    ): Flow<Resource<Page<Movie.Slim>>>
+    ): Flow<NetworkResponse<Page<Movie.Slim>, Error.DefaultError>>
 }
