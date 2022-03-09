@@ -98,8 +98,10 @@ dependencies {
     // RoundedImageView
     implementation "com.makeramen:roundedimageview:$riv_version"
 
+    // NetworkResponse
+    // https://github.com/haroldadmin/NetworkResponseAdapter
     implementation "com.github.haroldadmin:NetworkResponseAdapter:$network_response_adapter_version"
-    implementation "com.beust:klaxon:$klaxon_version"
+//    implementation "com.beust:klaxon:$klaxon_version"
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
@@ -136,6 +138,15 @@ dependencies {
 
     // MultiSnapRecylerView
     implementation 'com.github.takusemba:multisnaprecyclerview:2.0.4'
+
+
+    //leakCanary
+//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+//    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+
+    //Logger
+    implementation 'com.orhanobut:logger:2.2.0'
+
     // test
     testImplementation 'junit:junit:4.13.2'
     testImplementation "org.junit.jupiter:junit-jupiter:$jupiter_version"

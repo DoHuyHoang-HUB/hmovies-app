@@ -39,7 +39,7 @@ import javax.inject.Singleton
 class NetworkModule {
     private val TIME_OUT_READ = 10 // In second
     private val CONTENT_TYPE = "Content-Type"
-    private val CONTENT_TYPE_VALUE = "application/json"
+    private val CONTENT_TYPE_VALUE = "application/json;charset=utf-8"
     private val TIME_OUT_CONNECT = 10 // In second
 
     @Singleton

@@ -3,7 +3,6 @@ package com.codingtok.hmovies.data.repository
 import com.codingtok.hmovies.data.model.Error
 import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.data.model.Page
-import com.codingtok.hmovies.utils.Resource
 import com.haroldadmin.cnradapter.NetworkResponse
 import kotlinx.coroutines.flow.Flow
 

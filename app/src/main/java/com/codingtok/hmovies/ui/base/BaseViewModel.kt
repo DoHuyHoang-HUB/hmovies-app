@@ -3,6 +3,7 @@ package com.codingtok.hmovies.ui.base
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.codingtok.hmovies.data.model.Error
+import com.codingtok.hmovies.data.network.toBaseException
 import com.codingtok.hmovies.utils.SingleMutableLiveData
 import com.haroldadmin.cnradapter.NetworkResponse
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -17,11 +18,28 @@ open class BaseViewModel : ViewModel() {
 
     val noInternetConnectionEvent by lazy { SingleMutableLiveData<Unit>() }
     val connectTimeoutEvent by lazy { SingleMutableLiveData<Unit>() }
-    val serverMaintainEvent by lazy { SingleMutableLiveData<Unit>() }
+    val serverErrorEvent by lazy { SingleMutableLiveData<Unit>() }
     val unknownErrorEvent by lazy { SingleMutableLiveData<Unit>() }
+    val noDataEvent by lazy { SingleMutableLiveData<Unit>() }
 
-    protected open fun <T : Any> onError(response: NetworkResponse<T, Error.DefaultError>) {
-
+    /**
+     * error type
+     */
+    protected open fun onError(response: NetworkResponse<*, *>) {
+        when (response) {
+            is NetworkResponse.NetworkError -> {
+                errorMessage.value = response.error.message
+            }
+            is NetworkResponse.ServerError -> {
+                errorMessage.value = response.error.message
+                serverErrorEvent.call()
+            }
+            is NetworkResponse.UnknownError -> {
+                errorMessage.value = response.error.message
+                unknownErrorEvent.call()
+            }
+            else -> {}
+        }
     }
 
     fun showLoading() {
