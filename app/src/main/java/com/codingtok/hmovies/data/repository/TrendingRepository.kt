@@ -8,7 +8,7 @@ import com.haroldadmin.cnradapter.NetworkResponse
 import kotlinx.coroutines.flow.Flow
 
 interface TrendingRepository {
-    suspend fun get(
+    suspend fun getTrending(
         mediaType: Trending.Type,
         timeWindow: Trending.TimeWindow
     ): Flow<NetworkResponse<Page<MediaTypeItem>, Error.DefaultError>>

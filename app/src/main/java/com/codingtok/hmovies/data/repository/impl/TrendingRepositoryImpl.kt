@@ -18,12 +18,12 @@ constructor(
     private val trendingService: TrendingService,
     private val ioDispatcher: CoroutineContext
 ): TrendingRepository {
-    override suspend fun get(
+    override suspend fun getTrending(
         mediaType: Trending.Type,
         timeWindow: Trending.TimeWindow
     ): Flow<NetworkResponse<Page<MediaTypeItem>, Error.DefaultError>> {
         return flow {
-            emit(trendingService.get(mediaType, timeWindow))
+            emit(trendingService.getTrending(mediaType, timeWindow))
         }.flowOn(ioDispatcher)
     }
 }

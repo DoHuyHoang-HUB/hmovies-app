@@ -10,7 +10,7 @@ import retrofit2.http.Path
 
 interface TrendingService {
     @GET("trending/{media_type}/{time_window}")
-    suspend fun get(
+    suspend fun getTrending(
         @Path("media_type") mediaType: Trending.Type,
         @Path("time_window") timeWindow: Trending.TimeWindow
     ): NetworkResponse<Page<MediaTypeItem>, Error.DefaultError>
