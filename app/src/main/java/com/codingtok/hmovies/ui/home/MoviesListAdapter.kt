@@ -1,6 +1,7 @@
 package com.codingtok.hmovies.ui.home
 
 import android.annotation.SuppressLint
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import com.codingtok.hmovies.R
 import com.codingtok.hmovies.data.model.MediaTypeItem
@@ -29,5 +30,9 @@ class MoviesListAdapter: BaseListAdapter<MediaTypeItem, ItemMovieBinding>(DiffCa
 
     override fun getLayoutRes(viewType: Int): Int {
         return R.layout.item_movie
+    }
+
+    fun <T: ViewDataBinding> hello() {
+
     }
 }

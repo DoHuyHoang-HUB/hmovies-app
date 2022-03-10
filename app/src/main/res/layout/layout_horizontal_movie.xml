@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        tools:background="@color/colorPrimary">
+
+        <com.codingtok.hmovies.ui.widget.CollectionActionButton
+            android:id="@+id/btn_trending"
+            style="@style/Navigation.CollectionActionButtonStyle" />
+
+        <com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView
+            android:id="@+id/trending_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:overScrollMode="never"
+            android:scrollbars="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:msrv_gravity="start"
+            app:msrv_interval="1"
+            app:msrv_speed_ms_per_inch="100"
+            tools:listitem="@layout/item_movie" />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:background="@color/colorPrimary">
+
+        <com.smarteist.autoimageslider.SliderView
+            android:id="@+id/banner_now_playing"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_450sdp"
+            app:sliderAnimationDuration="600"
+            app:sliderAutoCycleDirection="right"
+            app:sliderAutoCycleEnabled="true"
+            app:sliderIndicatorEnabled="false"
+            app:sliderScrollTimeInSec="30"
+            app:sliderStartAutoCycle="true" />
+
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/circle_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            app:ci_animator="@animator/indicator_scale"
+            app:ci_animator_reverse="@animator/indicator_scale_reverse"
+            app:ci_drawable="@drawable/indicator_square_radius"
+            app:ci_drawable_unselected="@drawable/indicator_oval"
+            app:ci_height="@dimen/_5sdp"
+            app:ci_margin="0dp"
+            app:ci_width="@dimen/_15sdp" />
+
+    </LinearLayout>
+</layout>

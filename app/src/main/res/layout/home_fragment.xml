@@ -17,160 +17,37 @@
         tools:background="@color/colorPrimary"
         tools:context=".ui.home.HomeFragment">
 
-        <ScrollView
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/_30sdp"
-            android:background="@drawable/background_toolbar"
-            android:clipToPadding="true"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            app:srlEnableAutoLoadMore="false"
+            app:srlEnablePureScrollMode="true">
 
-            <com.codingtok.common.MultipleStatusView
-                android:id="@+id/layout_status_view"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:emptyView="@layout/layout_empty_view"
-                app:errorView="@layout/layout_error_view"
-                app:loadingView="@layout/layout_loading_view"
-                app:noNetworkView="@layout/layout_network_view">
+                android:layout_height="match_parent">
 
-                <LinearLayout
+                <com.codingtok.common.MultipleStatusView
+                    android:id="@+id/layout_status_view"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    app:emptyView="@layout/layout_empty_view"
+                    app:errorView="@layout/layout_error_view"
+                    app:loadingView="@layout/layout_loading_view"
+                    app:noNetworkView="@layout/layout_network_view">
 
-                    <com.smarteist.autoimageslider.SliderView
-                        android:id="@+id/banner_now_playing"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/home_recyclerView"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_450sdp"
-                        app:sliderAnimationDuration="600"
-                        app:sliderAutoCycleDirection="right"
-                        app:sliderAutoCycleEnabled="true"
-                        app:sliderIndicatorEnabled="false"
-                        app:sliderScrollTimeInSec="30"
-                        app:sliderStartAutoCycle="true" />
+                        android:layout_height="match_parent"
+                        android:clipToPadding="false"
+                        android:paddingBottom="@dimen/_55sdp" />
 
-                    <me.relex.circleindicator.CircleIndicator
-                        android:id="@+id/circle_indicator"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_30sdp"
-                        app:ci_animator="@animator/indicator_scale"
-                        app:ci_animator_reverse="@animator/indicator_scale_reverse"
-                        app:ci_drawable="@drawable/indicator_square_radius"
-                        app:ci_drawable_unselected="@drawable/indicator_oval"
-                        app:ci_height="@dimen/_5sdp"
-                        app:ci_margin="0dp"
-                        app:ci_width="@dimen/_15sdp" />
+                </com.codingtok.common.MultipleStatusView>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingHorizontal="@dimen/_10sdp">
+            </FrameLayout>
 
-                        <com.codingtok.hmovies.ui.widget.CollectionActionButton
-                            android:id="@+id/btn_trending"
-                            style="@style/Navigation.CollectionActionButtonStyle"
-                            app:cb_title="@string/new_movie_trending_on_hmovie" />
-
-                        <com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView
-                            android:id="@+id/trending_recyclerview"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:overScrollMode="never"
-                            android:scrollbars="horizontal"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                            app:msrv_gravity="start"
-                            app:msrv_interval="1"
-                            app:msrv_speed_ms_per_inch="100"
-                            tools:listitem="@layout/item_movie" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingHorizontal="@dimen/_10sdp">
-
-                        <com.codingtok.hmovies.ui.widget.CollectionActionButton
-                            android:id="@+id/btn_top_rated"
-                            style="@style/Navigation.CollectionActionButtonStyle"
-                            app:cb_title="@string/top_5_movie_today" />
-
-                        <com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView
-                            android:id="@+id/top_rated_recyclerview"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:overScrollMode="never"
-                            android:scrollbars="horizontal"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                            app:msrv_gravity="start"
-                            app:msrv_interval="1"
-                            app:msrv_speed_ms_per_inch="100"
-                            tools:listitem="@layout/item_movie" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingHorizontal="@dimen/_10sdp">
-
-                        <com.codingtok.hmovies.ui.widget.CollectionActionButton
-                            android:id="@+id/btn_popular"
-                            style="@style/Navigation.CollectionActionButtonStyle"
-                            app:cb_title="@string/popular_movie" />
-
-                        <com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView
-                            android:id="@+id/popular_recyclerview"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:overScrollMode="never"
-                            android:scrollbars="horizontal"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                            app:msrv_gravity="start"
-                            app:msrv_interval="1"
-                            app:msrv_speed_ms_per_inch="100"
-                            tools:listitem="@layout/item_movie" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingHorizontal="@dimen/_10sdp">
-
-                        <com.codingtok.hmovies.ui.widget.CollectionActionButton
-                            android:id="@+id/btn_discover"
-                            style="@style/Navigation.CollectionActionButtonStyle"
-                            app:cb_title="@string/popular_movie" />
-
-                        <com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView
-                            android:id="@+id/discover_recyclerview"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:overScrollMode="never"
-                            android:scrollbars="horizontal"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                            app:msrv_gravity="start"
-                            app:msrv_interval="1"
-                            app:msrv_speed_ms_per_inch="100"
-                            tools:listitem="@layout/item_movie" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </com.codingtok.common.MultipleStatusView>
-
-        </ScrollView>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"

@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.codingtok.hmovies.R
@@ -32,12 +33,12 @@ class HomeFragment : BaseRefreshFragment<HomeFragmentBinding, HomeViewModel, Iss
 
     override val recyclerView: RecyclerView?
         get() = null
-//    override val listAdapter: BaseListAdapter<Issue<Movie.Slim>, out ViewDataBinding>
-//        get() = TODO("Not yet implemented")
+
+    override val listAdapter: HomeListAdapter?
+        get() = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
     }
 
     override fun handleLoading(isLoading: Boolean) {
