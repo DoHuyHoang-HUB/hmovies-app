@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="blur_image">
+        <item>@drawable/image_blur_1</item>
+        <item>@drawable/image_blur_2</item>
+        <item>@drawable/image_blur_3</item>
+        <item>@drawable/image_blur_4</item>
+        <item>@drawable/image_blur_5</item>
+        <item>@drawable/image_blur_6</item>
+        <item>@drawable/image_blur_7</item>
+        <item>@drawable/image_blur_8</item>
+        <item>@drawable/image_blur_9</item>
+        <item>@drawable/image_blur_10</item>
+    </array>
+</resources>

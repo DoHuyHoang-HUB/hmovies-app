@@ -35,6 +35,17 @@ abstract class BaseRefreshFragment<ViewBinding: ViewDataBinding, ViewModel: Base
                 }
             }
             firstLoad()
+            isRefreshing.observe(viewLifecycleOwner) {
+                handleRefresh(it)
+            }
+            isEmptyList.observe(viewLifecycleOwner) {
+                handleEmpty(it)
+            }
         }
+
     }
+
+    protected abstract fun handleRefresh(isRefreshing: Boolean)
+
+    protected abstract fun handleEmpty(isEmptyList: Boolean)
 }

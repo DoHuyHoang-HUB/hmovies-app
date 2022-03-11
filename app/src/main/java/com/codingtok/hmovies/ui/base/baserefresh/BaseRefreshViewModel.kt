@@ -14,7 +14,7 @@ abstract class BaseRefreshViewModel<T>: BaseViewModel() {
         refreshData()
     }
 
-    protected val _itemList = MutableLiveData<List<T>>()
+    private val _itemList = MutableLiveData<List<T>>()
     val itemList: LiveData<List<T>> get() = _itemList
 
     val isEmptyList = MutableLiveData<Boolean>().apply { value = false }

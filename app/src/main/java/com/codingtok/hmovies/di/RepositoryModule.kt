@@ -1,9 +1,11 @@
 package com.codingtok.hmovies.di
 
 import com.codingtok.hmovies.data.repository.DiscoverRepository
+import com.codingtok.hmovies.data.repository.GenreRepository
 import com.codingtok.hmovies.data.repository.MovieRepository
 import com.codingtok.hmovies.data.repository.TrendingRepository
 import com.codingtok.hmovies.data.repository.impl.DiscoverRepositoryImpl
+import com.codingtok.hmovies.data.repository.impl.GenreRepositoryImpl
 import com.codingtok.hmovies.data.repository.impl.MovieRepositoryImpl
 import com.codingtok.hmovies.data.repository.impl.TrendingRepositoryImpl
 import dagger.Module
@@ -26,4 +28,8 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideTrendingRepository(trendingRepositoryImpl: TrendingRepositoryImpl): TrendingRepository = trendingRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideGenreRepository(genreRepositoryImpl: GenreRepositoryImpl): GenreRepository = genreRepositoryImpl
 }

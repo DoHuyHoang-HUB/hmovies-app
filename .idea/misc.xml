@@ -23,12 +23,17 @@
         <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/layout/search_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/layout/slide_item_container.xml" value="0.33" />
         <entry key="..\:/DHCN/Android/Kotlin/HMovies/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.36666666666666664" />
+        <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/drawable/background_black_trasparent.xml" value="0.251" />
         <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/drawable/background_gradient.xml" value="0.233" />
         <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/drawable/background_toolbar.xml" value="0.233" />
         <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/drawable/bg_collection_action_button_ripple_8.xml" value="0.233" />
         <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/drawable/bottom_navigation_selector.xml" value="0.233" />
         <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/download_fragment.xml" value="0.358695652173913" />
+        <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/fragment_download.xml" value="0.358695652173913" />
+        <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/fragment_upcoming.xml" value="0.358695652173913" />
         <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/home_fragment.xml" value="0.34442270058708413" />
+        <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/item_discover.xml" value="0.358695652173913" />
         <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/item_home_banner.xml" value="0.33" />
         <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/item_home_content.xml" value="0.358695652173913" />
         <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/item_home_discover.xml" value="0.358695652173913" />
@@ -38,12 +43,16 @@
         <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/layout_discover_movie.xml" value="0.358695652173913" />
         <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/layout_empty_view.xml" value="0.358695652173913" />
         <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/layout_error_view.xml" value="0.358695652173913" />
+        <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/layout_horizontal_discover.xml" value="0.358695652173913" />
         <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/layout_horizontal_movie.xml" value="0.358695652173913" />
         <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/layout_indicator_view.xml" value="0.358695652173913" />
         <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/layout_loading_view.xml" value="0.358695652173913" />
         <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/layout_network_view.xml" value="0.358695652173913" />
         <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/layout_slider.xml" value="0.358695652173913" />
+        <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/profile_fragment.xml" value="0.358695652173913" />
+        <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/search_fragment.xml" value="0.358695652173913" />
         <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/slide_item_container.xml" value="0.2572463768115942" />
+        <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/layout/upcoming_fragment.xml" value="0.358695652173913" />
         <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.36666666666666664" />
         <entry key="..\:/DHCN/Android/Kotlin/android-project/hmovies-app/loopviewpager/src/main/res/layout/widget_customer_shape_pager_indicator.xml" value="0.18802083333333333" />
       </map>

@@ -26,9 +26,11 @@
 
         <TextView
             android:id="@+id/name_movie"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/_100sdp"
             android:layout_height="wrap_content"
             tools:text="Breaking bad"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textColor="@color/colorTextPrimary"
             android:textSize="@dimen/_10sdp" />
 

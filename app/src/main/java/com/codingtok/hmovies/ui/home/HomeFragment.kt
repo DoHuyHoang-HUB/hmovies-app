@@ -26,7 +26,7 @@ import com.takusemba.multisnaprecyclerview.MultiSnapHelper
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseRefreshFragment<HomeFragmentBinding, HomeViewModel, Issue<Movie.Slim>>() {
+class HomeFragment : BaseRefreshFragment<HomeFragmentBinding, HomeViewModel, Issue<*>>() {
 
     override val viewModel: HomeViewModel by viewModels()
 
@@ -35,8 +35,8 @@ class HomeFragment : BaseRefreshFragment<HomeFragmentBinding, HomeViewModel, Iss
     override val recyclerView: RecyclerView?
         get() = viewBinding.homeRecyclerView
 
-    override val listAdapter: BaseListAdapter<Issue<Movie.Slim>, out ViewDataBinding> by lazy {
-        HomeListAdapter()
+    override val listAdapter: BaseListAdapter<Issue<*>, out ViewDataBinding> by lazy {
+        HomeListAdapter(requireContext().resources)
     }
 
     override val mLayoutStatusView: MultipleStatusView?
@@ -62,5 +62,11 @@ class HomeFragment : BaseRefreshFragment<HomeFragmentBinding, HomeViewModel, Iss
 
     }
 
+    override fun handleRefresh(isRefreshing: Boolean) {
 
+    }
+
+    override fun handleEmpty(isEmptyList: Boolean) {
+
+    }
 }

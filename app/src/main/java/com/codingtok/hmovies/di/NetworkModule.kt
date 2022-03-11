@@ -6,12 +6,14 @@ import com.codingtok.hmovies.KEY_API
 import com.codingtok.hmovies.QUERY_KEY_API
 import com.codingtok.hmovies.data.annotations.ImageAdapter
 import com.codingtok.hmovies.data.annotations.RatedJsonAdapter
+import com.codingtok.hmovies.data.annotations.ResultsListAdapter
 import com.codingtok.hmovies.data.enums.MediaType
 import com.codingtok.hmovies.data.model.Date
 import com.codingtok.hmovies.data.model.MediaTypeItem
 import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.data.model.TVShow
 import com.codingtok.hmovies.data.network.factory.MyStandardJsonAdapters
+import com.codingtok.hmovies.data.network.service.GenreService
 import com.codingtok.hmovies.data.network.service.MovieService
 import com.codingtok.hmovies.data.network.service.TrendingService
 import com.codingtok.hmovies.data.network.service.discover.DiscoverService
@@ -96,6 +98,7 @@ class NetworkModule {
             .add(Date.ADAPTER)
             .add(ImageAdapter.INSTANCE)
             .add(RatedJsonAdapter())
+            .add(ResultsListAdapter.INSTANCE)
             .add(KotlinJsonAdapterFactory())
             .build()
 
@@ -125,5 +128,10 @@ class NetworkModule {
     @Provides
     fun provideTrendingService(retrofit: Retrofit): TrendingService =
         retrofit.create(TrendingService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideGenreService(retrofit: Retrofit): GenreService =
+        retrofit.create(GenreService::class.java)
 
 }

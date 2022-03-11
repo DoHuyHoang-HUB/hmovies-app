@@ -38,6 +38,7 @@ class MoviesListAdapter: BaseListAdapter<Movie.Slim, ItemMovieBinding>(DiffCallb
                 }
             }
             nameMovie.text = item.title
+            executePendingBindings()
         }
     }
 }
