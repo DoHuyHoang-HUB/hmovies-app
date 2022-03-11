@@ -22,7 +22,7 @@ abstract class BaseFragment<ViewBinding: ViewDataBinding, ViewModel: BaseViewMod
     @get:LayoutRes
     protected abstract val layoutId: Int
 
-    protected var mLayoutStatusView: MultipleStatusView? = null
+    protected abstract val mLayoutStatusView: MultipleStatusView?
 
     override fun onCreateView(
         inflater: LayoutInflater,

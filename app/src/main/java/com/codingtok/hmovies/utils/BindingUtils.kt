@@ -7,6 +7,9 @@ import androidx.viewpager2.widget.ViewPager2
 import coil.load
 import com.codingtok.hmovies.R
 import com.codingtok.hmovies.data.model.Movie
+import com.codingtok.hmovies.data.model.Page
+import com.codingtok.hmovies.ui.home.BannerAdapter
+import com.smarteist.autoimageslider.SliderView
 
 @BindingAdapter("loadUrl")
 fun ImageView.bindImage(imgUrl: String?) {
@@ -16,4 +19,11 @@ fun ImageView.bindImage(imgUrl: String?) {
             placeholder(R.drawable.logo)
         }
     }
+}
+
+@BindingAdapter("listItem")
+fun bindListItem(sliderView: SliderView, listItem: Page<Movie.Slim>) {
+    val adapter = BannerAdapter()
+    sliderView.setSliderAdapter(adapter)
+    adapter.renewItems(listItem.results)
 }

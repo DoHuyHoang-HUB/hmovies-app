@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.codingtok.common.MultipleStatusView
 import com.codingtok.hmovies.R
 import com.codingtok.hmovies.data.model.MediaTypeItem
 import com.codingtok.hmovies.data.model.Movie
@@ -32,17 +33,25 @@ class HomeFragment : BaseRefreshFragment<HomeFragmentBinding, HomeViewModel, Iss
     override val layoutId: Int = R.layout.home_fragment
 
     override val recyclerView: RecyclerView?
-        get() = null
+        get() = viewBinding.homeRecyclerView
 
-    override val listAdapter: HomeListAdapter?
-        get() = null
+    override val listAdapter: BaseListAdapter<Issue<Movie.Slim>, out ViewDataBinding> by lazy {
+        HomeListAdapter()
+    }
+
+    override val mLayoutStatusView: MultipleStatusView?
+        get() = viewBinding.layoutStatusView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
 
     override fun handleLoading(isLoading: Boolean) {
-
+        if (isLoading) {
+            mLayoutStatusView?.showLoading()
+        } else {
+            mLayoutStatusView?.showContent()
+        }
     }
 
     override fun handleErrorMessage(message: String?) {
@@ -52,4 +61,6 @@ class HomeFragment : BaseRefreshFragment<HomeFragmentBinding, HomeViewModel, Iss
     override fun lazyLoad() {
 
     }
+
+
 }
