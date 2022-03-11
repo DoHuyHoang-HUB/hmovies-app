@@ -14,7 +14,7 @@ import com.codingtok.hmovies.databinding.ItemMovieBinding
 import com.codingtok.hmovies.ui.base.BaseListAdapter
 import com.codingtok.hmovies.utils.bindImage
 
-class MoviesListAdapter: BaseListAdapter<Movie.Slim, ItemMovieBinding>(DiffCallback) {
+class MoviesListAdapter: BaseListAdapter<Movie.Slim, ViewDataBinding>(DiffCallback) {
     companion object DiffCallback: DiffUtil.ItemCallback<Movie.Slim>() {
         override fun areItemsTheSame(oldItem: Movie.Slim, newItem: Movie.Slim): Boolean {
             return oldItem.id == newItem.id
@@ -25,20 +25,53 @@ class MoviesListAdapter: BaseListAdapter<Movie.Slim, ItemMovieBinding>(DiffCallb
         }
     }
 
-    override fun getLayoutRes(viewType: Int): Int {
-        return R.layout.item_movie
+    object ItemType {
+        const val IS_ITEM = 1;
+        const val NOT_ITEM = 2;
     }
 
-    override fun bindView(binding: ItemMovieBinding, item: Movie.Slim, position: Int) {
-        binding.apply {
-            item.poster?.get(Image.Quality.POSTER_W_780)?.let {
-                val imgUri = it.toUri().buildUpon().scheme("https").build()
-                imageMovie.load(imgUri) {
-                    placeholder(R.drawable.logo)
+    override fun getItemViewType(position: Int): Int {
+        return when (getItem(position)) {
+            null -> ItemType.NOT_ITEM
+            else -> ItemType.IS_ITEM
+        }
+    }
+
+    override fun getLayoutRes(viewType: Int): Int {
+        return when (viewType) {
+            ItemType.IS_ITEM -> R.layout.item_movie
+            else -> R.layout.item_view_all
+        }
+    }
+
+    override fun bindView(binding: ViewDataBinding, item: Movie.Slim?, position: Int) {
+        when (binding) {
+            is ItemMovieBinding -> {
+                binding.apply {
+                    if (item != null) {
+                        item.poster?.get(Image.Quality.POSTER_W_780)?.let {
+                            val imgUri = it.toUri().buildUpon().scheme("https").build()
+                            imageMovie.load(imgUri) {
+                                placeholder(R.drawable.logo)
+                            }
+                        }
+                        nameMovie.text = item.title
+                        executePendingBindings()
+                    }
                 }
             }
-            nameMovie.text = item.title
-            executePendingBindings()
+            else -> {}
         }
+    }
+
+    override fun getItemCount(): Int {
+        return super.getItemCount() + 1
+    }
+
+    override fun getItem(position: Int): Movie.Slim? {
+        if (position == itemCount - 1) {
+            return null;
+        }
+        return super.getItem(position)
     }
 }

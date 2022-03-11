@@ -10,7 +10,8 @@
     <color name="red_checked_color">#FF4C39</color>
     <color name="red_normal_color">#935656</color>
     <color name="color_translucent">#00000000</color>
-    <color name="black_trasparent">#72131313</color>
+    <color name="black_transparent_400">#72131313</color>
+    <color name="black_transparent_700">#A8131313</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="silver_light">#C4C4C4</color>

@@ -51,38 +51,40 @@ class HomeListAdapter(
         return getItem(position).layoutType
     }
 
-    override fun bindView(binding: ViewDataBinding, item: Issue<*>, position: Int) {
-        when (binding) {
-            is LayoutSliderBinding -> {
-                val adapter = BannerAdapter()
-                val data = (item as Issue<Movie.Slim>).mediaTypeItemList.subList(0, 5)
-                binding.apply {
-                    bannerNowPlaying.setSliderAdapter(adapter)
-                    bannerNowPlaying.startAutoCycle()
-                    circleIndicator.createIndicators(0, 0)
-                    bannerNowPlaying.setCurrentPageListener {
-                        circleIndicator.animatePageSelected(it)
+    override fun bindView(binding: ViewDataBinding, item: Issue<*>?, position: Int) {
+        if (item != null) {
+            when (binding) {
+                is LayoutSliderBinding -> {
+                    val adapter = BannerAdapter()
+                    val data = (item as Issue<Movie.Slim>).mediaTypeItemList.subList(0, 5)
+                    binding.apply {
+                        bannerNowPlaying.setSliderAdapter(adapter)
+                        bannerNowPlaying.startAutoCycle()
+                        circleIndicator.createIndicators(0, 0)
+                        bannerNowPlaying.setCurrentPageListener {
+                            circleIndicator.animatePageSelected(it)
+                        }
+                        adapter.registerDataSetObserver(circleIndicator.dataSetObserver)
+                        circleIndicator.createIndicators(data.size, 0)
                     }
-                    adapter.registerDataSetObserver(circleIndicator.dataSetObserver)
-                    circleIndicator.createIndicators(data.size, 0)
+                    adapter.renewItems(data)
                 }
-                adapter.renewItems(data)
-            }
-            is LayoutHorizontalMovieBinding -> {
-                val adapter = MoviesListAdapter()
-                binding.apply {
-                    btnTrending.buttonTitle = item.title.toString()
-                    trendingRecyclerview.adapter = adapter
+                is LayoutHorizontalMovieBinding -> {
+                    val adapter = MoviesListAdapter()
+                    binding.apply {
+                        btnTrending.buttonTitle = item.title.toString()
+                        trendingRecyclerview.adapter = adapter
+                    }
+                    adapter.submitList((item as Issue<Movie.Slim>).mediaTypeItemList)
                 }
-                adapter.submitList((item as Issue<Movie.Slim>).mediaTypeItemList)
-            }
-            is LayoutHorizontalDiscoverBinding -> {
-                val adapter = DiscoverListAdapter(resources)
-                binding.apply {
-                    collectionActionButton.buttonTitle = item.title.toString()
-                    recyclerview.adapter = adapter
+                is LayoutHorizontalDiscoverBinding -> {
+                    val adapter = DiscoverListAdapter(resources)
+                    binding.apply {
+                        collectionActionButton.buttonTitle = item.title.toString()
+                        recyclerview.adapter = adapter
+                    }
+                    adapter.submitList((item as Issue<Genres>).mediaTypeItemList)
                 }
-                adapter.submitList((item as Issue<Genres>).mediaTypeItemList)
             }
         }
     }

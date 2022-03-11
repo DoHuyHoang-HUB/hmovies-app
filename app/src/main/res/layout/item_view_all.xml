@@ -3,10 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="item"
-            type="com.codingtok.hmovies.data.model.Genres" />
+            type="com.codingtok.hmovies.data.model.Movie.Slim" />
     </data>
 
     <FrameLayout
@@ -19,25 +18,27 @@
             android:id="@+id/image_discover"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_140sdp"
-            android:scaleType="centerCrop"
             android:contentDescription="@string/app_name"
-            tools:src="@drawable/image_blur_1" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/image_blur_9" />
 
         <View
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_140sdp"
-            android:background="@drawable/background_black_trasparent_400" />
+            android:background="@drawable/background_black_trasparent_700" />
 
         <TextView
             android:id="@+id/genre_name"
             android:layout_width="@dimen/_80sdp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textAllCaps="true"
             android:ellipsize="end"
             android:gravity="center_horizontal"
             android:textColor="@color/colorTextPrimary"
-            android:textSize="@dimen/_14sdp"
-            tools:text="Action" />
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold"
+            android:text="Xem tất cả" />
 
     </FrameLayout>
 </layout>

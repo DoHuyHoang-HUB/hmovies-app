@@ -13,7 +13,7 @@ import androidx.viewbinding.ViewBinding
 import com.codingtok.hmovies.BR
 import java.util.concurrent.Executors
 
-private interface BaseRecyclerAdapter<T: Any, ViewBinding: ViewDataBinding> {
+private interface BaseRecyclerAdapter<T : Any, ViewBinding : ViewDataBinding> {
     /**
      * get layout res base on view type
      */
@@ -28,16 +28,16 @@ private interface BaseRecyclerAdapter<T: Any, ViewBinding: ViewDataBinding> {
     /**
      * bind view
      */
-    fun bindView(binding: ViewBinding, item: T, position: Int) {}
+    fun bindView(binding: ViewBinding, item: T?, position: Int) {}
 
 }
 
 /**
  * base recycler view adapter
  */
-abstract class BaseListAdapter<T: Any, ViewBinding: ViewDataBinding>(
+abstract class BaseListAdapter<T : Any, ViewBinding : ViewDataBinding>(
     callBack: DiffUtil.ItemCallback<T>
-): ListAdapter<T, BaseViewHolder<ViewBinding>>(
+) : ListAdapter<T, BaseViewHolder<ViewBinding>>(
     AsyncDifferConfig.Builder<T>(callBack)
         .setBackgroundThreadExecutor(Executors.newSingleThreadExecutor())
         .build()
@@ -64,18 +64,15 @@ abstract class BaseListAdapter<T: Any, ViewBinding: ViewDataBinding>(
     override fun onBindViewHolder(holder: BaseViewHolder<ViewBinding>, position: Int) {
         val item: T? = getItem(position)
         holder.binding.setVariable(BR.item, item)
-        if (item != null) {
-            bindView(holder.binding, item, position)
-        }
+        bindView(holder.binding, item, position)
         holder.binding.executePendingBindings()
     }
 }
 
 
-
-open class BaseViewHolder<ViewBinding: ViewDataBinding>(
+open class BaseViewHolder<ViewBinding : ViewDataBinding>(
     val binding: ViewBinding
-): RecyclerView.ViewHolder(binding.root)
+) : RecyclerView.ViewHolder(binding.root)
 
 
 

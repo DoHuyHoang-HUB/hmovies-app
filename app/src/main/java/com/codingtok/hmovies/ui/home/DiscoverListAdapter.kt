@@ -9,8 +9,8 @@ import com.codingtok.hmovies.ui.base.BaseListAdapter
 
 class DiscoverListAdapter(
     private val resources: Resources
-): BaseListAdapter<Genres, ItemDiscoverBinding>(DiffCallback) {
-    companion object DiffCallback: DiffUtil.ItemCallback<Genres>() {
+) : BaseListAdapter<Genres, ItemDiscoverBinding>(DiffCallback) {
+    companion object DiffCallback : DiffUtil.ItemCallback<Genres>() {
         override fun areItemsTheSame(oldItem: Genres, newItem: Genres): Boolean {
             return oldItem.id == newItem.id
         }
@@ -24,9 +24,9 @@ class DiscoverListAdapter(
         return R.layout.item_discover
     }
 
-    override fun bindView(binding: ItemDiscoverBinding, item: Genres, position: Int) {
+    override fun bindView(binding: ItemDiscoverBinding, item: Genres?, position: Int) {
         binding.apply {
-            genreName.text = item.name
+            genreName.text = item?.name
             imageDiscover.setImageResource(randomBlurImage(position))
             executePendingBindings()
         }

@@ -29,13 +29,14 @@ open class BaseViewModel : ViewModel() {
         when (response) {
             is NetworkResponse.NetworkError -> {
                 errorMessage.value = response.error.message
+                connectTimeoutEvent.call()
             }
             is NetworkResponse.ServerError -> {
-                errorMessage.value = response.error.message
+//                errorMessage.value = response.error.message
                 serverErrorEvent.call()
             }
             is NetworkResponse.UnknownError -> {
-                errorMessage.value = response.error.message
+//                errorMessage.value = response.error.message
                 unknownErrorEvent.call()
             }
             else -> {}

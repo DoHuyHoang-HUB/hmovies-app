@@ -61,6 +61,9 @@ abstract class BaseFragment<ViewBinding: ViewDataBinding, ViewModel: BaseViewMod
             noInternetConnectionEvent.observe(viewLifecycleOwner) {
                 handleErrorMessage(getString(R.string.no_internet))
             }
+            connectTimeoutEvent.observe(viewLifecycleOwner) {
+                handleErrorMessage(requireContext().resources.getString(R.string.no_internet));
+            }
             noDataEvent.observe(viewLifecycleOwner) {
                 handleErrorMessage(getString(R.string.no_data))
             }
