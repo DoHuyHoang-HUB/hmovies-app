@@ -32,14 +32,14 @@ class HomeFragment : BaseRefreshFragment<HomeFragmentBinding, HomeViewModel, Iss
 
     override val layoutId: Int = R.layout.home_fragment
 
-    override val recyclerView: RecyclerView?
+    override val recyclerView: RecyclerView
         get() = viewBinding.homeRecyclerView
 
     override val listAdapter: BaseListAdapter<Issue<*>, out ViewDataBinding> by lazy {
         HomeListAdapter(requireContext().resources)
     }
 
-    override val mLayoutStatusView: MultipleStatusView?
+    override val mLayoutStatusView: MultipleStatusView
         get() = viewBinding.layoutStatusView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,9 +48,9 @@ class HomeFragment : BaseRefreshFragment<HomeFragmentBinding, HomeViewModel, Iss
 
     override fun handleLoading(isLoading: Boolean) {
         if (isLoading) {
-            mLayoutStatusView?.showLoading()
+            mLayoutStatusView.showLoading()
         } else {
-            mLayoutStatusView?.showContent()
+            mLayoutStatusView.showContent()
         }
     }
 

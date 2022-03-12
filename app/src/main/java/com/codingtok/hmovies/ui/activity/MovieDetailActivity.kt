@@ -2,15 +2,13 @@ package com.codingtok.hmovies.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.codingtok.hmovies.databinding.ActivityMovieDetailBinding
+import com.codingtok.hmovies.R
 
 class MovieDetailActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMovieDetailBinding;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMovieDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_movie_detail)
     }
 }
