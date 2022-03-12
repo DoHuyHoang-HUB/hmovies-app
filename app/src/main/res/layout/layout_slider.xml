@@ -24,6 +24,7 @@
             app:sliderAutoCycleEnabled="true"
             app:sliderIndicatorEnabled="false"
             app:sliderScrollTimeInSec="30"
+            app:listItem="@{item.mediaTypeItemList.subList(0, 5)}"
             app:sliderStartAutoCycle="true" />
 
         <me.relex.circleindicator.CircleIndicator

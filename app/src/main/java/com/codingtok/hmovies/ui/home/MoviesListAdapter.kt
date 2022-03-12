@@ -44,26 +44,6 @@ class MoviesListAdapter: BaseListAdapter<Movie.Slim, ViewDataBinding>(DiffCallba
         }
     }
 
-    override fun bindView(binding: ViewDataBinding, item: Movie.Slim?, position: Int) {
-        when (binding) {
-            is ItemMovieBinding -> {
-                binding.apply {
-                    if (item != null) {
-                        item.poster?.get(Image.Quality.POSTER_W_780)?.let {
-                            val imgUri = it.toUri().buildUpon().scheme("https").build()
-                            imageMovie.load(imgUri) {
-                                placeholder(R.drawable.logo)
-                            }
-                        }
-                        nameMovie.text = item.title
-                        executePendingBindings()
-                    }
-                }
-            }
-            else -> {}
-        }
-    }
-
     override fun getItemCount(): Int {
         return super.getItemCount() + 1
     }

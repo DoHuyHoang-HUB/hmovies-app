@@ -24,9 +24,9 @@ class DiscoverListAdapter(
         return R.layout.item_discover
     }
 
-    override fun bindView(binding: ItemDiscoverBinding, item: Genres?, position: Int) {
+    override fun bindView(binding: ItemDiscoverBinding, item: Genres, position: Int) {
         binding.apply {
-            genreName.text = item?.name
+            genreName.text = item.name
             imageDiscover.setImageResource(randomBlurImage(position))
             executePendingBindings()
         }

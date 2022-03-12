@@ -28,7 +28,7 @@ private interface BaseRecyclerAdapter<T : Any, ViewBinding : ViewDataBinding> {
     /**
      * bind view
      */
-    fun bindView(binding: ViewBinding, item: T?, position: Int) {}
+    fun bindView(binding: ViewBinding, item: T, position: Int) {}
 
 }
 
@@ -64,7 +64,9 @@ abstract class BaseListAdapter<T : Any, ViewBinding : ViewDataBinding>(
     override fun onBindViewHolder(holder: BaseViewHolder<ViewBinding>, position: Int) {
         val item: T? = getItem(position)
         holder.binding.setVariable(BR.item, item)
-        bindView(holder.binding, item, position)
+        if (item != null) {
+            bindView(holder.binding, item, position)
+        }
         holder.binding.executePendingBindings()
     }
 }

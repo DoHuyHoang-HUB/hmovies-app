@@ -18,6 +18,7 @@
 
         <com.codingtok.hmovies.ui.widget.CollectionActionButton
             android:id="@+id/btn_trending"
+            app:title="@{item.title}"
             style="@style/Navigation.CollectionActionButtonStyle" />
 
         <com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView
@@ -30,6 +31,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:msrv_gravity="start"
             app:msrv_interval="1"
+            app:listItem="@{item.mediaTypeItemList}"
             app:msrv_speed_ms_per_inch="100"
             tools:listitem="@layout/item_movie" />
     </LinearLayout>
