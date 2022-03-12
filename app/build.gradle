@@ -139,6 +139,10 @@ dependencies {
     //Logger
     implementation 'com.orhanobut:logger:2.2.0'
 
+    // runtime permission
+    // https://github.com/googlesamples/easypermissions
+//    implementation("pub.devrel:easypermissions:3.0.0")
+
     // test
     testImplementation 'junit:junit:4.13.2'
     testImplementation "org.junit.jupiter:junit-jupiter:$jupiter_version"
