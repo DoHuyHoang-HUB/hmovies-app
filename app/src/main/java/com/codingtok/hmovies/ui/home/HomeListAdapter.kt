@@ -11,11 +11,13 @@ import com.codingtok.hmovies.databinding.LayoutHorizontalDiscoverBinding
 import com.codingtok.hmovies.databinding.LayoutHorizontalMovieBinding
 import com.codingtok.hmovies.databinding.LayoutSliderBinding
 import com.codingtok.hmovies.ui.base.BaseListAdapter
+import com.codingtok.hmovies.ui.widget.OnItemClickListener
 
 
 class HomeListAdapter(
-    private val resources: Resources
-) : BaseListAdapter<Issue<*>, ViewDataBinding>(diffCallback) {
+    private val resources: Resources,
+    onItemClick: OnItemClickListener
+) : BaseListAdapter<Issue<*>, ViewDataBinding>(diffCallback, onItemClick) {
 
     companion object diffCallback : DiffUtil.ItemCallback<Issue<*>>() {
         override fun areItemsTheSame(

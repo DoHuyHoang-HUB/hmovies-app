@@ -5,6 +5,9 @@
 
     <data>
         <variable
+            name="onItemClick"
+            type="com.codingtok.hmovies.ui.widget.OnItemClickListener" />
+        <variable
             name="item"
             type="com.codingtok.hmovies.data.model.bean.Issue" />
     </data>
@@ -25,6 +28,7 @@
             app:sliderIndicatorEnabled="false"
             app:sliderScrollTimeInSec="30"
             app:listItem="@{item.mediaTypeItemList.subList(0, 5)}"
+            app:onItemClick="@{onItemClick}"
             app:sliderStartAutoCycle="true" />
 
         <me.relex.circleindicator.CircleIndicator

@@ -15,6 +15,7 @@ import com.codingtok.hmovies.ui.home.BannerAdapter
 import com.codingtok.hmovies.ui.home.DiscoverListAdapter
 import com.codingtok.hmovies.ui.home.MoviesListAdapter
 import com.codingtok.hmovies.ui.widget.CollectionActionButton
+import com.codingtok.hmovies.ui.widget.OnItemClickListener
 import com.smarteist.autoimageslider.SliderView
 import com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView
 
@@ -28,23 +29,23 @@ fun ImageView.bindImage(imgUrl: String?) {
     }
 }
 
-@BindingAdapter("listItem")
-fun SliderView.bindListItem(listItem: List<*>) {
-    val adapter = BannerAdapter()
+@BindingAdapter("listItem", "onItemClick")
+fun SliderView.bindListItem(listItem: List<*>, onItemClick: OnItemClickListener) {
+    val adapter = BannerAdapter(onItemClick)
     this.setSliderAdapter(adapter)
     adapter.renewItems(listItem as List<Movie.Slim>)
 }
 
-@BindingAdapter("listItem")
-fun MultiSnapRecyclerView.bindListItem(listItem: List<*>) {
+@BindingAdapter("listItem", "onItemClick")
+fun MultiSnapRecyclerView.bindListItem(listItem: List<*>, onItemClick: OnItemClickListener) {
     when (listItem.first()) {
         is Movie.Slim -> {
-            val adapter = MoviesListAdapter()
+            val adapter = MoviesListAdapter(onItemClick)
             this.adapter = adapter
             adapter.submitList(listItem as List<Movie.Slim>)
         }
         is Genres -> {
-            val adapter = DiscoverListAdapter(App.context.resources)
+            val adapter = DiscoverListAdapter(App.context.resources, onItemClick)
             this.adapter = adapter
             adapter.submitList(listItem as List<Genres>)
         }

@@ -4,10 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.databinding.ItemHomeBannerBinding
+import com.codingtok.hmovies.ui.widget.OnItemClickListener
 import com.smarteist.autoimageslider.SliderViewAdapter
 
-class BannerAdapter: SliderViewAdapter<BannerAdapter.BannerHolder>(
-){
+class BannerAdapter(
+    private val onItemClick: OnItemClickListener
+): SliderViewAdapter<BannerAdapter.BannerHolder>() {
     private var sliderItems: List<Movie.Slim> = listOf()
 
     fun renewItems(sliderItems: List<Movie.Slim>?) {
@@ -26,6 +28,7 @@ class BannerAdapter: SliderViewAdapter<BannerAdapter.BannerHolder>(
     override fun onBindViewHolder(viewHolder: BannerHolder?, position: Int) {
         val item = sliderItems.get(position)
         viewHolder?.bind(item)
+        viewHolder?.itemView?.setOnClickListener { onItemClick.onItemClick(item, position) }
     }
 
     class BannerHolder(private val binding: ItemHomeBannerBinding): SliderViewAdapter.ViewHolder(binding.root) {

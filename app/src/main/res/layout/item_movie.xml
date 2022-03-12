@@ -6,7 +6,9 @@
     <data>
 
         <import type="com.codingtok.hmovies.data.model.Image.Quality" />
-
+        <variable
+            name="onItemClick"
+            type="com.codingtok.hmovies.ui.widget.OnItemClickListener" />
         <variable
             name="item"
             type="com.codingtok.hmovies.data.model.Movie.Slim" />

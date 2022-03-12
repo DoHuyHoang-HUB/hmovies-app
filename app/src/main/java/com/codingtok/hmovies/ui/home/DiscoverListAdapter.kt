@@ -6,10 +6,12 @@ import com.codingtok.hmovies.R
 import com.codingtok.hmovies.data.model.Genres
 import com.codingtok.hmovies.databinding.ItemDiscoverBinding
 import com.codingtok.hmovies.ui.base.BaseListAdapter
+import com.codingtok.hmovies.ui.widget.OnItemClickListener
 
 class DiscoverListAdapter(
-    private val resources: Resources
-) : BaseListAdapter<Genres, ItemDiscoverBinding>(DiffCallback) {
+    private val resources: Resources,
+    private val onItemClick: OnItemClickListener
+) : BaseListAdapter<Genres, ItemDiscoverBinding>(DiffCallback, onItemClick) {
     companion object DiffCallback : DiffUtil.ItemCallback<Genres>() {
         override fun areItemsTheSame(oldItem: Genres, newItem: Genres): Boolean {
             return oldItem.id == newItem.id
@@ -30,6 +32,7 @@ class DiscoverListAdapter(
             imageDiscover.setImageResource(randomBlurImage(position))
             executePendingBindings()
         }
+        binding.root.setOnClickListener { onItemClick.onItemClick(item, position) }
     }
 
     private fun randomBlurImage(position: Int): Int {

@@ -12,9 +12,12 @@ import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.data.model.TVShow
 import com.codingtok.hmovies.databinding.ItemMovieBinding
 import com.codingtok.hmovies.ui.base.BaseListAdapter
+import com.codingtok.hmovies.ui.widget.OnItemClickListener
 import com.codingtok.hmovies.utils.bindImage
 
-class MoviesListAdapter: BaseListAdapter<Movie.Slim, ViewDataBinding>(DiffCallback) {
+class MoviesListAdapter(
+    private val onItemClick: OnItemClickListener
+): BaseListAdapter<Movie.Slim, ViewDataBinding>(DiffCallback, onItemClick) {
     companion object DiffCallback: DiffUtil.ItemCallback<Movie.Slim>() {
         override fun areItemsTheSame(oldItem: Movie.Slim, newItem: Movie.Slim): Boolean {
             return oldItem.id == newItem.id
@@ -42,6 +45,10 @@ class MoviesListAdapter: BaseListAdapter<Movie.Slim, ViewDataBinding>(DiffCallba
             ItemType.IS_ITEM -> R.layout.item_movie
             else -> R.layout.item_view_all
         }
+    }
+
+    override fun bindView(binding: ViewDataBinding, item: Movie.Slim, position: Int) {
+        binding.root.setOnClickListener { onItemClick.onItemClick(item, position) }
     }
 
     override fun getItemCount(): Int {

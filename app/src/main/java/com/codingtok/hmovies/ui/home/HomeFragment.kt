@@ -19,6 +19,7 @@ import com.codingtok.hmovies.databinding.HomeFragmentBinding
 import com.codingtok.hmovies.ui.base.BaseFragment
 import com.codingtok.hmovies.ui.base.BaseListAdapter
 import com.codingtok.hmovies.ui.base.baserefresh.BaseRefreshFragment
+import com.codingtok.hmovies.ui.widget.OnItemClickListener
 import com.codingtok.hmovies.utils.observe
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
@@ -36,15 +37,17 @@ class HomeFragment : BaseRefreshFragment<HomeFragmentBinding, HomeViewModel, Iss
         get() = viewBinding.homeRecyclerView
 
     override val listAdapter: BaseListAdapter<Issue<*>, out ViewDataBinding> by lazy {
-        HomeListAdapter(requireContext().resources)
+        HomeListAdapter(requireContext().resources, mOnItemClicK)
+    }
+
+    private val mOnItemClicK: OnItemClickListener = object: OnItemClickListener {
+        override fun onItemClick(obj: Any?, position: Int) {
+            Toast.makeText(requireContext(), "$position", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override val mLayoutStatusView: MultipleStatusView
         get() = viewBinding.layoutStatusView
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
 
     override fun handleLoading(isLoading: Boolean) {
         if (isLoading) {

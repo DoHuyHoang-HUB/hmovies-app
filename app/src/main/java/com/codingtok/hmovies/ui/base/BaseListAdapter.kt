@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.codingtok.hmovies.BR
+import com.codingtok.hmovies.ui.widget.OnItemClickListener
 import java.util.concurrent.Executors
 
 private interface BaseRecyclerAdapter<T : Any, ViewBinding : ViewDataBinding> {
@@ -36,7 +37,8 @@ private interface BaseRecyclerAdapter<T : Any, ViewBinding : ViewDataBinding> {
  * base recycler view adapter
  */
 abstract class BaseListAdapter<T : Any, ViewBinding : ViewDataBinding>(
-    callBack: DiffUtil.ItemCallback<T>
+    callBack: DiffUtil.ItemCallback<T>,
+    private val onItemClick: OnItemClickListener
 ) : ListAdapter<T, BaseViewHolder<ViewBinding>>(
     AsyncDifferConfig.Builder<T>(callBack)
         .setBackgroundThreadExecutor(Executors.newSingleThreadExecutor())
@@ -64,6 +66,7 @@ abstract class BaseListAdapter<T : Any, ViewBinding : ViewDataBinding>(
     override fun onBindViewHolder(holder: BaseViewHolder<ViewBinding>, position: Int) {
         val item: T? = getItem(position)
         holder.binding.setVariable(BR.item, item)
+        holder.binding.setVariable(BR.onItemClick, onItemClick)
         if (item != null) {
             bindView(holder.binding, item, position)
         }

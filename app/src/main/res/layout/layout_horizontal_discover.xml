@@ -5,6 +5,9 @@
 
     <data>
         <variable
+            name="onItemClick"
+            type="com.codingtok.hmovies.ui.widget.OnItemClickListener" />
+        <variable
             name="item"
             type="com.codingtok.hmovies.data.model.bean.Issue" />
     </data>
@@ -32,6 +35,7 @@
             app:msrv_gravity="start"
             app:msrv_interval="1"
             app:listItem="@{item.mediaTypeItemList}"
+            app:onItemClick="@{onItemClick}"
             app:msrv_speed_ms_per_inch="100"
             tools:listitem="@layout/item_discover" />
 
