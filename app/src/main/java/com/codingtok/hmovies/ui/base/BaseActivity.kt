@@ -18,11 +18,9 @@ abstract class BaseActivity: AppCompatActivity(), EasyPermissions.PermissionCall
 
     protected var mLayoutStatusView: MultipleStatusView? = null
 
-    abstract val layoutId: Int
-
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
-        setContentView(layoutId)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(layoutId())
 
         initView()
         initData()
@@ -36,6 +34,8 @@ abstract class BaseActivity: AppCompatActivity(), EasyPermissions.PermissionCall
     protected open val mRetryClickListener: View.OnClickListener = View.OnClickListener {
         lazyLoad()
     }
+
+    abstract fun layoutId(): Int
 
     /**
      * Init view

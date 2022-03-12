@@ -18,7 +18,7 @@
         <com.smarteist.autoimageslider.SliderView
             android:id="@+id/banner_now_playing"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_450sdp"
+            android:layout_height="@dimen/_480sdp"
             app:sliderAnimationDuration="600"
             app:sliderAutoCycleDirection="right"
             app:sliderAutoCycleEnabled="true"
