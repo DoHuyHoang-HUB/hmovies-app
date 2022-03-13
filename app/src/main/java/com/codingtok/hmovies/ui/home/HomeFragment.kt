@@ -1,5 +1,7 @@
 package com.codingtok.hmovies.ui.home
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -16,6 +18,7 @@ import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.data.model.Page
 import com.codingtok.hmovies.data.model.bean.Issue
 import com.codingtok.hmovies.databinding.HomeFragmentBinding
+import com.codingtok.hmovies.ui.activity.MovieDetailActivity
 import com.codingtok.hmovies.ui.base.BaseFragment
 import com.codingtok.hmovies.ui.base.BaseListAdapter
 import com.codingtok.hmovies.ui.base.baserefresh.BaseRefreshFragment
@@ -42,7 +45,9 @@ class HomeFragment : BaseRefreshFragment<HomeFragmentBinding, HomeViewModel, Iss
 
     private val mOnItemClicK: OnItemClickListener = object: OnItemClickListener {
         override fun onItemClick(obj: Any?, position: Int) {
-            Toast.makeText(requireContext(), "$position", Toast.LENGTH_SHORT).show()
+            val intent = Intent(activity, MovieDetailActivity::class.java)
+            activity?.startActivity(intent)
+            activity?.overridePendingTransition(com.google.android.material.R.anim.abc_fade_in, com.google.android.material.R.anim.abc_fade_out)
         }
     }
 

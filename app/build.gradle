@@ -143,6 +143,11 @@ dependencies {
     // https://github.com/googlesamples/easypermissions
     implementation("pub.devrel:easypermissions:3.0.0")
 
+    // Smart tab layout
+    // https://github.com/ogaclejapan/SmartTabLayout
+    implementation "com.ogaclejapan.smarttablayout:library:2.0.0@aar"
+    implementation "com.ogaclejapan.smarttablayout:utils-v4:2.0.0@aar"
+
     // test
     testImplementation 'junit:junit:4.13.2'
     testImplementation "org.junit.jupiter:junit-jupiter:$jupiter_version"
