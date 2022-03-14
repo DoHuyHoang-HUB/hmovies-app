@@ -24,4 +24,5 @@
     <string name="episode_movie">Episode</string>
     <string name="related_movie">Related movie</string>
     <string name="trailer" translatable="false">Trailer</string>
+    <string name="share">Share</string>
 </resources>
