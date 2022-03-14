@@ -17,4 +17,8 @@
     <style name="AppTheme.NoActionBar.FullScreen" parent="AppTheme">
         <item name="android:windowFullscreen">true</item>
     </style>
+
+    <style name="AppTheme.TabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+    </style>
 </resources>

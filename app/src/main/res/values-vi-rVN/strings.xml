@@ -20,5 +20,7 @@
     <string name="popular_movie">Phim phổ biến</string>
     <string name="discover">Khám phá</string>
     <string name="latest_movie">Phim mới nhất</string>
+    <string name="episode_movie">Tập phim</string>
     <string name="upcoming">Sắp ra mắt</string>
+    <string name="related_movie">Phim liên quan</string>
 </resources>
