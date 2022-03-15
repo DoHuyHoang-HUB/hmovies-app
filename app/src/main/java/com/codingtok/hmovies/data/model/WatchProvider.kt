@@ -1,14 +1,14 @@
-package de.vkay.api.tmdb.models
+package com.codingtok.hmovies.data.model
 
+import com.codingtok.hmovies.data.internals.annotations.ImageAnnotation
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import de.vkay.api.tmdb.internals.annotations.TMDbImage
 
 @JsonClass(generateAdapter = true)
 data class WatchProvider internal constructor(
     @Json(name = "logo_path")
-    @TMDbImage
-    val logo: TmdbImage?,
+    @ImageAnnotation
+    val logo: Image?,
     @Json(name = "provider_name")
     val name: String,
     @Json(name = "provider_id")

@@ -1,4 +1,4 @@
-package de.vkay.api.tmdb.internals.models
+package com.codingtok.hmovies.data.internals.models
 
 import com.codingtok.hmovies.data.internals.annotations.OtherCases
 import com.codingtok.hmovies.data.model.MediaTypeItem
