@@ -2,8 +2,9 @@ package com.codingtok.hmovies.data.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.io.Serializable
 
-sealed class Error {
+sealed class Error: Serializable {
     companion object {
         fun isAnyError(clazz: Class<*>): Boolean {
             return clazz == Error::class.java
@@ -15,7 +16,7 @@ sealed class Error {
     @JsonClass(generateAdapter = true)
     data class PostError internal constructor(
         val errors: List<String>
-    ) : Error()
+    ) : Error(), Serializable
 
     @JsonClass(generateAdapter = true)
     data class DefaultError internal constructor(
@@ -23,5 +24,5 @@ sealed class Error {
         val code: Int,
         @Json(name = "status_message")
         val message: String
-    ) : Error()
+    ) : Error(), Serializable
 }

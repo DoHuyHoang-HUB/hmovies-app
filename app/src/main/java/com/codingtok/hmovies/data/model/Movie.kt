@@ -1,14 +1,18 @@
 package com.codingtok.hmovies.data.model
 
-import com.codingtok.hmovies.data.annotations.ImageAnnotation
-import com.codingtok.hmovies.data.annotations.Rated
+import com.codingtok.hmovies.data.internals.annotations.ImageAnnotation
+import com.codingtok.hmovies.data.internals.annotations.Rated
 import com.codingtok.hmovies.data.enums.MediaType
 import com.codingtok.hmovies.data.enums.ProductionStatus
+import com.codingtok.hmovies.data.internals.annotations.OtherCases
+import com.codingtok.hmovies.data.internals.annotations.ResultsList
+import com.codingtok.hmovies.data.internals.models.Images
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import de.vkay.api.tmdb.models.WatchProviderListObject
 import java.io.Serializable
 
-data class Movie(
+data class Movie internal constructor(
     val id: Int,
     val title: String,
     @Json(name = "backdrop_path")
@@ -42,8 +46,37 @@ data class Movie(
     @Json(name = "production_countries")
     val productionCountries: List<Country>,
     @Json(name = "spoken_languages")
-    val spokenLanguages: List<Language>
+    val spokenLanguages: List<Language>,
+
+    // Append
+    @Json(name = "images")
+    internal val _images: Images?,
+    @Json(name = "recommendations")
+    internal val _recommendations: Page<Slim>?,
+    @Json(name = "similar")
+    internal val _similar: Page<Slim>?,
+    @Json(name = "external_ids")
+    val externalIds: ExternalIds?,
+    @ResultsList
+    @Json(name = "videos")
+    internal val _videos: List<Video>?,
+    @Json(name = "keywords")
+    @ResultsList("keywords")
+    internal val _keywords: List<Keyword>?,
+    @Json(name = "watch/providers")
+    @OtherCases
+    val watchProviders: Map<String, WatchProviderListObject>?
 ): MediaTypeItem(MediaType.MOVIE), Serializable {
+
+    val videos: List<Video> = _videos ?: emptyList()
+    val backdrops: List<Image> = _images?.backdrops ?: emptyList()
+    val posters: List<Image> = _images?.posters ?: emptyList()
+    val logos: List<Image> = _images?.logos ?: emptyList()
+
+    val recommendations: List<Slim> = _recommendations?.results ?: emptyList()
+    val similar: List<Slim> = _similar?.results ?: emptyList()
+
+    val keyword: List<Keyword> = _keywords ?: emptyList()
 
     @JsonClass(generateAdapter = true)
     data class Slim(

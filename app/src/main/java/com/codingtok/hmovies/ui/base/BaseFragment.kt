@@ -22,7 +22,7 @@ abstract class BaseFragment<ViewBinding: ViewDataBinding, ViewModel: BaseViewMod
     @get:LayoutRes
     protected abstract val layoutId: Int
 
-    protected abstract val mLayoutStatusView: MultipleStatusView?
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,12 +42,6 @@ abstract class BaseFragment<ViewBinding: ViewDataBinding, ViewModel: BaseViewMod
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observerEvent()
-
-        mLayoutStatusView?.setOnClickListener(mRetryClickListener)
-    }
-
-    protected open val mRetryClickListener: View.OnClickListener = View.OnClickListener {
-        lazyLoad()
     }
 
     private fun observerEvent() {
@@ -75,8 +69,6 @@ abstract class BaseFragment<ViewBinding: ViewDataBinding, ViewModel: BaseViewMod
             }
         }
     }
-
-    protected abstract fun lazyLoad();
 
     protected abstract fun handleLoading(isLoading: Boolean)
 

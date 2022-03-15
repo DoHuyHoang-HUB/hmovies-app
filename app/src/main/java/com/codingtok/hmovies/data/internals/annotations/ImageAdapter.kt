@@ -1,4 +1,4 @@
-package com.codingtok.hmovies.data.annotations
+package com.codingtok.hmovies.data.internals.annotations
 
 import android.os.Build
 import com.codingtok.hmovies.data.model.Image

@@ -1,0 +1,11 @@
+package com.codingtok.hmovies.data.internals.annotations
+
+import com.squareup.moshi.JsonQualifier
+
+/**
+ * Used for everything else (?)
+ */
+@Target(AnnotationTarget.VALUE_PARAMETER, AnnotationTarget.FUNCTION, AnnotationTarget.TYPE, AnnotationTarget.FIELD)
+@Retention(AnnotationRetention.RUNTIME)
+@JsonQualifier
+internal annotation class OtherCases

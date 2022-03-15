@@ -50,7 +50,7 @@ class HomeFragment : BaseRefreshFragment<HomeFragmentBinding, HomeViewModel, Iss
             when (obj) {
                 is Movie.Slim -> {
                     val intent = Intent(activity, MovieDetailActivity::class.java)
-                    intent.putExtra(BUNDLE_MOVIE_DATA, obj as Movie.Slim)
+                    intent.putExtra(BUNDLE_MOVIE_DATA, obj.id)
                     activity?.startActivity(intent)
                     activity?.overridePendingTransition(com.google.android.material.R.anim.abc_fade_in, com.google.android.material.R.anim.abc_fade_out)
                 }

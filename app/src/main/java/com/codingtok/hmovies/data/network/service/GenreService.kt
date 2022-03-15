@@ -1,6 +1,6 @@
 package com.codingtok.hmovies.data.network.service
 
-import com.codingtok.hmovies.data.annotations.ResultsList
+import com.codingtok.hmovies.data.internals.annotations.ResultsList
 import com.codingtok.hmovies.data.model.Error
 import com.codingtok.hmovies.data.model.Genres
 import com.haroldadmin.cnradapter.NetworkResponse

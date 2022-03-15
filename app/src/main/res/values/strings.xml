@@ -25,4 +25,7 @@
     <string name="related_movie">Related movie</string>
     <string name="trailer" translatable="false">Trailer</string>
     <string name="share">Share</string>
+    <string name="actor_name">Actor: %s</string>
+    <string name="director_name">Director: %s</string>
+    <string name="release_date_runtime_genre" translatable="false">%s &#9679; %d</string>
 </resources>

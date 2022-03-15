@@ -24,7 +24,7 @@ data class Image(
         return get(filePath, quality)
     }
 
-    enum class Quality(private val size: String) {
+    enum class Quality(private val size: String): Serializable {
         BACKDROP_W_300("w300"),
         BACKDROP_W_780("w780"),
         BACKDROP_W_1280("w1280"),

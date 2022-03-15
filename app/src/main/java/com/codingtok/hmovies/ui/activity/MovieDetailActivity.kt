@@ -1,5 +1,7 @@
 package com.codingtok.hmovies.ui.activity
 
+import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.codingtok.hmovies.R
@@ -15,17 +17,13 @@ class MovieDetailActivity : BaseActivity() {
 
     private lateinit var navController: NavController
 
-    private lateinit var movie: Movie.Slim
-
     override fun layoutId(): Int = R.layout.activity_movie_detail
+
+    private val viewModel: MovieDetailViewModel by viewModels()
 
     override fun initView() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_movie_detail) as NavHostFragment
-
         navController = navHostFragment.navController
-
-        navController.navigate(R.id.movieDetailFragment)
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -33,7 +31,8 @@ class MovieDetailActivity : BaseActivity() {
     }
 
     override fun initData() {
-        movie = intent.getSerializableExtra(BUNDLE_MOVIE_DATA) as Movie.Slim
+        val movieId = intent.getSerializableExtra(BUNDLE_MOVIE_DATA) as Int
+        viewModel.getMovieDetail(movieId);
     }
 
     override fun lazyLoad() {

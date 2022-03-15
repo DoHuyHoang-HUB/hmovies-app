@@ -1,10 +1,9 @@
 package com.codingtok.hmovies.data.network.service.movie
 
-import com.codingtok.hmovies.data.annotations.ResultsList
-import com.codingtok.hmovies.data.model.Error
-import com.codingtok.hmovies.data.model.Image
-import com.codingtok.hmovies.data.model.Movie
-import com.codingtok.hmovies.data.model.Page
+import com.codingtok.hmovies.data.internals.annotations.CharJob
+import com.codingtok.hmovies.data.internals.annotations.ResultsList
+import com.codingtok.hmovies.data.enums.MediaType
+import com.codingtok.hmovies.data.model.*
 import com.haroldadmin.cnradapter.NetworkResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -53,4 +52,17 @@ interface MovieService {
         @Query("language") languageTag: String? = null
     ): NetworkResponse<List<Image>, Error.DefaultError>
 
+    @GET("movie/{movie_id}/credits")
+    @CharJob(fieldName = "cast", mediaType = MediaType.PERSON)
+    suspend fun getCreditsCast(
+        @Path("movie_id") movieId: Int,
+        @Query("language") languageTag: String? = null
+    ): NetworkResponse<List<Pair<Person.Slim, Person.CrewJob>>, Error.DefaultError>
+
+    @GET("movie/{movie_id}/credits")
+    @CharJob(fieldName = "crew", mediaType = MediaType.PERSON)
+    suspend fun getCreditsCrew(
+        @Path("movie_id") movieId: Int,
+        @Query("language") languageTag: String? = null
+    ): NetworkResponse<List<Pair<Person.Slim, Person.CrewJob>>, Error.DefaultError>
 }

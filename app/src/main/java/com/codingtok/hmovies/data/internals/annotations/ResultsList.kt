@@ -1,4 +1,4 @@
-package com.codingtok.hmovies.data.annotations
+package com.codingtok.hmovies.data.internals.annotations
 
 import com.codingtok.hmovies.data.model.Error
 import com.squareup.moshi.*

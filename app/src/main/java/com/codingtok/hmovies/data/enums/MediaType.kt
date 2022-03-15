@@ -7,5 +7,7 @@ enum class MediaType {
     TV,
     @Json(name = "movie")
     MOVIE,
+    @Json(name = "person")
+    PERSON,
     UNKNOWN,
 }

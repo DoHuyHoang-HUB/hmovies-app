@@ -1,6 +1,8 @@
 package com.codingtok.hmovies.utils
 
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.annotation.NonNull
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +13,7 @@ import com.codingtok.hmovies.R
 import com.codingtok.hmovies.data.model.Genres
 import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.data.model.Page
+import com.codingtok.hmovies.data.model.Person
 import com.codingtok.hmovies.ui.home.BannerAdapter
 import com.codingtok.hmovies.ui.home.DiscoverListAdapter
 import com.codingtok.hmovies.ui.home.MoviesListAdapter
@@ -55,5 +58,10 @@ fun MultiSnapRecyclerView.bindListItem(listItem: List<*>, onItemClick: OnItemCli
 @BindingAdapter("title")
 fun CollectionActionButton.bindTitle(title: String) {
     this.buttonTitle = title
+}
+
+@BindingAdapter("appendListText")
+fun TextView.bindText(listText: List<Pair<Person.Slim, Person.CrewJob>>) {
+    this.text = listText.joinToString(separator = ", ") { it.first.name }
 }
 

@@ -1,7 +1,7 @@
 package com.codingtok.hmovies.data.model
 
-import com.codingtok.hmovies.data.annotations.ImageAnnotation
-import com.codingtok.hmovies.data.annotations.Rated
+import com.codingtok.hmovies.data.internals.annotations.ImageAnnotation
+import com.codingtok.hmovies.data.internals.annotations.Rated
 import com.codingtok.hmovies.data.enums.MediaType
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

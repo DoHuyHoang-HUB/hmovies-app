@@ -4,14 +4,13 @@ import com.codingtok.hmovies.BASE_URL
 import com.codingtok.hmovies.BuildConfig
 import com.codingtok.hmovies.KEY_API
 import com.codingtok.hmovies.QUERY_KEY_API
-import com.codingtok.hmovies.data.annotations.ImageAdapter
-import com.codingtok.hmovies.data.annotations.RatedJsonAdapter
-import com.codingtok.hmovies.data.annotations.ResultsListAdapter
+import com.codingtok.hmovies.data.internals.annotations.CharJobAdapter
+import com.codingtok.hmovies.data.internals.annotations.ImageAdapter
+import com.codingtok.hmovies.data.internals.annotations.RatedJsonAdapter
+import com.codingtok.hmovies.data.internals.annotations.ResultsListAdapter
 import com.codingtok.hmovies.data.enums.MediaType
-import com.codingtok.hmovies.data.model.Date
-import com.codingtok.hmovies.data.model.MediaTypeItem
-import com.codingtok.hmovies.data.model.Movie
-import com.codingtok.hmovies.data.model.TVShow
+import com.codingtok.hmovies.data.internals.EnumValueJsonAdapter
+import com.codingtok.hmovies.data.model.*
 import com.codingtok.hmovies.data.network.service.GenreService
 import com.codingtok.hmovies.data.network.service.movie.MovieService
 import com.codingtok.hmovies.data.network.service.TrendingService
@@ -25,6 +24,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import de.vkay.api.tmdb.internals.models.FindResult
+import de.vkay.api.tmdb.internals.models.WatchProviderListObj
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -89,14 +90,30 @@ class NetworkModule {
                 PolymorphicJsonAdapterFactory.of(MediaTypeItem::class.java, "media_type")
                     .withSubtype(Movie.Slim::class.java, "movie")
                     .withSubtype(TVShow.Slim::class.java, "tv")
+                    .withSubtype(Person.Slim::class.java, "person")
+            )
+            .add(
+                PersonGender::class.java, EnumValueJsonAdapter.create(PersonGender::class.java)
+                    .withUnknownFallback(PersonGender.OTHER)
+            )
+            .add(
+                Video.Site::class.java, EnumJsonAdapter.create(Video.Site::class.java)
+                    .withUnknownFallback(Video.Site.UNDEFINED)
+            )
+            .add(
+                Video.Type::class.java, EnumJsonAdapter.create(Video.Type::class.java)
+                    .withUnknownFallback(Video.Type.UNDEFINED)
             )
             .add(
                 MediaType::class.java, EnumJsonAdapter.create(MediaType::class.java)
                     .withUnknownFallback(MediaType.UNKNOWN)
             )
+            .add(FindResult.ADAPTER)
+            .add(WatchProviderListObj.ADAPTER)
             .add(Date.ADAPTER)
             .add(ImageAdapter.INSTANCE)
             .add(RatedJsonAdapter())
+            .add(CharJobAdapter.INSTANCE)
             .add(ResultsListAdapter.INSTANCE)
             .add(KotlinJsonAdapterFactory())
             .build()

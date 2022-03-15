@@ -3,6 +3,7 @@ package com.codingtok.hmovies.data.repository.impl
 import com.codingtok.hmovies.data.model.Error
 import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.data.model.Page
+import com.codingtok.hmovies.data.model.Person
 import com.codingtok.hmovies.data.network.service.movie.AppendToResponse
 import com.codingtok.hmovies.data.network.service.movie.MovieService
 import com.codingtok.hmovies.data.repository.MovieRepository
@@ -55,6 +56,15 @@ constructor(
     ): Flow<NetworkResponse<Movie, Error.DefaultError>> {
         return flow {
             emit(movieService.getDetail(movieId, languageTag, append))
+        }.flowOn(ioDispatcher)
+    }
+
+    override suspend fun getCreditsCast(
+        movieId: Int,
+        languageTag: String?
+    ): Flow<NetworkResponse<List<Pair<Person.Slim, Person.CrewJob>>, Error.DefaultError>> {
+        return flow {
+            emit(movieService.getCreditsCast(movieId, languageTag))
         }.flowOn(ioDispatcher)
     }
 }

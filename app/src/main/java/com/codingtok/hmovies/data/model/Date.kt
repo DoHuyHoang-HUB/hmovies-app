@@ -2,6 +2,7 @@ package com.codingtok.hmovies.data.model
 
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.ToJson
+import java.io.Serializable
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -9,7 +10,7 @@ import java.time.format.DateTimeParseException
 import java.time.format.FormatStyle
 import java.util.*
 
-class Date(val date: LocalDate?): Comparable<Date> {
+class Date(val date: LocalDate?): Comparable<Date>, Serializable {
     constructor(str: String?) : this(validate(str))
     constructor(localDateTime: LocalDateTime?) : this(localDateTime?.toLocalDate())
 

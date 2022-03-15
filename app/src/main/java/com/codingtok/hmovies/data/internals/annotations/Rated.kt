@@ -1,4 +1,4 @@
-package com.codingtok.hmovies.data.annotations
+package com.codingtok.hmovies.data.internals.annotations
 
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.JsonQualifier

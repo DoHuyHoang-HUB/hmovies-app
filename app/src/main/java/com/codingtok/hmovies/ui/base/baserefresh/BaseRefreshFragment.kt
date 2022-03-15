@@ -7,6 +7,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.codingtok.common.MultipleStatusView
 import com.codingtok.hmovies.ui.base.BaseFragment
 import com.codingtok.hmovies.ui.base.BaseListAdapter
 import com.codingtok.hmovies.ui.base.BaseViewModel
@@ -16,12 +17,16 @@ abstract class BaseRefreshFragment<ViewBinding: ViewDataBinding, ViewModel: Base
     abstract val recyclerView: RecyclerView?
     abstract val listAdapter: BaseListAdapter<T, out ViewDataBinding>?
 
+    protected abstract val mLayoutStatusView: MultipleStatusView?
+
     open fun getLayoutManager(): RecyclerView.LayoutManager =
         LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRefresh()
+
+        mLayoutStatusView?.setOnClickListener(mRetryClickListener)
     }
 
     open fun setupRefresh() {
@@ -44,6 +49,12 @@ abstract class BaseRefreshFragment<ViewBinding: ViewDataBinding, ViewModel: Base
         }
 
     }
+
+    protected open val mRetryClickListener: View.OnClickListener = View.OnClickListener {
+        lazyLoad()
+    }
+
+    protected abstract fun lazyLoad();
 
     protected abstract fun handleRefresh(isRefreshing: Boolean)
 

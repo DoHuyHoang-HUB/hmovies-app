@@ -24,4 +24,6 @@
     <string name="upcoming">Sắp ra mắt</string>
     <string name="related_movie">Phim liên quan</string>
     <string name="share">Chia sẻ</string>
+    <string name="actor_name">Diễn viên: %s</string>
+    <string name="director_name">Đạo diễn: %s</string>
 </resources>

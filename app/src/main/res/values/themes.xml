@@ -21,4 +21,7 @@
     <style name="AppTheme.TabTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
     </style>
+
+    <style name="AppTheme.TextButton" parent="@style/Widget.Material3.Button.TextButton">
+    </style>
 </resources>
