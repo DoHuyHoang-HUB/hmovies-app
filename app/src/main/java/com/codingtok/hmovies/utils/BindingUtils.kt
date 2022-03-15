@@ -61,7 +61,8 @@ fun CollectionActionButton.bindTitle(title: String) {
 }
 
 @BindingAdapter("appendListText")
-fun TextView.bindText(listText: List<Pair<Person.Slim, Person.CrewJob>>) {
-    this.text = listText.joinToString(separator = ", ") { it.first.name }
+fun TextView.bindText(listText: List<Pair<Person.Slim, Person.CrewJob>>?) {
+    this.text = App.context.resources.getString(R.string.cast_name, listText?.joinToString(separator = ", ") { it.first.name })
 }
+
 
