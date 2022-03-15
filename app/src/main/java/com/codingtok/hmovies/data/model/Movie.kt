@@ -6,6 +6,7 @@ import com.codingtok.hmovies.data.enums.MediaType
 import com.codingtok.hmovies.data.enums.ProductionStatus
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.io.Serializable
 
 data class Movie(
     val id: Int,
@@ -42,7 +43,7 @@ data class Movie(
     val productionCountries: List<Country>,
     @Json(name = "spoken_languages")
     val spokenLanguages: List<Language>
-): MediaTypeItem(MediaType.MOVIE) {
+): MediaTypeItem(MediaType.MOVIE), Serializable {
 
     @JsonClass(generateAdapter = true)
     data class Slim(
@@ -68,8 +69,7 @@ data class Movie(
         @Json(name = "vote_count")
         val voteCount: Int,
         val video: Boolean,
-
         @Rated
         val rating: Int?
-    ): MediaTypeItem(MediaType.MOVIE)
+    ): MediaTypeItem(MediaType.MOVIE), Serializable
 }

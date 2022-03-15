@@ -37,7 +37,7 @@
                         android:layout_height="@dimen/_200sdp"
                         android:contentDescription="@string/app_name"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/backdrop_spider_man"
+                        tools:src="@drawable/backdrop_spider_man"
                         app:layout_collapseMode="parallax" />
 
                     <View
@@ -56,7 +56,7 @@
                             android:id="@+id/text_year"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="2022 &#9679; 7+ &#9679; 3 tập &#9679; Tài liệu &#9679; 4K"
+                            tools:text="2022 &#9679; 7+ &#9679; 3 tập &#9679; Tài liệu &#9679; 4K"
                             android:textColor="@color/colorTextSecondary"
                             android:textSize="@dimen/_11ssp" />
 
@@ -65,7 +65,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_10sdp"
-                            android:text="Người Nhện: Không còn nhà (tựa gốc tiếng Anh: Spider-Man: No Way Home) là một bộ phim siêu anh hùng năm 2021 của Mỹ dựa trên nhân vật Peter Parker của Marvel Comics, do Columbia Pictures và Marvel Studios đồng sản xuất và được phân phối bởi Sony Pictures Releasing. Bộ phim là phần tiếp theo của Người Nhện: Trở về nhà (2017) và Người Nhện xa nhà (2019) và là phần phim thứ 27 của Vũ trụ Điện ảnh Marvel (MCU)."
+                            tools:text="Người Nhện: Không còn nhà (tựa gốc tiếng Anh: Spider-Man: No Way Home) là một bộ phim siêu anh hùng năm 2021 của Mỹ dựa trên nhân vật Peter Parker của Marvel Comics, do Columbia Pictures và Marvel Studios đồng sản xuất và được phân phối bởi Sony Pictures Releasing. Bộ phim là phần tiếp theo của Người Nhện: Trở về nhà (2017) và Người Nhện xa nhà (2019) và là phần phim thứ 27 của Vũ trụ Điện ảnh Marvel (MCU)."
                             android:textColor="@color/colorTextPrimary"
                             android:textSize="@dimen/_10ssp" />
 
@@ -74,7 +74,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_5sdp"
-                            android:text="Diễn viên: Nguyễn Quang Dũng"
+                            tools:text="Diễn viên: Nguyễn Quang Dũng"
                             android:textColor="@color/colorTextSecondary"
                             android:textSize="@dimen/_11ssp" />
 
@@ -82,7 +82,7 @@
                             android:id="@+id/text_dao_dien"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Đạo diễn: Nguyễn Quang Dũng"
+                            tools:text="Đạo diễn: Nguyễn Quang Dũng"
                             android:textColor="@color/colorTextSecondary"
                             android:textSize="@dimen/_11ssp" />
 

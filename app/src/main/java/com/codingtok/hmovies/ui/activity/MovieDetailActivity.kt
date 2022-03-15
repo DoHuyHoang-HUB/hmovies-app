@@ -6,11 +6,16 @@ import com.codingtok.hmovies.R
 import com.codingtok.hmovies.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
+import com.codingtok.hmovies.BUNDLE_MOVIE_DATA
+import com.codingtok.hmovies.data.model.Movie
+import com.codingtok.hmovies.ui.moviedetail.MovieDetailViewModel
 
 @AndroidEntryPoint
 class MovieDetailActivity : BaseActivity() {
 
     private lateinit var navController: NavController
+
+    private lateinit var movie: Movie.Slim
 
     override fun layoutId(): Int = R.layout.activity_movie_detail
 
@@ -19,6 +24,8 @@ class MovieDetailActivity : BaseActivity() {
 
         navController = navHostFragment.navController
 
+        navController.navigate(R.id.movieDetailFragment)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -26,6 +33,7 @@ class MovieDetailActivity : BaseActivity() {
     }
 
     override fun initData() {
+        movie = intent.getSerializableExtra(BUNDLE_MOVIE_DATA) as Movie.Slim
     }
 
     override fun lazyLoad() {

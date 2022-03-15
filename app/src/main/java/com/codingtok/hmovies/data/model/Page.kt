@@ -2,6 +2,7 @@ package com.codingtok.hmovies.data.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 data class Page<T>(
@@ -11,6 +12,6 @@ data class Page<T>(
     @Json(name = "total_pages")
     val totalPages: Int,
     val results: List<T>
-) {
+): Serializable {
     val hasNextPage: Boolean = page < totalPages
 }

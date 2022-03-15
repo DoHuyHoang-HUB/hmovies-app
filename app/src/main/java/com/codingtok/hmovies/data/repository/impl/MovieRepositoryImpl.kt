@@ -3,7 +3,8 @@ package com.codingtok.hmovies.data.repository.impl
 import com.codingtok.hmovies.data.model.Error
 import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.data.model.Page
-import com.codingtok.hmovies.data.network.service.MovieService
+import com.codingtok.hmovies.data.network.service.movie.AppendToResponse
+import com.codingtok.hmovies.data.network.service.movie.MovieService
 import com.codingtok.hmovies.data.repository.MovieRepository
 import com.haroldadmin.cnradapter.NetworkResponse
 import kotlinx.coroutines.flow.Flow
@@ -44,6 +45,16 @@ constructor(
     ): Flow<NetworkResponse<Page<Movie.Slim>, Error.DefaultError>> {
         return flow {
             emit(movieService.getTopRated(languageTag, page, languageCode))
+        }.flowOn(ioDispatcher)
+    }
+
+    override suspend fun getDetail(
+        movieId: Int,
+        languageTag: String?,
+        append: AppendToResponse?
+    ): Flow<NetworkResponse<Movie, Error.DefaultError>> {
+        return flow {
+            emit(movieService.getDetail(movieId, languageTag, append))
         }.flowOn(ioDispatcher)
     }
 }

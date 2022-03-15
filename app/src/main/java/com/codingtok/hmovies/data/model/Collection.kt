@@ -3,6 +3,7 @@ package com.codingtok.hmovies.data.model
 import com.codingtok.hmovies.data.annotations.ImageAnnotation
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 data class Collection(
@@ -14,7 +15,7 @@ data class Collection(
     @Json(name = "backdrop_path")
     @ImageAnnotation
     val backdrop: Image?
-) {
+): Serializable {
     val movieCount: Int get() = movies.size
 
     @JsonClass(generateAdapter = true)
@@ -35,5 +36,5 @@ data class Collection(
         @ImageAnnotation
         val poster: Image?,
         val overview: String?
-    )
+    ): Serializable
 }

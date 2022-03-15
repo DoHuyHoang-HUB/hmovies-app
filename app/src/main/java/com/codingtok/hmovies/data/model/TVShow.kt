@@ -5,6 +5,7 @@ import com.codingtok.hmovies.data.annotations.Rated
 import com.codingtok.hmovies.data.enums.MediaType
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 data class TVShow(
@@ -27,7 +28,7 @@ data class TVShow(
     val overview: String? = null,
     @Json(name = "poster_path")
     val posterPath: String? = null
-): MediaTypeItem(MediaType.TV) {
+): MediaTypeItem(MediaType.TV), Serializable {
     @JsonClass(generateAdapter = true)
     data class Slim internal constructor(
         val id: Int,
@@ -54,5 +55,5 @@ data class TVShow(
         // Optional when getting rated shows (AccountService)
         @Rated
         val rating: Int?
-    ) : MediaTypeItem(MediaType.TV)
+    ) : MediaTypeItem(MediaType.TV), Serializable
 }

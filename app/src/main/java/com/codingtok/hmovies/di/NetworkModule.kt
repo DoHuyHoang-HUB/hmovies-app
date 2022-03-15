@@ -12,9 +12,8 @@ import com.codingtok.hmovies.data.model.Date
 import com.codingtok.hmovies.data.model.MediaTypeItem
 import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.data.model.TVShow
-import com.codingtok.hmovies.data.network.factory.MyStandardJsonAdapters
 import com.codingtok.hmovies.data.network.service.GenreService
-import com.codingtok.hmovies.data.network.service.MovieService
+import com.codingtok.hmovies.data.network.service.movie.MovieService
 import com.codingtok.hmovies.data.network.service.TrendingService
 import com.codingtok.hmovies.data.network.service.discover.DiscoverService
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory

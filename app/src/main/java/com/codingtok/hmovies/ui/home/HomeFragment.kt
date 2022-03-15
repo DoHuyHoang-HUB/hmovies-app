@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.codingtok.common.MultipleStatusView
+import com.codingtok.hmovies.BUNDLE_MOVIE_DATA
 import com.codingtok.hmovies.R
+import com.codingtok.hmovies.data.model.Genres
 import com.codingtok.hmovies.data.model.MediaTypeItem
 import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.data.model.Page
@@ -45,9 +47,17 @@ class HomeFragment : BaseRefreshFragment<HomeFragmentBinding, HomeViewModel, Iss
 
     private val mOnItemClicK: OnItemClickListener = object: OnItemClickListener {
         override fun onItemClick(obj: Any?, position: Int) {
-            val intent = Intent(activity, MovieDetailActivity::class.java)
-            activity?.startActivity(intent)
-            activity?.overridePendingTransition(com.google.android.material.R.anim.abc_fade_in, com.google.android.material.R.anim.abc_fade_out)
+            when (obj) {
+                is Movie.Slim -> {
+                    val intent = Intent(activity, MovieDetailActivity::class.java)
+                    intent.putExtra(BUNDLE_MOVIE_DATA, obj as Movie.Slim)
+                    activity?.startActivity(intent)
+                    activity?.overridePendingTransition(com.google.android.material.R.anim.abc_fade_in, com.google.android.material.R.anim.abc_fade_out)
+                }
+                is Genres -> {
+
+                }
+            }
         }
     }
 

@@ -2,6 +2,7 @@ package com.codingtok.hmovies.data.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 data class Image(
@@ -11,7 +12,7 @@ data class Image(
     val width: Int,
     @Json(name = "iso_639_1")
     val languageCode: String?
-) {
+): Serializable {
     constructor(path: String): this(path, 0, 0, null)
 
     /**
