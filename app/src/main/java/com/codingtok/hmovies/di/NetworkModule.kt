@@ -10,6 +10,8 @@ import com.codingtok.hmovies.data.internals.annotations.RatedJsonAdapter
 import com.codingtok.hmovies.data.internals.annotations.ResultsListAdapter
 import com.codingtok.hmovies.data.enums.MediaType
 import com.codingtok.hmovies.data.internals.EnumValueJsonAdapter
+import com.codingtok.hmovies.data.internals.models.FindResult
+import com.codingtok.hmovies.data.internals.models.WatchProviderListObj
 import com.codingtok.hmovies.data.model.*
 import com.codingtok.hmovies.data.network.service.GenreService
 import com.codingtok.hmovies.data.network.service.movie.MovieService
@@ -24,8 +26,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import de.vkay.api.tmdb.internals.models.FindResult
-import de.vkay.api.tmdb.internals.models.WatchProviderListObj
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

@@ -9,7 +9,6 @@ import com.codingtok.hmovies.data.internals.annotations.ResultsList
 import com.codingtok.hmovies.data.internals.models.Images
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import de.vkay.api.tmdb.models.WatchProviderListObject
 import java.io.Serializable
 
 data class Movie internal constructor(
