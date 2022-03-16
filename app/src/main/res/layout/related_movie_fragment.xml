@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.codingtok.hmovies.ui.related.RelatedMovieViewModel" />
+    </data>
+
+    <com.codingtok.common.MultipleStatusView
+        android:id="@+id/layout_status_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:emptyView="@layout/layout_empty_view"
+        app:errorView="@layout/layout_error_view"
+        app:loadingView="@layout/layout_loading_view"
+        app:noNetworkView="@layout/layout_network_view"
+        tools:context=".ui.related.RelatedMovieFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recommendations_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:padding="@dimen/_1sdp"
+            android:scrollbars="none"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3"
+            tools:listitem="@layout/item_movie" />
+
+    </com.codingtok.common.MultipleStatusView>
+</layout>

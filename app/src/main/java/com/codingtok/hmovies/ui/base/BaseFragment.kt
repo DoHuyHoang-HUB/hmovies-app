@@ -22,8 +22,6 @@ abstract class BaseFragment<ViewBinding: ViewDataBinding, ViewModel: BaseViewMod
     @get:LayoutRes
     protected abstract val layoutId: Int
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

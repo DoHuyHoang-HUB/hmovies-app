@@ -3,4 +3,9 @@
     <declare-styleable name="CollectionActionButton">
         <attr name="cb_title" format="string" />
     </declare-styleable>
+    <declare-styleable name="ButtonIcon">
+        <attr name="icon" format="reference" />
+        <attr name="iconTint" format="reference|color" />
+        <attr name="text" format="reference|string" />
+    </declare-styleable>
 </resources>

@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="com.codingtok.hmovies.data.model.Image.Quality" />
+
         <variable
             name="viewModel"
             type="com.codingtok.hmovies.ui.moviedetail.MovieDetailViewModel" />
@@ -40,9 +42,9 @@
                         android:layout_height="@dimen/_200sdp"
                         android:contentDescription="@string/app_name"
                         android:scaleType="centerCrop"
+                        app:layout_collapseMode="parallax"
                         app:loadUrl="@{viewModel.movie.backdrop.get(Quality.BACKDROP_W_780)}"
-                        tools:src="@drawable/backdrop_spider_man"
-                        app:layout_collapseMode="parallax" />
+                        tools:src="@drawable/backdrop_spider_man" />
 
                     <View
                         android:layout_width="match_parent"
@@ -53,6 +55,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/image_backdrop"
+                        android:layout_marginTop="@dimen/_15sdp"
                         android:orientation="vertical"
                         android:padding="@dimen/_10sdp">
 
@@ -60,9 +63,9 @@
                             android:id="@+id/text_year"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/colorTextSecondary"
-                            android:textSize="@dimen/_11ssp"
                             android:text="@{@string/release_date_runtime_genre(viewModel.movie.releaseDate, viewModel.movie.runtime)}"
+                            android:textColor="@color/colorTextSecondary"
+                            android:textSize="@dimen/_10ssp"
                             tools:text="2022 &#9679; 7+ &#9679; 3 tập &#9679; Tài liệu &#9679; 4K" />
 
                         <TextView
@@ -70,21 +73,23 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="@font/roboto_regular"
+                            android:includeFontPadding="false"
                             android:text="@{viewModel.movie.overview}"
                             android:textColor="@color/colorTextPrimary"
-                            android:textSize="@dimen/_10ssp"
+                            android:textSize="@dimen/_11ssp"
                             tools:text="Người Nhện: Không còn nhà (tựa gốc tiếng Anh: Spider-Man: No Way Home) là một bộ phim siêu anh hùng năm 2021 của Mỹ dựa trên nhân vật Peter Parker của Marvel Comics, do Columbia Pictures và Marvel Studios đồng sản xuất và được phân phối bởi Sony Pictures Releasing. Bộ phim là phần tiếp theo của Người Nhện: Trở về nhà (2017) và Người Nhện xa nhà (2019) và là phần phim thứ 27 của Vũ trụ Điện ảnh Marvel (MCU)." />
 
                         <TextView
                             android:id="@+id/text_dienvien"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:maxLines="1"
-                            android:ellipsize="end"
                             android:layout_marginTop="@dimen/_5sdp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
                             android:textColor="@color/colorTextSecondary"
+                            android:textSize="@dimen/_10ssp"
                             app:appendListText="@{viewModel.cast}"
-                            android:textSize="@dimen/_11ssp"
                             tools:text="Diễn viên: Nguyễn Quang Dũng" />
 
                         <TextView
@@ -92,7 +97,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorTextSecondary"
-                            android:textSize="@dimen/_11ssp"
+                            android:textSize="@dimen/_10ssp"
+                            app:appendListText="@{viewModel.crew}"
                             tools:text="Đạo diễn: Nguyễn Quang Dũng" />
 
                         <com.google.android.material.button.MaterialButton
@@ -109,61 +115,75 @@
                             app:icon="@drawable/ic_play"
                             app:iconGravity="textStart"
                             app:iconPadding="@dimen/_2sdp"
-                            app:iconSize="@dimen/_20sdp" />
+                            app:iconSize="@dimen/_22sdp" />
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="@dimen/_180sdp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_10sdp"
                             android:gravity="center_vertical"
                             android:orientation="horizontal">
 
-                            <Button
-                                android:layout_width="wrap_content"
+                            <com.google.android.material.button.MaterialButton
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 android:background="@null"
+                                android:layout_marginEnd="@dimen/_10sdp"
                                 android:gravity="center_horizontal"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:minWidth="0dp"
+                                android:padding="0dp"
                                 android:text="@string/my_ds"
                                 android:textAllCaps="false"
                                 android:textColor="@color/colorTextSecondary"
-                                android:textSize="@dimen/_10ssp"
-                                android:theme="@style/Widget.Material3.Button.TextButton.Icon"
+                                android:textSize="@dimen/_9ssp"
                                 app:icon="@drawable/ic_add"
                                 app:iconGravity="top"
                                 app:iconPadding="@dimen/_1sdp"
-                                app:iconSize="@dimen/_16sdp"
+                                app:iconSize="@dimen/_17sdp"
                                 app:iconTint="@color/colorIconPrimary" />
 
-                            <Button
-                                android:layout_width="wrap_content"
+                            <com.google.android.material.button.MaterialButton
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="@dimen/_10sdp"
                                 android:background="@null"
                                 android:gravity="center_horizontal"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:minWidth="0dp"
+                                android:padding="0dp"
                                 android:text="@string/share"
                                 android:textAllCaps="false"
                                 android:textColor="@color/colorTextSecondary"
-                                android:textSize="@dimen/_10ssp"
-                                android:theme="@style/Widget.Material3.Button.TextButton.Icon"
+                                android:textSize="@dimen/_9ssp"
                                 app:icon="@drawable/ic_share"
                                 app:iconGravity="top"
                                 app:iconPadding="@dimen/_1sdp"
                                 app:iconSize="@dimen/_17sdp"
                                 app:iconTint="@color/colorIconPrimary" />
 
-                            <Button
-                                android:layout_width="wrap_content"
+                            <com.google.android.material.button.MaterialButton
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 android:background="@null"
                                 android:gravity="center_horizontal"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:minWidth="0dp"
+                                android:padding="0dp"
                                 android:text="@string/download"
                                 android:textAllCaps="false"
                                 android:textColor="@color/colorTextSecondary"
-                                android:textSize="@dimen/_10ssp"
-                                android:theme="@style/Widget.Material3.Button.TextButton.Icon"
+                                android:textSize="@dimen/_9ssp"
                                 app:icon="@drawable/ic_download"
                                 app:iconGravity="top"
                                 app:iconPadding="@dimen/_1sdp"
-                                app:iconSize="@dimen/_21sdp"
+                                app:iconSize="@dimen/_17sdp"
                                 app:iconTint="@color/colorIconPrimary" />
 
                         </LinearLayout>
@@ -183,11 +203,12 @@
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tablayout"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
                     app:tabBackground="@color/colorPrimary"
-                    app:tabGravity="fill"
+                    app:tabGravity="center"
                     app:tabIndicator="@drawable/background_tablayout"
                     app:tabIndicatorColor="@color/white"
                     app:tabIndicatorGravity="top"

@@ -1,19 +1,12 @@
 package com.codingtok.hmovies.ui.home
 
-import android.annotation.SuppressLint
-import androidx.core.net.toUri
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import coil.load
 import com.codingtok.hmovies.R
-import com.codingtok.hmovies.data.model.Image
-import com.codingtok.hmovies.data.model.MediaTypeItem
 import com.codingtok.hmovies.data.model.Movie
-import com.codingtok.hmovies.data.model.TVShow
-import com.codingtok.hmovies.databinding.ItemMovieBinding
 import com.codingtok.hmovies.ui.base.BaseListAdapter
 import com.codingtok.hmovies.ui.widget.OnItemClickListener
-import com.codingtok.hmovies.utils.bindImage
 
 class MoviesListAdapter(
     private val onItemClick: OnItemClickListener
@@ -42,7 +35,7 @@ class MoviesListAdapter(
 
     override fun getLayoutRes(viewType: Int): Int {
         return when (viewType) {
-            ItemType.IS_ITEM -> R.layout.item_movie
+            ItemType.IS_ITEM -> R.layout.item_movie_title
             else -> R.layout.item_view_all
         }
     }

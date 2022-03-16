@@ -4,18 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="com.codingtok.hmovies.data.model.Image.Quality" />
-        <variable
-            name="item"
-            type="com.codingtok.hmovies.data.model.Movie.Slim" />
         <variable
             name="onItemClick"
             type="com.codingtok.hmovies.ui.widget.OnItemClickListener" />
+        <variable
+            name="item"
+            type="com.codingtok.hmovies.data.model.Movie.Slim" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        tools:background="@color/colorPrimary">
 
         <ImageView
             android:id="@+id/image_movie"
@@ -25,5 +30,17 @@
             app:loadUrl="@{item.poster.get(Quality.POSTER_W_342)}"
             tools:src="@drawable/breaking_bad" />
 
-    </FrameLayout>
+        <TextView
+            android:id="@+id/name_movie"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{item.title}"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/_10sdp"
+            tools:text="Breaking bad" />
+
+
+    </LinearLayout>
 </layout>

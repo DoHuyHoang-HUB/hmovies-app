@@ -1,6 +1,7 @@
 package com.codingtok.hmovies.ui.activity
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -32,6 +33,7 @@ class MovieDetailActivity : BaseActivity() {
 
     override fun initData() {
         val movieId = intent.getSerializableExtra(BUNDLE_MOVIE_DATA) as Int
+        Toast.makeText(this, "$movieId", Toast.LENGTH_SHORT).show()
         viewModel.getMovieDetail(movieId);
     }
 

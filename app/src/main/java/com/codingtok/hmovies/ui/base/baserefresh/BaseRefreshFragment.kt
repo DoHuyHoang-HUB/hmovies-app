@@ -39,7 +39,6 @@ abstract class BaseRefreshFragment<ViewBinding: ViewDataBinding, ViewModel: Base
                     listAdapter?.submitList(it)
                 }
             }
-            firstLoad()
             isRefreshing.observe(viewLifecycleOwner) {
                 handleRefresh(it)
             }
@@ -47,11 +46,14 @@ abstract class BaseRefreshFragment<ViewBinding: ViewDataBinding, ViewModel: Base
                 handleEmpty(it)
             }
         }
-
     }
 
     protected open val mRetryClickListener: View.OnClickListener = View.OnClickListener {
         lazyLoad()
+    }
+
+    protected fun firstLoad() {
+        viewModel.firstLoad()
     }
 
     protected abstract fun lazyLoad();

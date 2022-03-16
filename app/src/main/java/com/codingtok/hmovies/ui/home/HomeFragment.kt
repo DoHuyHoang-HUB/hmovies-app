@@ -45,6 +45,11 @@ class HomeFragment : BaseRefreshFragment<HomeFragmentBinding, HomeViewModel, Iss
         HomeListAdapter(requireContext().resources, mOnItemClicK)
     }
 
+    override fun setupRefresh() {
+        super.setupRefresh()
+        firstLoad()
+    }
+
     private val mOnItemClicK: OnItemClickListener = object: OnItemClickListener {
         override fun onItemClick(obj: Any?, position: Int) {
             when (obj) {

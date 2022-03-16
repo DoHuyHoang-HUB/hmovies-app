@@ -30,8 +30,8 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding, MovieDetail
 
         val pager = FragmentPagerItems(requireContext())
         pager.add(FragmentPagerItem.of(getString(R.string.related_movie), RelatedMovieFragment::class.java))
-        pager.add(FragmentPagerItem.of(getString(R.string.trailer), TrailerFragment::class.java))
-        pager.add(FragmentPagerItem.of(getString(R.string.episode_movie), EpisodeFragment::class.java))
+        pager.add(FragmentPagerItem.of(getString(R.string.trailer), RelatedMovieFragment::class.java))
+        pager.add(FragmentPagerItem.of(getString(R.string.episode_movie), RelatedMovieFragment::class.java))
 
         val adapter = FragmentPagerItemAdapter(
             requireActivity().supportFragmentManager, pager

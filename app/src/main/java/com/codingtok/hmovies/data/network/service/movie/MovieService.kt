@@ -52,12 +52,19 @@ interface MovieService {
         @Query("language") languageTag: String? = null
     ): NetworkResponse<List<Image>, Error.DefaultError>
 
+    @GET("movie/{movie_id}/images")
+    @ResultsList("logos")
+    suspend fun getLogos(
+        @Path("movie_id") movieId: Int,
+        @Query("language") languageTag: String? = null
+    ): NetworkResponse<List<Image>, Error.DefaultError>
+
     @GET("movie/{movie_id}/credits")
     @CharJob(fieldName = "cast", mediaType = MediaType.PERSON)
     suspend fun getCreditsCast(
         @Path("movie_id") movieId: Int,
         @Query("language") languageTag: String? = null
-    ): NetworkResponse<List<Pair<Person.Slim, Person.CrewJob>>, Error.DefaultError>
+    ): NetworkResponse<List<Pair<Person.Slim, Person.CastRole>>, Error.DefaultError>
 
     @GET("movie/{movie_id}/credits")
     @CharJob(fieldName = "crew", mediaType = MediaType.PERSON)
@@ -65,4 +72,12 @@ interface MovieService {
         @Path("movie_id") movieId: Int,
         @Query("language") languageTag: String? = null
     ): NetworkResponse<List<Pair<Person.Slim, Person.CrewJob>>, Error.DefaultError>
+
+    @GET("movie/{movie_id}/recommendations")
+    suspend fun getRecommendations(
+        @Path("movie_id") movieId: Int,
+        @Query("language") languageTag: String? = null,
+        @Query("page") page: Int? = null
+    ): NetworkResponse<Page<Movie.Slim>, Error.DefaultError>
+
 }

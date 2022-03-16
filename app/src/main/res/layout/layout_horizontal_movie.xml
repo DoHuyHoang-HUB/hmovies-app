@@ -37,6 +37,6 @@
             app:listItem="@{item.mediaTypeItemList}"
             onItemClick="@{onItemClick}"
             app:msrv_speed_ms_per_inch="100"
-            tools:listitem="@layout/item_movie" />
+            tools:listitem="@layout/item_movie_title" />
     </LinearLayout>
 </layout>
