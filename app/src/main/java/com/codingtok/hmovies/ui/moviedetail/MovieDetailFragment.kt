@@ -72,7 +72,7 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding, MovieDetail
     }
 
     override fun handleLoading(isLoading: Boolean) {
-        Toast.makeText(requireContext(), "Loading...", Toast.LENGTH_SHORT).show()
+
     }
 
     override fun handleErrorMessage(message: String?) {

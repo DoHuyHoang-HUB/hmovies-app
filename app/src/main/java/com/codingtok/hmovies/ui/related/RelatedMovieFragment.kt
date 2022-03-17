@@ -1,6 +1,7 @@
 package com.codingtok.hmovies.ui.related
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -48,11 +49,15 @@ class RelatedMovieFragment :
     }
 
     override fun handleLoading(isLoading: Boolean) {
-
+        if (isLoading) {
+            mLayoutStatusView.showLoading()
+        } else {
+            mLayoutStatusView.showContent()
+        }
     }
 
     override fun handleErrorMessage(message: String?) {
-
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
     override val recyclerView: RecyclerView
@@ -63,6 +68,7 @@ class RelatedMovieFragment :
 
     private val mOnItemClicK: OnItemClickListener = object : OnItemClickListener {
         override fun onItemClick(obj: Any?, position: Int) {
+            Toast.makeText(requireContext(), "$position", Toast.LENGTH_SHORT).show()
         }
     }
     override val mLayoutStatusView: MultipleStatusView

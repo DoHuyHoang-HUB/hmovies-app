@@ -9,7 +9,11 @@
         android:id="@+id/nav_home"
         android:name="com.codingtok.hmovies.ui.home.HomeFragment"
         android:label="home_fragment"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/home_fragment" >
+        <action
+            android:id="@+id/action_nav_home_to_viewAllFragment"
+            app:destination="@id/viewAllFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nav_search"
         android:name="com.codingtok.hmovies.ui.search.SearchFragment"
@@ -30,4 +34,9 @@
         android:name="com.codingtok.hmovies.ui.upcoming.UpcomingFragment"
         android:label="upcoming_fragment"
         tools:layout="@layout/upcoming_fragment" />
+    <fragment
+        android:id="@+id/viewAllFragment"
+        android:name="com.codingtok.hmovies.ui.viewall.ViewAllFragment"
+        android:label="view_all_fragment"
+        tools:layout="@layout/view_all_fragment" />
 </navigation>
