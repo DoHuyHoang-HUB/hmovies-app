@@ -42,6 +42,11 @@ abstract class BaseFragment<ViewBinding: ViewDataBinding, ViewModel: BaseViewMod
         observerEvent()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _viewBinding = null
+    }
+
     private fun observerEvent() {
         viewModel.apply {
             isLoading.observe(viewLifecycleOwner) {
@@ -71,5 +76,4 @@ abstract class BaseFragment<ViewBinding: ViewDataBinding, ViewModel: BaseViewMod
     protected abstract fun handleLoading(isLoading: Boolean)
 
     protected abstract fun handleErrorMessage(message: String?)
-
 }

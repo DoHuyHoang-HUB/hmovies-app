@@ -5,56 +5,87 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
+import com.codingtok.common.MultipleStatusView
 import com.codingtok.hmovies.R
+import com.codingtok.hmovies.data.model.Video
+import com.codingtok.hmovies.databinding.TrailerFragmentBinding
+import com.codingtok.hmovies.ui.base.BaseListAdapter
+import com.codingtok.hmovies.ui.base.refresh.BaseRefreshFragment
+import com.codingtok.hmovies.ui.widget.OnItemClickListener
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+// the fragment initialization parameters, e.g. ARG_MOVIE_ID
+private const val ARG_MOVIE_ID = "movieId"
 
 /**
  * A simple [Fragment] subclass.
  * Use the [TrailerFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TrailerFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class TrailerFragment : BaseRefreshFragment<TrailerFragmentBinding, TrailerViewModel, Video>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.trailer_fragment, container, false)
-    }
+    private var movieId: Int? = null
 
     companion object {
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
+         * @param movieId Parameter 1.
          * @return A new instance of fragment TrailerFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(movieId: Int) =
             TrailerFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    getInt(ARG_MOVIE_ID, movieId)
                 }
             }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            movieId = it.getInt(ARG_MOVIE_ID)
+        }
+    }
+
+    override val viewModel: TrailerViewModel by viewModels()
+    override val layoutId: Int = R.layout.trailer_fragment
+
+    override fun handleLoading(isLoading: Boolean) {
+
+    }
+
+    override fun handleErrorMessage(message: String?) {
+
+    }
+
+    override val recyclerView: RecyclerView get() =
+        viewBinding.trailerRecyclerview
+    override val listAdapter: BaseListAdapter<Video, out ViewDataBinding> by lazy {
+        TrailerListAdapter(mOnItemClick)
+    }
+
+    private val mOnItemClick: OnItemClickListener = object: OnItemClickListener {
+        override fun onItemClick(obj: Any?, position: Int) {
+        }
+    }
+
+    override val mLayoutStatusView: MultipleStatusView get() =
+        viewBinding.layoutStatusView
+
+    override fun lazyLoad() {
+
+    }
+
+    override fun handleRefresh(isRefreshing: Boolean) {
+
+    }
+
+    override fun handleEmpty(isEmptyList: Boolean) {
+
     }
 }

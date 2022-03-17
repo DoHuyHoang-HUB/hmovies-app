@@ -4,13 +4,11 @@ import android.content.res.Resources
 import androidx.lifecycle.*
 import com.codingtok.hmovies.R
 import com.codingtok.hmovies.data.enums.Trending
-import com.codingtok.hmovies.data.model.Movie
-import com.codingtok.hmovies.data.model.Page
 import com.codingtok.hmovies.data.model.bean.Issue
 import com.codingtok.hmovies.data.repository.GenreRepository
 import com.codingtok.hmovies.data.repository.MovieRepository
 import com.codingtok.hmovies.data.repository.TrendingRepository
-import com.codingtok.hmovies.ui.base.baserefresh.BaseRefreshViewModel
+import com.codingtok.hmovies.ui.base.refresh.BaseRefreshViewModel
 import com.haroldadmin.cnradapter.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -74,5 +72,9 @@ constructor(
         }
     }
 
+    override fun loadData(page: Int, param: Any) {
+        // nothing
+        return
+    }
 }
 

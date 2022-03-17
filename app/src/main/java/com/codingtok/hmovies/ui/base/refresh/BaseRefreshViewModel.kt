@@ -1,4 +1,4 @@
-package com.codingtok.hmovies.ui.base.baserefresh
+package com.codingtok.hmovies.ui.base.refresh
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -35,6 +35,17 @@ abstract class BaseRefreshViewModel<T>: BaseViewModel() {
     }
 
     /**
+     * first load with param
+     * @param param
+     */
+    fun firstLoad(param: Any) {
+        if (isFirst()) {
+            showLoading()
+            loadData(getFirstPage(), param)
+        }
+    }
+
+    /**
      * load first page
      */
     protected fun refreshData() {
@@ -53,6 +64,14 @@ abstract class BaseRefreshViewModel<T>: BaseViewModel() {
     abstract fun loadData(page: Int)
 
     /**
+     * load data
+     * @param page
+     * @param param
+     */
+    abstract fun loadData(page: Int, param: Any)
+
+
+    /**
      * handle load success
      */
     open fun onLoadSuccess(items: List<T>?) {
@@ -69,5 +88,13 @@ abstract class BaseRefreshViewModel<T>: BaseViewModel() {
      */
     private fun checkEmptyList() {
         isEmptyList.value = _itemList.value?.isEmpty() ?: true
+    }
+
+    /**
+     * remove all item
+     */
+     fun removeAllItem() {
+        _itemList.value = listOf()
+        checkEmptyList()
     }
 }

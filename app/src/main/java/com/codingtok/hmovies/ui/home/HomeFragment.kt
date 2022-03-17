@@ -1,34 +1,21 @@
 package com.codingtok.hmovies.ui.home
 
-import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
-import android.os.Handler
-import android.view.View
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import com.codingtok.common.MultipleStatusView
 import com.codingtok.hmovies.BUNDLE_MOVIE_DATA
 import com.codingtok.hmovies.R
 import com.codingtok.hmovies.data.model.Genres
-import com.codingtok.hmovies.data.model.MediaTypeItem
 import com.codingtok.hmovies.data.model.Movie
-import com.codingtok.hmovies.data.model.Page
 import com.codingtok.hmovies.data.model.bean.Issue
 import com.codingtok.hmovies.databinding.HomeFragmentBinding
 import com.codingtok.hmovies.ui.activity.MovieDetailActivity
-import com.codingtok.hmovies.ui.base.BaseFragment
 import com.codingtok.hmovies.ui.base.BaseListAdapter
-import com.codingtok.hmovies.ui.base.baserefresh.BaseRefreshFragment
+import com.codingtok.hmovies.ui.base.refresh.BaseRefreshFragment
 import com.codingtok.hmovies.ui.widget.OnItemClickListener
-import com.codingtok.hmovies.utils.observe
-import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
-import com.smarteist.autoimageslider.SliderAnimations
-import com.takusemba.multisnaprecyclerview.MultiSnapHelper
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -43,11 +30,6 @@ class HomeFragment : BaseRefreshFragment<HomeFragmentBinding, HomeViewModel, Iss
 
     override val listAdapter: BaseListAdapter<Issue<*>, out ViewDataBinding> by lazy {
         HomeListAdapter(requireContext().resources, mOnItemClicK)
-    }
-
-    override fun setupRefresh() {
-        super.setupRefresh()
-        firstLoad()
     }
 
     private val mOnItemClicK: OnItemClickListener = object: OnItemClickListener {
@@ -76,6 +58,7 @@ class HomeFragment : BaseRefreshFragment<HomeFragmentBinding, HomeViewModel, Iss
             mLayoutStatusView.showContent()
         }
     }
+
 
     override fun handleErrorMessage(message: String?) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()

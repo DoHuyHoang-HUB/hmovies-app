@@ -1,16 +1,13 @@
-package com.codingtok.hmovies.ui.base.baserefresh
+package com.codingtok.hmovies.ui.base.refresh
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.codingtok.common.MultipleStatusView
 import com.codingtok.hmovies.ui.base.BaseFragment
 import com.codingtok.hmovies.ui.base.BaseListAdapter
-import com.codingtok.hmovies.ui.base.BaseViewModel
 
 abstract class BaseRefreshFragment<ViewBinding: ViewDataBinding, ViewModel: BaseRefreshViewModel<T>, T: Any>: BaseFragment<ViewBinding, ViewModel>() {
 
@@ -25,7 +22,7 @@ abstract class BaseRefreshFragment<ViewBinding: ViewDataBinding, ViewModel: Base
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRefresh()
-
+        initView()
         mLayoutStatusView?.setOnClickListener(mRetryClickListener)
     }
 
@@ -39,6 +36,7 @@ abstract class BaseRefreshFragment<ViewBinding: ViewDataBinding, ViewModel: Base
                     listAdapter?.submitList(it)
                 }
             }
+            firstLoad()
             isRefreshing.observe(viewLifecycleOwner) {
                 handleRefresh(it)
             }
@@ -52,11 +50,9 @@ abstract class BaseRefreshFragment<ViewBinding: ViewDataBinding, ViewModel: Base
         lazyLoad()
     }
 
-    protected fun firstLoad() {
-        viewModel.firstLoad()
-    }
+    protected open fun initView() {}
 
-    protected abstract fun lazyLoad();
+    protected abstract fun lazyLoad()
 
     protected abstract fun handleRefresh(isRefreshing: Boolean)
 

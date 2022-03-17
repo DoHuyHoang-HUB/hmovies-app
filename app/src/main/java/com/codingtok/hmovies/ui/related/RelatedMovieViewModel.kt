@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.data.repository.MovieRepository
-import com.codingtok.hmovies.ui.base.baserefresh.BaseRefreshViewModel
+import com.codingtok.hmovies.ui.base.refresh.BaseRefreshViewModel
 import com.haroldadmin.cnradapter.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -18,17 +18,15 @@ class RelatedMovieViewModel @Inject constructor(
     private val movieRepository: MovieRepository
 ): BaseRefreshViewModel<Movie.Slim>() {
 
-    private val _movieId = MutableLiveData<Int>()
-    val movieId: LiveData<Int> get() = _movieId
-
-    public fun setMovieId(movieId: Int) {
-        this._movieId.value = movieId
+    override fun loadData(page: Int) {
+        // nothing
+        return
     }
 
-    override fun loadData(page: Int) {
+    override fun loadData(page: Int, param: Any) {
         viewModelScope.launch {
             movieRepository.getRecommendations(
-                movieId = movieId.value!!,
+                movieId = param as Int,
                 languageTag = Locale.getDefault().toLanguageTag(),
                 page = page
             ).collect {
@@ -39,4 +37,6 @@ class RelatedMovieViewModel @Inject constructor(
             }
         }
     }
+
+
 }
