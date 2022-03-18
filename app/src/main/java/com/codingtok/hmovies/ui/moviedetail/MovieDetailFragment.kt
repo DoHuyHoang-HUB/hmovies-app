@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.fragment.app.viewModels
+import androidx.viewpager.widget.ViewPager
 import com.codingtok.hmovies.R
 import com.codingtok.hmovies.databinding.MovieDetailFragmentBinding
 import com.codingtok.hmovies.ui.base.BaseFragment
@@ -63,7 +64,6 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding, MovieDetail
         viewBinding.apply {
             viewPager.adapter = BaseFragmentAdapter(
                 childFragmentManager,
-                FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,
                 fragments,
                 tabList
             )

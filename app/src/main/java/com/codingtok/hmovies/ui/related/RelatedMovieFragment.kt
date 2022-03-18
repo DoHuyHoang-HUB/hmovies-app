@@ -86,6 +86,10 @@ class RelatedMovieFragment :
     }
 
     override fun handleEmpty(isEmptyList: Boolean) {
-
+        if (isEmptyList) {
+            mLayoutStatusView.showEmpty()
+        } else {
+            mLayoutStatusView.showContent()
+        }
     }
 }

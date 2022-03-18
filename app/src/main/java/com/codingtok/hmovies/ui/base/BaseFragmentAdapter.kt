@@ -8,16 +8,16 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
 
-class BaseFragmentAdapter : FragmentStatePagerAdapter {
+class BaseFragmentAdapter : FragmentPagerAdapter {
 
     private var fragments: List<Fragment>? = ArrayList()
     private var titles: List<String>? = null
 
-    constructor(fm: FragmentManager, behavior: Int, fragments: List<Fragment>): super(fm, behavior) {
+    constructor(fm: FragmentManager, fragments: List<Fragment>): super(fm) {
         this.fragments = fragments
     }
 
-    constructor(fm: FragmentManager, behavior: Int, fragments: List<Fragment>, titles: List<String>): super(fm, behavior) {
+    constructor(fm: FragmentManager, fragments: List<Fragment>, titles: List<String>): super(fm) {
         this.titles = titles
         setFragments(fm, fragments, titles)
     }

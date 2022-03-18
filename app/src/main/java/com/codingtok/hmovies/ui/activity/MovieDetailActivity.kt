@@ -1,6 +1,7 @@
 package com.codingtok.hmovies.ui.activity
 
 import androidx.activity.viewModels
+import androidx.fragment.app.Fragment
 import com.codingtok.hmovies.R
 import com.codingtok.hmovies.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,10 +20,14 @@ class MovieDetailActivity : BaseActivity() {
     }
 
     override fun initData() {
+
         val movieId = intent.getSerializableExtra(BUNDLE_MOVIE_DATA) as Int
+
+        val fragment = MovieDetailFragment.newInstance(movieId)
+
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.frame_layout, MovieDetailFragment.newInstance(movieId))
+            .replace(R.id.frame_layout, fragment)
             .commit()
     }
 
