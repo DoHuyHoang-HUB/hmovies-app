@@ -25,12 +25,15 @@
             android:theme="@style/AppTheme.AppOverlay">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsingToolBarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:contentScrim="@color/colorPrimary"
+                app:scrimVisibleHeightTrigger="@dimen/_250sdp"
                 app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-                app:scrimAnimationDuration="300"
-                app:titleEnabled="false">
+                app:title="@{viewModel.movie.title}"
+                app:titleEnabled="false"
+                app:scrimAnimationDuration="300">
 
                 <RelativeLayout
                     android:layout_width="match_parent"

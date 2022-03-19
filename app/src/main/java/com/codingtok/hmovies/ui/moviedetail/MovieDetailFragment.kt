@@ -14,6 +14,7 @@ import com.codingtok.hmovies.ui.base.BaseFragmentAdapter
 import com.codingtok.hmovies.ui.episode.EpisodeFragment
 import com.codingtok.hmovies.ui.related.RelatedMovieFragment
 import com.codingtok.hmovies.ui.trailer.TrailerFragment
+import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
 
 private const val ARG_MOVIE_ID = "movieId"
@@ -68,6 +69,24 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding, MovieDetail
                 tabList
             )
             tablayout.setupWithViewPager(viewPager)
+        }
+
+        var isShow = false
+        var scrollRange = -1
+
+        viewBinding.apply {
+            appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+                if (scrollRange == -1){
+                    scrollRange = appBarLayout?.totalScrollRange!!
+                }
+                if (scrollRange + verticalOffset < 20){
+                    collapsingToolBarLayout.isTitleEnabled = true
+                    isShow = true
+                } else if (isShow){
+                    collapsingToolBarLayout.isTitleEnabled = false //careful there should a space between double quote otherwise it wont work
+                    isShow = false
+                }
+            })
         }
     }
 
