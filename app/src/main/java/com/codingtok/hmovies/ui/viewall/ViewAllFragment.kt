@@ -38,6 +38,12 @@ class ViewAllFragment : BaseRefreshFragment<ViewAllFragmentBinding, ViewAllViewM
         ViewAllListAdapter(onItemClick = mOnItemClick)
     }
 
+    override fun setupRefresh() {
+        super.setupRefresh()
+        val viewType = navigationArgs.view
+        viewModel.firstLoad(viewType)
+    }
+
     private val mOnItemClick: OnItemClickListener = object: OnItemClickListener {
         override fun onItemClick(obj: Any?, position: Int) {
             Toast.makeText(requireContext(), "${position}", Toast.LENGTH_SHORT).show()
