@@ -1,4 +1,4 @@
-package com.codingtok.hmovies.ui.related
+package com.codingtok.hmovies.ui.viewall
 
 import androidx.recyclerview.widget.DiffUtil
 import com.codingtok.hmovies.R
@@ -9,9 +9,9 @@ import com.codingtok.hmovies.ui.widget.OnItemClickListener
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
-class RelatedMovieListAdapter(
-    private val onItemClickListener: OnItemClickListener
-): BaseListAdapter<Movie.Slim, ItemMovieBinding>(diffCallback, onItemClickListener) {
+class ViewAllListAdapter(
+    onItemClick: OnItemClickListener
+): BaseListAdapter<Movie.Slim, ItemMovieBinding>(diffCallback, onItemClick) {
 
     companion object diffCallback: DiffUtil.ItemCallback<Movie.Slim>() {
         override fun areItemsTheSame(oldItem: Movie.Slim, newItem: Movie.Slim): Boolean {
@@ -23,11 +23,5 @@ class RelatedMovieListAdapter(
         }
     }
 
-    override fun getLayoutRes(viewType: Int): Int {
-        return R.layout.item_movie
-    }
-
-    override fun bindView(binding: ItemMovieBinding, item: Movie.Slim, position: Int) {
-        binding.root.setOnClickListener { onItemClickListener.onItemClick(item, position) }
-    }
+    override fun getLayoutRes(viewType: Int): Int = R.layout.item_movie
 }

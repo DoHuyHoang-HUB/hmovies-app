@@ -17,7 +17,9 @@ import com.codingtok.hmovies.ui.base.BaseListAdapter
 import com.codingtok.hmovies.ui.base.refresh.BaseRefreshFragment
 import com.codingtok.hmovies.ui.widget.OnItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class HomeFragment : BaseRefreshFragment<HomeFragmentBinding, HomeViewModel, Issue<*>>() {
 

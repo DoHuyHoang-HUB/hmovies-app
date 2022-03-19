@@ -7,7 +7,9 @@ import com.codingtok.hmovies.data.model.Genres
 import com.codingtok.hmovies.databinding.ItemDiscoverBinding
 import com.codingtok.hmovies.ui.base.BaseListAdapter
 import com.codingtok.hmovies.ui.widget.OnItemClickListener
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 class DiscoverListAdapter(
     private val resources: Resources,
     private val onItemClick: OnItemClickListener

@@ -11,11 +11,13 @@ import com.codingtok.hmovies.data.repository.TrendingRepository
 import com.codingtok.hmovies.ui.base.refresh.BaseRefreshViewModel
 import com.haroldadmin.cnradapter.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 
+@ExperimentalCoroutinesApi
 @HiltViewModel
 class HomeViewModel @Inject
 constructor(

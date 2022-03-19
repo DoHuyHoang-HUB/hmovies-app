@@ -38,5 +38,9 @@
         android:id="@+id/viewAllFragment"
         android:name="com.codingtok.hmovies.ui.viewall.ViewAllFragment"
         android:label="view_all_fragment"
-        tools:layout="@layout/view_all_fragment" />
+        tools:layout="@layout/view_all_fragment" >
+        <argument
+            android:name="view"
+            app:argType="string" />
+    </fragment>
 </navigation>

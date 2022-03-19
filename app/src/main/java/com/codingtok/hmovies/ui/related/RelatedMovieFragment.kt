@@ -14,9 +14,11 @@ import com.codingtok.hmovies.ui.base.BaseListAdapter
 import com.codingtok.hmovies.ui.base.refresh.BaseRefreshFragment
 import com.codingtok.hmovies.ui.widget.OnItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 private const val ARG_MOVIE_ID = "movieId"
 
+@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class RelatedMovieFragment :
     BaseRefreshFragment<RelatedMovieFragmentBinding, RelatedMovieViewModel, Movie.Slim>() {

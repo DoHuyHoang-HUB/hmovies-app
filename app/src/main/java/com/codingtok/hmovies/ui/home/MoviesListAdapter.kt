@@ -7,7 +7,9 @@ import com.codingtok.hmovies.R
 import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.ui.base.BaseListAdapter
 import com.codingtok.hmovies.ui.widget.OnItemClickListener
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 class MoviesListAdapter(
     private val onItemClick: OnItemClickListener
 ): BaseListAdapter<Movie.Slim, ViewDataBinding>(DiffCallback, onItemClick) {

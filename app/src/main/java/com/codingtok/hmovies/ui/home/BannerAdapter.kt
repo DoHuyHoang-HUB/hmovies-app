@@ -6,7 +6,9 @@ import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.databinding.ItemHomeBannerBinding
 import com.codingtok.hmovies.ui.widget.OnItemClickListener
 import com.smarteist.autoimageslider.SliderViewAdapter
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 class BannerAdapter(
     private val onItemClick: OnItemClickListener
 ): SliderViewAdapter<BannerAdapter.BannerHolder>() {

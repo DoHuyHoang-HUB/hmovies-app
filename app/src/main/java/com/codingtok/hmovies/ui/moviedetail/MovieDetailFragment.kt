@@ -16,9 +16,11 @@ import com.codingtok.hmovies.ui.related.RelatedMovieFragment
 import com.codingtok.hmovies.ui.trailer.TrailerFragment
 import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 private const val ARG_MOVIE_ID = "movieId"
 
+@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding, MovieDetailViewModel>() {
 

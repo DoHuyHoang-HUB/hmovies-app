@@ -31,6 +31,14 @@ interface MovieService {
         @Query("region") languageCode: String? = null
     ): NetworkResponse<Page<Movie.Slim>, Error.DefaultError>
 
+    @GET("movie/{type}")
+    suspend fun getMovies(
+        @Path("type") type: String,
+        @Query("language") languageTag: String? = null,
+        @Query("page") page: Int = 1,
+        @Query("region") languageCode: String? = null
+    ): NetworkResponse<Page<Movie.Slim>, Error.DefaultError>
+
     @GET("movie/{movie_id}")
     suspend fun getDetail(
         @Path("movie_id") movieId: Int,

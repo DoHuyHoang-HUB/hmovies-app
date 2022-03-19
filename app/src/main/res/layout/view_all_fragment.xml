@@ -1,14 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.viewall.ViewAllFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+            name="viewModel"
+            type="com.codingtok.hmovies.ui.viewall.ViewAllViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        tools:background="@color/colorPrimary"
+        tools:context=".ui.viewall.ViewAllFragment">
 
-</FrameLayout>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?colorPrimary">
+
+            <RelativeLayout
+                android:id="@+id/rel_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/header_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold"
+                    tools:text="Title" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srlEnableAutoLoadMore="false"
+            app:srlEnablePureScrollMode="true">
+
+            <com.codingtok.common.MultipleStatusView
+                android:id="@+id/layout_status_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:emptyView="@layout/layout_empty_view"
+                app:errorView="@layout/layout_error_view"
+                app:loadingView="@layout/layout_loading_view"
+                app:noNetworkView="@layout/layout_network_view">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/viewAll_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:orientation="vertical"
+                    android:overScrollMode="never"
+                    android:padding="@dimen/_1sdp"
+                    android:scrollbars="none"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="3"
+                    tools:listitem="@layout/item_movie" />
+
+            </com.codingtok.common.MultipleStatusView>
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    </LinearLayout>
+</layout>

@@ -12,8 +12,9 @@ import com.codingtok.hmovies.databinding.LayoutHorizontalMovieBinding
 import com.codingtok.hmovies.databinding.LayoutSliderBinding
 import com.codingtok.hmovies.ui.base.BaseListAdapter
 import com.codingtok.hmovies.ui.widget.OnItemClickListener
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-
+@ExperimentalCoroutinesApi
 class HomeListAdapter(
     private val resources: Resources,
     onItemClick: OnItemClickListener
