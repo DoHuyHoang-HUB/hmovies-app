@@ -45,8 +45,13 @@
             android:id="@+id/smart_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:srlEnableAutoLoadMore="false"
-            app:srlEnablePureScrollMode="true">
+            app:srlEnableHeaderTranslationContent="true"
+            app:srlEnableLoadMore="false"
+            app:srlPrimaryColor="@color/colorPrimary">
+
+            <com.scwang.smartrefresh.header.WaterDropHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
             <com.codingtok.common.MultipleStatusView
                 android:id="@+id/layout_status_view"

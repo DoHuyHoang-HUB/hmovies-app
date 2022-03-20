@@ -27,6 +27,7 @@
             android:clipToPadding="false"
             android:overScrollMode="never"
             android:orientation="vertical"
+            app:onScrollListener="@{viewModel.onScrollListener}"
             android:padding="@dimen/_1sdp"
             android:scrollbars="none"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

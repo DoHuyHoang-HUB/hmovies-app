@@ -3,6 +3,7 @@ package com.codingtok.hmovies.ui.related
 import androidx.lifecycle.viewModelScope
 import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.data.repository.MovieRepository
+import com.codingtok.hmovies.ui.base.loadmorerefesh.BaseLoadMoreRefreshViewModel
 import com.codingtok.hmovies.ui.base.refresh.BaseRefreshViewModel
 import com.haroldadmin.cnradapter.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RelatedMovieViewModel @Inject constructor(
     private val movieRepository: MovieRepository
-): BaseRefreshViewModel<Movie.Slim>() {
+): BaseLoadMoreRefreshViewModel<Movie.Slim>() {
 
     override fun loadData(page: Int, param: Any?) {
         viewModelScope.launch {

@@ -11,6 +11,7 @@ import com.codingtok.hmovies.R
 import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.databinding.RelatedMovieFragmentBinding
 import com.codingtok.hmovies.ui.base.BaseListAdapter
+import com.codingtok.hmovies.ui.base.loadmorerefesh.BaseLoadMoreRefreshFragment
 import com.codingtok.hmovies.ui.base.refresh.BaseRefreshFragment
 import com.codingtok.hmovies.ui.widget.OnItemClickListener
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -22,7 +23,7 @@ private const val ARG_MOVIE_ID = "movieId"
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class RelatedMovieFragment :
-    BaseRefreshFragment<RelatedMovieFragmentBinding, RelatedMovieViewModel, Movie.Slim>() {
+    BaseLoadMoreRefreshFragment<RelatedMovieFragmentBinding, RelatedMovieViewModel, Movie.Slim>() {
 
     private var movieId: Int? = null
 
@@ -85,7 +86,7 @@ class RelatedMovieFragment :
     }
 
     override fun handleRefresh(isRefreshing: Boolean) {
-
+        // nothing
     }
 
     override fun handleEmpty(isEmptyList: Boolean) {

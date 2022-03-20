@@ -51,6 +51,7 @@ abstract class BaseRefreshViewModel<T> : BaseViewModel() {
      * load first page
      */
     protected fun refreshData() {
+        removeAllItem()
         loadData(getFirstPage(), _param.value)
     }
 

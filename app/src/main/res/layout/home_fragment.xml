@@ -20,12 +20,14 @@
             android:id="@+id/smart_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:srlEnableAutoLoadMore="false"
-            app:srlEnablePureScrollMode="true">
+            android:layout_marginTop="@dimen/_30sdp"
+            app:srlEnableHeaderTranslationContent="true"
+            app:srlEnableLoadMore="false"
+            app:srlPrimaryColor="@color/colorPrimary">
 
-            <FrameLayout
+            <com.scwang.smartrefresh.header.WaterDropHeader
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"/>
 
                 <com.codingtok.common.MultipleStatusView
                     android:id="@+id/layout_status_view"
@@ -40,13 +42,13 @@
                         android:id="@+id/home_recyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:overScrollMode="never"
+                        android:scrollbars="none"
                         tools:listitem="@layout/layout_horizontal_movie"
                         android:clipToPadding="false"
                         android:paddingBottom="@dimen/_55sdp" />
 
                 </com.codingtok.common.MultipleStatusView>
-
-            </FrameLayout>
 
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 

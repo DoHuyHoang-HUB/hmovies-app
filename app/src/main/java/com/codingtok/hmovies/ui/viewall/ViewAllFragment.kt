@@ -70,7 +70,9 @@ class ViewAllFragment : BaseLoadMoreRefreshFragment<ViewAllFragmentBinding, View
     }
 
     override fun handleRefresh(isRefreshing: Boolean) {
-
+        if (!isRefreshing) {
+            refreshLayout.finishRefresh()
+        }
     }
 
     override fun handleEmpty(isEmptyList: Boolean) {

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
 import coil.load
 import com.codingtok.hmovies.App
@@ -19,6 +20,7 @@ import com.codingtok.hmovies.ui.home.DiscoverListAdapter
 import com.codingtok.hmovies.ui.home.MoviesListAdapter
 import com.codingtok.hmovies.ui.widget.CollectionActionButton
 import com.codingtok.hmovies.ui.widget.OnItemClickListener
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.smarteist.autoimageslider.SliderView
 import com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView
 
@@ -70,6 +72,11 @@ fun TextView.bindText(listText: List<Pair<Person.Slim, *>>?) {
             this.text = App.context.resources.getString(R.string.director_name, listText.joinToString(separator = ", ") { it.first.name })
         }
     }
+}
+
+@BindingAdapter("isRefreshing")
+fun SmartRefreshLayout.bindRefreshing(refreshing: Boolean?) {
+
 }
 
 @BindingAdapter("onScrollListener")
