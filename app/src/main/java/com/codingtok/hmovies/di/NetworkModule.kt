@@ -15,7 +15,7 @@ import com.codingtok.hmovies.data.internals.models.WatchProviderListObj
 import com.codingtok.hmovies.data.model.*
 import com.codingtok.hmovies.data.network.service.GenreService
 import com.codingtok.hmovies.data.network.service.movie.MovieService
-import com.codingtok.hmovies.data.network.service.TrendingService
+import com.codingtok.hmovies.data.network.service.trending.TrendingService
 import com.codingtok.hmovies.data.network.service.discover.DiscoverService
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import com.squareup.moshi.Moshi

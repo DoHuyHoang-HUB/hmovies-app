@@ -28,6 +28,13 @@ interface MovieRepository {
         languageCode: String? = null
     ): Flow<NetworkResponse<Page<Movie.Slim>, Error.DefaultError>>
 
+    suspend fun getMovies(
+        type: String,
+        languageTag: String? = null,
+        page: Int = 1,
+        languageCode: String? = null
+    ): Flow<NetworkResponse<Page<Movie.Slim>, Error.DefaultError>>
+
     suspend fun getDetail(
         movieId: Int,
         languageTag: String? = null,

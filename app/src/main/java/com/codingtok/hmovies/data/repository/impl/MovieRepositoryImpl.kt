@@ -46,6 +46,17 @@ constructor(
         }.flowOn(ioDispatcher)
     }
 
+    override suspend fun getMovies(
+        type: String,
+        languageTag: String?,
+        page: Int,
+        languageCode: String?
+    ): Flow<NetworkResponse<Page<Movie.Slim>, Error.DefaultError>> {
+        return flow {
+            emit(movieService.getMovies(type, languageTag, page, languageCode))
+        }.flowOn(ioDispatcher)
+    }
+
     override suspend fun getDetail(
         movieId: Int,
         languageTag: String?,

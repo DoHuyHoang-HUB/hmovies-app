@@ -4,6 +4,7 @@ import android.content.Intent
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.codingtok.common.MultipleStatusView
 import com.codingtok.hmovies.BUNDLE_MOVIE_DATA
@@ -16,6 +17,7 @@ import com.codingtok.hmovies.ui.activity.MovieDetailActivity
 import com.codingtok.hmovies.ui.base.BaseListAdapter
 import com.codingtok.hmovies.ui.base.refresh.BaseRefreshFragment
 import com.codingtok.hmovies.ui.widget.OnItemClickListener
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
@@ -30,8 +32,14 @@ class HomeFragment : BaseRefreshFragment<HomeFragmentBinding, HomeViewModel, Iss
     override val recyclerView: RecyclerView
         get() = viewBinding.homeRecyclerView
 
+    override val refreshLayout: SmartRefreshLayout
+        get() = viewBinding.smartRefreshLayout
+
     override val listAdapter: BaseListAdapter<Issue<*>, out ViewDataBinding> by lazy {
-        HomeListAdapter(requireContext().resources, mOnItemClicK)
+        HomeListAdapter(requireContext().resources, mOnItemClicK) { type, title ->
+            val action = HomeFragmentDirections.actionNavHomeToViewAllFragment(type, title);
+            findNavController().navigate(action)
+        }
     }
 
     private val mOnItemClicK: OnItemClickListener = object: OnItemClickListener {
@@ -77,4 +85,6 @@ class HomeFragment : BaseRefreshFragment<HomeFragmentBinding, HomeViewModel, Iss
     override fun handleEmpty(isEmptyList: Boolean) {
 
     }
+
+
 }

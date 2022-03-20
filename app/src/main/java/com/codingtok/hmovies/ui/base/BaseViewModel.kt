@@ -41,6 +41,7 @@ open class BaseViewModel : ViewModel() {
             }
             else -> {}
         }
+        hideLoading()
     }
 
     fun showLoading() {

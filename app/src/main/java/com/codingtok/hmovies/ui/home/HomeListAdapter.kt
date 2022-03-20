@@ -17,7 +17,8 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalCoroutinesApi
 class HomeListAdapter(
     private val resources: Resources,
-    onItemClick: OnItemClickListener
+    onItemClick: OnItemClickListener,
+    private val onViewAllClick: (String, String) -> Unit
 ) : BaseListAdapter<Issue<*>, ViewDataBinding>(diffCallback, onItemClick) {
 
     companion object diffCallback : DiffUtil.ItemCallback<Issue<*>>() {
@@ -62,6 +63,13 @@ class HomeListAdapter(
                     circleIndicator.createIndicators(5, 0)
                     bannerNowPlaying.setCurrentPageListener {
                         circleIndicator.animatePageSelected(it)
+                    }
+                }
+            }
+            is LayoutHorizontalMovieBinding -> {
+                binding.collectionActionButton.setOnClickListener {
+                    item.type?.let { type ->
+                        item.title?.let { title -> onViewAllClick(type, title) }
                     }
                 }
             }

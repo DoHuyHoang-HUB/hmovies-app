@@ -18,12 +18,7 @@ class RelatedMovieViewModel @Inject constructor(
     private val movieRepository: MovieRepository
 ): BaseRefreshViewModel<Movie.Slim>() {
 
-    override fun loadData(page: Int) {
-        // nothing
-        return
-    }
-
-    override fun loadData(page: Int, param: Any) {
+    override fun loadData(page: Int, param: Any?) {
         viewModelScope.launch {
             movieRepository.getRecommendations(
                 movieId = param as Int,
@@ -31,7 +26,7 @@ class RelatedMovieViewModel @Inject constructor(
                 page = page
             ).collect {
                 when (val response = it) {
-                    is NetworkResponse.Success -> onLoadSuccess(response.body.results)
+                    is NetworkResponse.Success -> onLoadSuccess(page, response.body.results.toMutableList())
                     else -> onError(response)
                 }
             }

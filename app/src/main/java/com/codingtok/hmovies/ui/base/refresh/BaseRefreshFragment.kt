@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.codingtok.common.MultipleStatusView
 import com.codingtok.hmovies.ui.base.BaseFragment
 import com.codingtok.hmovies.ui.base.BaseListAdapter
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
 
 abstract class BaseRefreshFragment<ViewBinding: ViewDataBinding, ViewModel: BaseRefreshViewModel<T>, T: Any>: BaseFragment<ViewBinding, ViewModel>() {
 
     abstract val recyclerView: RecyclerView?
     abstract val listAdapter: BaseListAdapter<T, out ViewDataBinding>?
+    protected open val refreshLayout: SmartRefreshLayout? = null
 
     protected abstract val mLayoutStatusView: MultipleStatusView?
 
@@ -21,12 +23,15 @@ abstract class BaseRefreshFragment<ViewBinding: ViewDataBinding, ViewModel: Base
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRefresh()
         initView()
+        setupRefresh()
         mLayoutStatusView?.setOnClickListener(mRetryClickListener)
     }
 
     open fun setupRefresh() {
+        refreshLayout?.setOnRefreshListener {
+            viewModel.doRefresh()
+        }
         recyclerView?.layoutManager = getLayoutManager()
         recyclerView?.adapter = listAdapter
         recyclerView?.setHasFixedSize(true)

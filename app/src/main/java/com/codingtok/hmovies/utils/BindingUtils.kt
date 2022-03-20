@@ -72,4 +72,9 @@ fun TextView.bindText(listText: List<Pair<Person.Slim, *>>?) {
     }
 }
 
+@BindingAdapter("onScrollListener")
+fun RecyclerView.bindOnScrollListener(listener: RecyclerView.OnScrollListener?) {
+    if (listener != null) addOnScrollListener(listener)
+}
+
 

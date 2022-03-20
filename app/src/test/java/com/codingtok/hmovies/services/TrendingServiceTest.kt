@@ -1,9 +1,8 @@
 package com.codingtok.hmovies.services
 
 import com.codingtok.hmovies.data.enums.MediaType
-import com.codingtok.hmovies.data.enums.Trending
+import com.codingtok.hmovies.data.network.service.trending.Trending
 import com.codingtok.hmovies.data.network.api.Api
-import com.haroldadmin.cnradapter.invoke
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test

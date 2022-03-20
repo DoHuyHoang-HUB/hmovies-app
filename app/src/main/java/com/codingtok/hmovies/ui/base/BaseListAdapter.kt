@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.codingtok.hmovies.BR
+import com.codingtok.hmovies.R
 import com.codingtok.hmovies.ui.widget.OnItemClickListener
 import java.util.concurrent.Executors
 

@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:textColor="@color/colorTextPrimary"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_11ssp"
                     android:textStyle="bold"
                     tools:text="Title" />
 
@@ -42,6 +42,7 @@
         </androidx.appcompat.widget.Toolbar>
 
         <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/smart_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:srlEnableAutoLoadMore="false"
@@ -63,6 +64,7 @@
                     android:clipToPadding="false"
                     android:orientation="vertical"
                     android:overScrollMode="never"
+                    app:onScrollListener="@{viewModel.onScrollListener}"
                     android:padding="@dimen/_1sdp"
                     android:scrollbars="none"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

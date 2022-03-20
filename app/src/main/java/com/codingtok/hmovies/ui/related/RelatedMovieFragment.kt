@@ -13,6 +13,7 @@ import com.codingtok.hmovies.databinding.RelatedMovieFragmentBinding
 import com.codingtok.hmovies.ui.base.BaseListAdapter
 import com.codingtok.hmovies.ui.base.refresh.BaseRefreshFragment
 import com.codingtok.hmovies.ui.widget.OnItemClickListener
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
@@ -45,9 +46,8 @@ class RelatedMovieFragment :
     override val viewModel: RelatedMovieViewModel by viewModels()
     override val layoutId: Int = R.layout.related_movie_fragment
 
-    override fun setupRefresh() {
-        super.setupRefresh()
-        movieId?.let { viewModel.firstLoad(it) }
+    override fun initView() {
+        movieId?.let { viewModel.setParam(it) }
     }
 
     override fun handleLoading(isLoading: Boolean) {
@@ -64,6 +64,7 @@ class RelatedMovieFragment :
 
     override val recyclerView: RecyclerView
         get() = viewBinding.recommendationsRecyclerview
+
     override val listAdapter: BaseListAdapter<Movie.Slim, out ViewDataBinding> by lazy {
         RelatedMovieListAdapter(onItemClickListener = mOnItemClicK)
     }

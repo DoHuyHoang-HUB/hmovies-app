@@ -4,8 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.codingtok.hmovies.DEFAULT_FIRST_PAGE
 import com.codingtok.hmovies.ui.base.BaseViewModel
+import com.haroldadmin.cnradapter.NetworkResponse
 
-abstract class BaseRefreshViewModel<T>: BaseViewModel() {
+abstract class BaseRefreshViewModel<T> : BaseViewModel() {
     val isRefreshing = MutableLiveData<Boolean>().apply { value = false }
 
     fun doRefresh() {
@@ -14,10 +15,13 @@ abstract class BaseRefreshViewModel<T>: BaseViewModel() {
         refreshData()
     }
 
-    private val _itemList = MutableLiveData<List<T>>()
-    val itemList: LiveData<List<T>> get() = _itemList
+    protected val _itemList = MutableLiveData<MutableList<T>>()
+    val itemList: LiveData<MutableList<T>> get() = _itemList
 
     val isEmptyList = MutableLiveData<Boolean>().apply { value = false }
+
+    private val _param = MutableLiveData<Any>().apply { value = null }
+    val param: LiveData<Any> = _param
 
     /**
      * check first time load data
@@ -30,26 +34,24 @@ abstract class BaseRefreshViewModel<T>: BaseViewModel() {
     fun firstLoad() {
         if (isFirst()) {
             showLoading()
-            loadData(getFirstPage())
+            loadData(getFirstPage(), _param.value)
+
         }
     }
 
     /**
-     * first load with param
-     * @param param
+     * load with param
      */
-    fun firstLoad(param: Any) {
-        if (isFirst()) {
-            showLoading()
-            loadData(getFirstPage(), param)
-        }
+    fun setParam(param: Any?) {
+        _param.value = param
     }
+
 
     /**
      * load first page
      */
     protected fun refreshData() {
-        loadData(getFirstPage())
+        loadData(getFirstPage(), _param.value)
     }
 
     /**
@@ -60,22 +62,16 @@ abstract class BaseRefreshViewModel<T>: BaseViewModel() {
     /**
      * load data
      * @param page
-     */
-    abstract fun loadData(page: Int)
-
-    /**
-     * load data
-     * @param page
      * @param param
      */
-    abstract fun loadData(page: Int, param: Any)
+    abstract fun loadData(page: Int, param: Any?)
 
 
     /**
      * handle load success
      */
-    open fun onLoadSuccess(items: List<T>?) {
-        _itemList.value = items ?: listOf()
+    open fun onLoadSuccess(page: Int, items: MutableList<T>?) {
+        _itemList.value = items ?: mutableListOf()
 
         hideLoading()
         isRefreshing.value = false;
@@ -83,18 +79,26 @@ abstract class BaseRefreshViewModel<T>: BaseViewModel() {
         checkEmptyList()
     }
 
+    override fun onError(response: NetworkResponse<*, *>) {
+        super.onError(response)
+
+        isRefreshing.value = false
+
+        checkEmptyList()
+    }
+
     /**
      * Check empty list
      */
-    private fun checkEmptyList() {
+    protected fun checkEmptyList() {
         isEmptyList.value = _itemList.value?.isEmpty() ?: true
     }
 
     /**
      * remove all item
      */
-     fun removeAllItem() {
-        _itemList.value = listOf()
+    fun removeAllItem() {
+        _itemList.value = mutableListOf()
         checkEmptyList()
     }
 }

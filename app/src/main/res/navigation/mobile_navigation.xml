@@ -42,5 +42,8 @@
         <argument
             android:name="view"
             app:argType="string" />
+        <argument
+            android:name="headerTitle"
+            app:argType="string" />
     </fragment>
 </navigation>

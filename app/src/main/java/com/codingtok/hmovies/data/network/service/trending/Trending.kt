@@ -1,4 +1,4 @@
-package com.codingtok.hmovies.data.enums
+package com.codingtok.hmovies.data.network.service.trending
 
 import java.util.*
 

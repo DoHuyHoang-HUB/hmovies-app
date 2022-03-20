@@ -4,7 +4,7 @@ import com.codingtok.hmovies.data.model.MediaTypeItem
 import com.codingtok.hmovies.data.model.Page
 
 data class Issue<T: Any>(
-    val mediaTypeItemList: List<T>, val title: String?, val layoutType: Int
+    val mediaTypeItemList: List<T>, val title: String?, val layoutType: Int, val type: String? = null
 ) {
     object LayoutType {
         const val SLIDER_LAYOUT = 1

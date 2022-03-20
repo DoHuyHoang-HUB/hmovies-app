@@ -2,8 +2,11 @@ package com.codingtok.hmovies.ui.home
 
 import android.content.res.Resources
 import androidx.lifecycle.*
+import com.codingtok.hmovies.POPULAR
 import com.codingtok.hmovies.R
-import com.codingtok.hmovies.data.enums.Trending
+import com.codingtok.hmovies.TOP_RATED
+import com.codingtok.hmovies.TRENDING
+import com.codingtok.hmovies.data.network.service.trending.Trending
 import com.codingtok.hmovies.data.model.bean.Issue
 import com.codingtok.hmovies.data.repository.GenreRepository
 import com.codingtok.hmovies.data.repository.MovieRepository
@@ -27,7 +30,7 @@ constructor(
     private val resource: Resources
 ) :BaseRefreshViewModel<Issue<*>>() {
 
-    override fun loadData(page: Int) {
+    override fun loadData(page: Int, param: Any?) {
         viewModelScope.launch {
             val newItemList = arrayListOf<Issue<*>>()
             movieRepository.getNowPlaying(Locale.getDefault().toLanguageTag()).collect {
@@ -38,10 +41,10 @@ constructor(
                     else ->  onError(response)
                 }
             }
-            trendingRepository.getTrending(Trending.Type.MOVIE, Trending.TimeWindow.WEEK).collect {
+            trendingRepository.getMovieTrending(Trending.TimeWindow.WEEK).collect {
                 when (val response = it) {
                     is NetworkResponse.Success -> {
-                        newItemList.add(Issue(response.body.results, resource.getString(R.string.new_movie_trending_on_hmovie), Issue.LayoutType.RECYCLER_LAYOUT))
+                        newItemList.add(Issue(response.body.results, resource.getString(R.string.new_movie_trending_on_hmovie), Issue.LayoutType.RECYCLER_LAYOUT, TRENDING))
                     }
                     else -> onError(response)
                 }
@@ -49,7 +52,7 @@ constructor(
             movieRepository.getTopRated(Locale.getDefault().toLanguageTag()).collect {
                 when (val response = it) {
                     is NetworkResponse.Success -> {
-                        newItemList.add(Issue(response.body.results, resource.getString(R.string.top_5_movie_today), Issue.LayoutType.RECYCLER_LAYOUT))
+                        newItemList.add(Issue(response.body.results, resource.getString(R.string.top_5_movie_today), Issue.LayoutType.RECYCLER_LAYOUT, TOP_RATED))
                     }
                     else -> onError(response)
                 }
@@ -57,7 +60,7 @@ constructor(
             movieRepository.getPopular(Locale.getDefault().toLanguageTag()).collect {
                 when (val response = it) {
                     is NetworkResponse.Success -> {
-                        newItemList.add(Issue(response.body.results, resource.getString(R.string.popular_movie), Issue.LayoutType.RECYCLER_LAYOUT))
+                        newItemList.add(Issue(response.body.results, resource.getString(R.string.popular_movie), Issue.LayoutType.RECYCLER_LAYOUT, POPULAR))
                     }
                     else -> onError(response)
                 }
@@ -70,13 +73,8 @@ constructor(
                     else -> onError(response)
                 }
             }
-            onLoadSuccess(newItemList)
+            onLoadSuccess(page, newItemList)
         }
-    }
-
-    override fun loadData(page: Int, param: Any) {
-        // nothing
-        return
     }
 }
 
