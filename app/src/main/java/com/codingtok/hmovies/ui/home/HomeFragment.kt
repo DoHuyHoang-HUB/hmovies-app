@@ -46,10 +46,8 @@ class HomeFragment : BaseRefreshFragment<HomeFragmentBinding, HomeViewModel, Iss
         override fun onItemClick(obj: Any?, position: Int) {
             when (obj) {
                 is Movie.Slim -> {
-                    val intent = Intent(activity, MovieDetailActivity::class.java)
-                    intent.putExtra(BUNDLE_MOVIE_DATA, obj.id)
-                    activity?.startActivity(intent)
-                    activity?.overridePendingTransition(com.google.android.material.R.anim.abc_fade_in, com.google.android.material.R.anim.abc_fade_out)
+                    val action = HomeFragmentDirections.actionNavHomeToMovieDetailFragment(obj.id)
+                    findNavController().navigate(action)
                 }
                 is Genres -> {
 

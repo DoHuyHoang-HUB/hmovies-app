@@ -15,6 +15,7 @@ import com.codingtok.hmovies.data.model.Genres
 import com.codingtok.hmovies.data.model.Movie
 import com.codingtok.hmovies.data.model.Page
 import com.codingtok.hmovies.data.model.Person
+import com.codingtok.hmovies.data.model.bean.Issue
 import com.codingtok.hmovies.ui.home.BannerAdapter
 import com.codingtok.hmovies.ui.home.DiscoverListAdapter
 import com.codingtok.hmovies.ui.home.MoviesListAdapter
@@ -41,20 +42,22 @@ fun SliderView.bindListItem(listItem: List<*>, onItemClick: OnItemClickListener)
     adapter.renewItems(listItem as List<Movie.Slim>)
 }
 
+@BindingAdapter("listItem", "onItemClick", "onViewAllClick")
+fun MultiSnapRecyclerView.bindListItem(
+    listItem: Issue<*>,
+    onItemClick: OnItemClickListener,
+    onViewAllClick: (String, String) -> Unit
+) {
+    val adapter = MoviesListAdapter(onItemClick, onViewAllClick, listItem.type, listItem.title)
+    this.adapter = adapter
+    adapter.submitList(listItem.mediaTypeItemList as List<Movie.Slim>)
+}
+
 @BindingAdapter("listItem", "onItemClick")
 fun MultiSnapRecyclerView.bindListItem(listItem: List<*>, onItemClick: OnItemClickListener) {
-    when (listItem.first()) {
-        is Movie.Slim -> {
-            val adapter = MoviesListAdapter(onItemClick)
-            this.adapter = adapter
-            adapter.submitList(listItem as List<Movie.Slim>)
-        }
-        is Genres -> {
-            val adapter = DiscoverListAdapter(App.context.resources, onItemClick)
-            this.adapter = adapter
-            adapter.submitList(listItem as List<Genres>)
-        }
-    }
+    val adapter = DiscoverListAdapter(App.context.resources, onItemClick)
+    this.adapter = adapter
+    adapter.submitList(listItem as List<Genres>)
 }
 
 @BindingAdapter("title")
@@ -66,10 +69,14 @@ fun CollectionActionButton.bindTitle(title: String) {
 fun TextView.bindText(listText: List<Pair<Person.Slim, *>>?) {
     when (listText?.first()?.second) {
         is Person.CastRole -> {
-            this.text = App.context.resources.getString(R.string.cast_name, listText.joinToString(separator = ", ") { it.first.name })
+            this.text = App.context.resources.getString(
+                R.string.cast_name,
+                listText.joinToString(separator = ", ") { it.first.name })
         }
         is Person.CrewJob -> {
-            this.text = App.context.resources.getString(R.string.director_name, listText.joinToString(separator = ", ") { it.first.name })
+            this.text = App.context.resources.getString(
+                R.string.director_name,
+                listText.joinToString(separator = ", ") { it.first.name })
         }
     }
 }

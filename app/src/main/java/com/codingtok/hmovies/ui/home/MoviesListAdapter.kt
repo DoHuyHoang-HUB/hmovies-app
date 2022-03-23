@@ -11,7 +11,10 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
 class MoviesListAdapter(
-    private val onItemClick: OnItemClickListener
+    private val onItemClick: OnItemClickListener,
+    private val onViewAllClick: (String, String) -> Unit,
+    private val type: String?,
+    private val title: String?
 ): BaseListAdapter<Movie.Slim, ViewDataBinding>(DiffCallback, onItemClick) {
     companion object DiffCallback: DiffUtil.ItemCallback<Movie.Slim>() {
         override fun areItemsTheSame(oldItem: Movie.Slim, newItem: Movie.Slim): Boolean {
@@ -44,6 +47,16 @@ class MoviesListAdapter(
 
     override fun bindView(binding: ViewDataBinding, item: Movie.Slim, position: Int) {
         binding.root.setOnClickListener { onItemClick.onItemClick(item, position) }
+    }
+
+    override fun bindViewItemNull(binding: ViewDataBinding, position: Int) {
+        binding.root.setOnClickListener {
+            type?.let {
+                title?.let {
+                    onViewAllClick(type, title)
+                }
+            }
+        }
     }
 
     override fun getItemCount(): Int {

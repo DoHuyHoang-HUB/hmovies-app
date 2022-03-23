@@ -4,9 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="kotlin.jvm.functions.Function2" />
+        <import type="kotlin.Unit" />
         <variable
             name="onItemClick"
             type="com.codingtok.hmovies.ui.widget.OnItemClickListener" />
+        <variable
+            name="onViewAllClickListener"
+            type="Function2&lt;String, String, Unit&gt;" />
         <variable
             name="item"
             type="com.codingtok.hmovies.data.model.bean.Issue" />
@@ -35,8 +40,9 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:msrv_gravity="start"
             app:msrv_interval="1"
-            app:listItem="@{item.mediaTypeItemList}"
-            onItemClick="@{onItemClick}"
+            app:listItem="@{item}"
+            app:onItemClick="@{onItemClick}"
+            app:onViewAllClick="@{onViewAllClickListener}"
             app:msrv_speed_ms_per_inch="100"
             tools:listitem="@layout/item_movie_title" />
     </LinearLayout>

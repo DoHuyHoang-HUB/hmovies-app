@@ -8,7 +8,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import com.codingtok.hmovies.BUNDLE_MOVIE_DATA
 import com.codingtok.hmovies.ui.moviedetail.MovieDetailFragment
 import com.codingtok.hmovies.ui.moviedetail.MovieDetailViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class MovieDetailActivity : BaseActivity() {
 
@@ -23,12 +25,12 @@ class MovieDetailActivity : BaseActivity() {
 
         val movieId = intent.getSerializableExtra(BUNDLE_MOVIE_DATA) as Int
 
-        val fragment = MovieDetailFragment.newInstance(movieId)
-
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.frame_layout, fragment)
-            .commit()
+//        val fragment = MovieDetailFragment.newInstance(movieId)
+//
+//        supportFragmentManager
+//            .beginTransaction()
+//            .replace(R.id.frame_layout, fragment)
+//            .commit()
     }
 
     override fun lazyLoad() {

@@ -3,9 +3,11 @@ package com.codingtok.hmovies.ui.moviedetail
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.viewpager.widget.ViewPager
 import com.codingtok.hmovies.R
 import com.codingtok.hmovies.databinding.MovieDetailFragmentBinding
@@ -27,41 +29,43 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding, MovieDetail
     override val viewModel: MovieDetailViewModel by viewModels()
     override val layoutId: Int = R.layout.movie_detail_fragment
 
+    private val navigationArgs: MovieDetailFragmentArgs by navArgs()
+
     private val tabList = arrayListOf<String>()
     private val fragments = arrayListOf<Fragment>()
 
-    private var movieId: Int? = null
+//    companion object {
+//        @JvmStatic
+//        fun newInstance(movieId: Int) =
+//            MovieDetailFragment().apply {
+//                arguments = Bundle().apply {
+//                    putInt(ARG_MOVIE_ID, movieId)
+//                }
+//            }
+//    }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(movieId: Int) =
-            MovieDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_MOVIE_ID, movieId)
-                }
-            }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            movieId = it.getInt(ARG_MOVIE_ID)
-        }
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        arguments?.let {
+//            movieId = it.getInt(ARG_MOVIE_ID)
+//        }
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getMovieDetail(movieId!!)
+        val movieId = navigationArgs.movieId
+
+        viewModel.getMovieDetail(movieId)
 
         tabList.add(getString(R.string.related_movie))
         tabList.add(getString(R.string.trailer))
         tabList.add(getString(R.string.episode_movie))
 
 
-        fragments.add(RelatedMovieFragment.newInstance(movieId!!))
+        fragments.add(RelatedMovieFragment.newInstance(movieId))
 
-        fragments.add(TrailerFragment.newInstance(movieId!!))
+        fragments.add(TrailerFragment.newInstance(movieId))
         fragments.add(EpisodeFragment.newInstance())
 
         viewBinding.apply {

@@ -9,7 +9,9 @@ import com.codingtok.hmovies.R
 import com.codingtok.hmovies.ui.base.BaseActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
 

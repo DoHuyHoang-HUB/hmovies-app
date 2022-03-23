@@ -36,7 +36,8 @@
             android:ellipsize="end"
             android:gravity="center_horizontal"
             android:textColor="@color/colorTextPrimary"
-            android:textSize="@dimen/_14sdp"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"
             tools:text="Action" />
 
     </FrameLayout>

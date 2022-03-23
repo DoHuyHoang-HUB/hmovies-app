@@ -32,6 +32,11 @@ private interface BaseRecyclerAdapter<T : Any, ViewBinding : ViewDataBinding> {
      */
     fun bindView(binding: ViewBinding, item: T, position: Int) {}
 
+    /**
+     * bind view item null
+     */
+    fun bindViewItemNull(binding: ViewBinding, position: Int) {}
+
 }
 
 /**
@@ -70,6 +75,8 @@ abstract class BaseListAdapter<T : Any, ViewBinding : ViewDataBinding>(
         holder.binding.setVariable(BR.onItemClick, onItemClick)
         if (item != null) {
             bindView(holder.binding, item, position)
+        } else {
+            bindViewItemNull(holder.binding, position)
         }
         holder.binding.executePendingBindings()
     }

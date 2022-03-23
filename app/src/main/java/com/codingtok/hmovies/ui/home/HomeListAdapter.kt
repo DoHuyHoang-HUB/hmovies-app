@@ -67,10 +67,13 @@ class HomeListAdapter(
                 }
             }
             is LayoutHorizontalMovieBinding -> {
-                binding.collectionActionButton.setOnClickListener {
-                    item.type?.let { type ->
-                        item.title?.let { title -> onViewAllClick(type, title) }
+                binding.apply {
+                    collectionActionButton.setOnClickListener {
+                        item.type?.let { type ->
+                            item.title?.let { title -> onViewAllClick(type, title) }
+                        }
                     }
+                    onViewAllClickListener = onViewAllClick
                 }
             }
         }
