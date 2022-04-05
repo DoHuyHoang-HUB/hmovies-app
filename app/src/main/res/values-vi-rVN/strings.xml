@@ -27,4 +27,5 @@
     <string name="cast_name">Diễn viên: %s</string>
     <string name="director_name">Đạo diễn: %s</string>
     <string name="release_date_runtime_genre">%s &#9679; %d phút</string>
+    <string name="hint_seach">Tên phim, diễn viên, thể loại</string>
 </resources>

@@ -1,34 +1,39 @@
 package com.codingtok.hmovies.ui.search
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.app.ActivityOptionsCompat
+import androidx.fragment.app.viewModels
 import com.codingtok.hmovies.R
+import com.codingtok.hmovies.databinding.SearchFragmentBinding
+import com.codingtok.hmovies.ui.activity.SearchActivity
+import com.codingtok.hmovies.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchFragment : Fragment() {
+class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>() {
+    override val viewModel: SearchViewModel by viewModels()
+    override val layoutId: Int = R.layout.search_fragment
 
-    companion object {
-        fun newInstance() = SearchFragment()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewBinding.layoutSearch.setOnClickListener { openSearchActivity() }
     }
 
-    private lateinit var viewModel: SearchViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.search_fragment, container, false)
+    private fun openSearchActivity() {
+        val options = activity?.let { ActivityOptionsCompat.makeSceneTransitionAnimation(it, viewBinding.layoutSearch, viewBinding.layoutSearch.transitionName) }
+        startActivity(Intent(activity, SearchActivity::class.java), options?.toBundle())
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun handleLoading(isLoading: Boolean) {
+        Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
     }
 
+    override fun handleErrorMessage(message: String?) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    }
 }

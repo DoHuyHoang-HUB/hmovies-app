@@ -1,7 +1,8 @@
 package com.codingtok.hmovies.ui.search
 
 import androidx.lifecycle.ViewModel
+import com.codingtok.hmovies.ui.base.BaseViewModel
 
-class SearchViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class SearchViewModel : BaseViewModel() {
+
 }

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager.widget.ViewPager
 import com.codingtok.hmovies.R
@@ -20,8 +21,6 @@ import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-private const val ARG_MOVIE_ID = "movieId"
-
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding, MovieDetailViewModel>() {
@@ -33,23 +32,6 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding, MovieDetail
 
     private val tabList = arrayListOf<String>()
     private val fragments = arrayListOf<Fragment>()
-
-//    companion object {
-//        @JvmStatic
-//        fun newInstance(movieId: Int) =
-//            MovieDetailFragment().apply {
-//                arguments = Bundle().apply {
-//                    putInt(ARG_MOVIE_ID, movieId)
-//                }
-//            }
-//    }
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            movieId = it.getInt(ARG_MOVIE_ID)
-//        }
-//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -75,6 +57,8 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding, MovieDetail
                 tabList
             )
             tablayout.setupWithViewPager(viewPager)
+            btnBack.setOnClickListener { onBack() }
+            btnClose.setOnClickListener { onClose() }
         }
 
         var isShow = false
@@ -85,15 +69,24 @@ class MovieDetailFragment : BaseFragment<MovieDetailFragmentBinding, MovieDetail
                 if (scrollRange == -1){
                     scrollRange = appBarLayout?.totalScrollRange!!
                 }
-                if (scrollRange + verticalOffset < 20){
-                    collapsingToolBarLayout.isTitleEnabled = true
+                if (scrollRange + verticalOffset < 0){
+                    textTitle.visibility = View.VISIBLE
                     isShow = true
                 } else if (isShow){
-                    collapsingToolBarLayout.isTitleEnabled = false //careful there should a space between double quote otherwise it wont work
+                    textTitle.visibility = View.GONE //careful there should a space between double quote otherwise it wont work
                     isShow = false
                 }
             })
         }
+    }
+
+    private fun onBack() {
+        findNavController().navigateUp()
+    }
+
+    private fun onClose() {
+
+        findNavController().navigate(MovieDetailFragmentDirections.actionMovieDetailFragmentToNavHome())
     }
 
     override fun handleLoading(isLoading: Boolean) {

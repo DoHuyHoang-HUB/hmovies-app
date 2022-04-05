@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.codingtok.hmovies">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,9 +15,14 @@
         android:theme="@style/Theme.HMovies"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.activity.MovieDetailActivity"
+            android:name=".ui.activity.SearchActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="false" />
+        <activity
+            android:name=".ui.activity.MovieDetailActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.activity.SplashActivity"
             android:exported="false"

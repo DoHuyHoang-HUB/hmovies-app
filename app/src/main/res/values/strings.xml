@@ -30,4 +30,6 @@
     <string name="release_date_runtime_genre">%s &#9679; %d minute</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_seach">Movie name, actor, genre</string>
+    <string name="seach_transition_name" translatable="false">transition_reveal</string>
 </resources>
